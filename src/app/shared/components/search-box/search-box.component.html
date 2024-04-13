@@ -1,8 +1,8 @@
+<!-- (keydown.enter)="emitTerm()" -->
 <input
-type="text"
-[placeholder]="placeholder"
-class="form-control"
-[(ngModel)]="term"
-name="term"
-(keydown.enter)="emitTerm()"
->
+  type="text"
+  class="form-control"
+  [value]="initialValue"
+  [placeholder]="placeholder"
+  (keyup)="onKeyPress( txtInput.value )"
+  #txtInput>

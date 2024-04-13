@@ -1,0 +1,43 @@
+<div class="login-container row align-items-center">
+  <div class="col col-md-4"></div>
+
+  <div class="card p-5 col col-md-4">
+    <h2 class="pb-3">Inicio de Sesión</h2>
+
+    <form (ngSubmit)="login()" #loginForm="ngForm">
+      <div class="form-floating mb-3">
+        <input
+          [(ngModel)]="credentials.username"
+          name="dni"
+          type="text"
+          class="form-control"
+          id="floatingInput"
+          placeholder="00000000"
+          required>
+        <label for="floatingInput">Número de documento</label>
+      </div>
+      <div class="form-floating">
+        <input
+          [(ngModel)]="credentials.password"
+          name="contra"
+          type="password"
+          class="form-control"
+          id="floatingPassword"
+          placeholder="Contraseña"
+          required>
+        <label for="floatingPassword">Contraseña</label>
+      </div>
+
+      <p *ngIf="invalidCredentials">
+        Las credenciales son incorrectas
+      </p>
+
+      <button class="btn btn-dark form-control mt-4" type="submit"
+        [disabled]="!loginForm.valid">Ingresar</button>
+    </form>
+
+  </div>
+
+  <div class="col col-md-4"></div>
+
+</div>
