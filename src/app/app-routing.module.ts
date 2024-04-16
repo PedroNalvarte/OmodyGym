@@ -1,32 +1,30 @@
 import { NgModule } from '@angular/core';
-import { Router, RouterModule, Routes } from '@angular/router';
+import { Router, RouterModule, Routes, CanLoad } from '@angular/router';
 import { HomePageComponent } from './shared/pages/home-page/home-page.component';
 import { AboutPageComponent } from './shared/pages/about-page/about-page.component';
 import { ContactPageComponent } from './shared/pages/contact-page/contact-page.component';
 import { CountriesModule } from './countries/countries.module';
 import { LoginPageComponent } from './auth/login/login-main-page.component';
+import { isLoggedInGuard } from './auth/guards/is-logged-in.guard';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   component: HomePageComponent
-  // },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'prueba',
+  },
   {
     path: 'login',
     component: LoginPageComponent,
-  }
-  // ,
-  // {
-  //   path: 'contact',
-  //   component: ContactPageComponent
-  // },
-  // {
-  //   path: 'countries',
-  //   loadChildren: () => import('./countries/countries.module').then(m => m.CountriesModule)
-  // },
+  },
+  {
+    path: '',
+    canLoad: [isLoggedInGuard],
+    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule)
+  },
   // {
   //   path: '**',
-  //   redirectTo: 'countries'
+  //   redirectTo: 'prueba'
   // }
 
 ]
@@ -34,6 +32,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),
+
   ],
   exports: [
     RouterModule

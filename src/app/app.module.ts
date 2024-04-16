@@ -9,6 +9,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from './auth/auth.module';
 
+import { HomeModule } from './home/home.module';
+
+
 @NgModule({
   declarations: [
     AppComponent
@@ -19,7 +22,8 @@ import { AuthModule } from './auth/auth.module';
     SharedModule,
     FormsModule,
     HttpClientModule,
-    AuthModule
+    AuthModule,
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
