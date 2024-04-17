@@ -8,6 +8,7 @@ import { CountriesModule } from './countries/countries.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from './auth/auth.module';
+import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons';
 
 import { HomeModule } from './home/home.module';
 
@@ -23,7 +24,9 @@ import { HomeModule } from './home/home.module';
     FormsModule,
     HttpClientModule,
     AuthModule,
-    HomeModule
+    HomeModule,
+    NgxBootstrapIconsModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
