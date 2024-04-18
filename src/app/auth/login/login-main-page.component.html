@@ -1,6 +1,8 @@
 <div
   class="login-container row align-items-center d-flex justify-content-center"
 >
+
+
   <div class="col col-md-4"></div>
 
   <div class="card custom-card-color p-5 col col-md-3">
@@ -36,11 +38,12 @@
         <i class="bi-exclamation-circle" *ngIf="invalidCredentials"></i>
         Las credenciales son incorrectas
       </p>
-
+      <shared-loading-spinner *ngIf="processingRequest"></shared-loading-spinner>
       <button
         class="btn form-control mt-4"
         type="submit"
         [disabled]="!loginForm.valid"
+        [hidden]="processingRequest"
       >
         Ingresar
       </button>

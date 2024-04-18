@@ -10,7 +10,7 @@ const USER_LOCAL_STORAGE_KEY = 'userData';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  public apiUrl: string = 'http://localhost:3001';
+  public apiUrl: string = 'https://omodygym-backend.onrender.com';
 
   private user = new BehaviorSubject<UserWithToken | null>(null);
   user$ = this.user.asObservable();

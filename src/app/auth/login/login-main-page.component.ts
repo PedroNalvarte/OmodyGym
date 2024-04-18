@@ -4,15 +4,16 @@ import { EMPTY, Subscription, catchError, finalize, pipe, tap } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../auth.service';
 
+
 @Component({
   selector: 'login-main-page',
   templateUrl: './login-main-page.component.html',
   styleUrl: './login-main-page.component.css'
 })
 export class LoginPageComponent implements OnInit {
-
+  
   private triggerSubscription: Subscription;
-
+  
   ngOnInit(): void {
     this.triggerSubscription = this.authService.getTriggerComponentMethodObservable().subscribe(() => {
       this.handleUnauthorized();
