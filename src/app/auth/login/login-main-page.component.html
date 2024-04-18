@@ -1,9 +1,10 @@
-<div class="login-container row align-items-center">
+<div
+  class="login-container row align-items-center d-flex justify-content-center"
+>
   <div class="col col-md-4"></div>
 
-  <div class="card p-5 col col-md-4">
-    <h2 class="pb-3">Inicio de Sesión</h2>
-    <!-- Desarrollo -->
+  <div class="card custom-card-color p-5 col col-md-3">
+    <h2 class="pb-3">INICIAR SESIÓN</h2>
 
     <form (ngSubmit)="login()" #loginForm="ngForm">
       <div class="form-floating mb-3">
@@ -14,8 +15,9 @@
           class="form-control"
           id="floatingInput"
           placeholder="00000000"
-          required>
-        <label for="floatingInput">Número de documento</label>
+          required
+        />
+        <label class="tipoLetra" for="floatingInput">Número de documento</label>
       </div>
       <div class="form-floating">
         <input
@@ -25,20 +27,25 @@
           class="form-control"
           id="floatingPassword"
           placeholder="Contraseña"
-          required>
-        <label for="floatingPassword">Contraseña</label>
+          required
+        />
+        <label class="tipoLetra" for="floatingPassword">Contraseña</label>
       </div>
 
-      <p *ngIf="invalidCredentials">
+      <p class="credenciales-i" *ngIf="invalidCredentials">
+        <i class="bi-exclamation-circle" *ngIf="invalidCredentials"></i>
         Las credenciales son incorrectas
       </p>
 
-      <button class="btn btn-dark form-control mt-4" type="submit"
-        [disabled]="!loginForm.valid">Ingresar</button>
+      <button
+        class="btn form-control mt-4"
+        type="submit"
+        [disabled]="!loginForm.valid"
+      >
+        Ingresar
+      </button>
     </form>
-
   </div>
 
   <div class="col col-md-4"></div>
-
 </div>
