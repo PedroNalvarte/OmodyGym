@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { LoginPageComponent } from './login/login-main-page.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { ShowForRolesDirective } from './directives/show-for-roles.directive';
 
 
 
 @NgModule({
   declarations: [
-    LoginPageComponent
+    LoginPageComponent,
+    ShowForRolesDirective
 
   ],
   imports: [
@@ -16,6 +18,9 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
     SharedModule
     
+  ],
+  exports: [
+    ShowForRolesDirective
   ]
 })
 export class AuthModule { }

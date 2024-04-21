@@ -19,6 +19,8 @@ import { MiProgresoComponent } from './mi-progreso/mi-progreso.component';
 import { SedesComponent } from './sedes/sedes.component';
 import { ColaboradoresComponent } from './colaboradores/colaboradores.component';
 import { MembresiasComponent } from './membresias/membresias.component';
+import { HeaderComponent } from './header/header.component';
+import { AuthModule } from '../auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -38,8 +40,9 @@ import { MembresiasComponent } from './membresias/membresias.component';
     MiProgresoComponent,
     SedesComponent,
     ColaboradoresComponent,
-    MembresiasComponent
+    MembresiasComponent,
+    HeaderComponent
   ],
-  imports: [CommonModule, HomeRoutingModule],
+  imports: [CommonModule, HomeRoutingModule, AuthModule],
 })
 export class HomeModule { }

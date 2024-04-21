@@ -1,0 +1,42 @@
+:host {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  background-color:#cbcbcb;
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 1400px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+a,
+button {
+  display: inline-flex;
+  color: black;
+  text-decoration: none;
+  padding: 0 1rem;
+  line-height: 3.75rem;
+  border-radius: 4px;
+}
+
+#logo {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-right:  2rem;
+}
+
+button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.spacer {
+  flex: 1;
+}

@@ -53,6 +53,17 @@ export class AuthService {
       ignoreElements()
 
     );
+
+
+  }
+  logout(): void{
+    this.removeUserFromLocalStorage();
+    this.user.next(null);
+    this.router.navigateByUrl('/login');
+  }
+
+  private removeUserFromLocalStorage(): void{
+    localStorage.removeItem(USER_LOCAL_STORAGE_KEY);
   }
 
 

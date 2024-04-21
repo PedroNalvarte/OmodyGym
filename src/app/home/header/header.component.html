@@ -1,0 +1,21 @@
+<div class="wrapper">
+  <a id="logo" routerLink="/inicio">OmodyGym</a>
+  <span class="spacer"></span>
+  <nav>
+    <a *appShowForRoles="['Administrador', 'Cliente', 'Recepcionista', 'Entrenador']" routerLink="/inicio">Inicio</a>
+    <a *appShowForRoles="['Recepcionista']" routerLink="/entrenadores">Entrenadores</a>
+    <a *appShowForRoles="['Recepcionista']" routerLink="/verificarAcceso">Verificar acceso</a>
+    <a *appShowForRoles="['Administrador']" routerLink="/sedes">Sedes</a>
+    <a *appShowForRoles="['Administrador']" routerLink="/colaboradores">Colaboradores</a>
+    <a *appShowForRoles="['Recepcionista', 'Entrenador', 'Administrador']" routerLink="/clientes">Clientes</a>
+    <a *appShowForRoles="['Entrenador']" routerLink="/ejercicios">Ejercicios</a>
+    <a *appShowForRoles="['Administrador']" routerLink="/membresias">Membresias</a>
+    <a *appShowForRoles="['Cliente']" routerLink="/entrenador">Entrenador</a>
+    <a *appShowForRoles="['Cliente']" routerLink="/miPlan">Mi Plan</a>
+    <a *appShowForRoles="['Cliente']" routerLink="/estadisticas">Estadísticas</a>
+    <a *appShowForRoles="['Administrador', 'Cliente', 'Recepcionista', 'Entrenador']" routerLink="/perfil">Perfil</a>
+  </nav>
+  <button (click)="logout()">
+    <a>Salir</a>
+  </button>
+</div>
