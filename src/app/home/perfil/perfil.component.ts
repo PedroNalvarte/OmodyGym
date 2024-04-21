@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'perfil',
@@ -6,8 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./perfil.component.css'],
 })
 export class PerfilComponent {
-  constructor() {  }
+  currentUser$ =  this.authService.user$;
+  constructor(private authService : AuthService){}
 
+  logout(): void{
+    this.authService.logout();
+  }
 
 
 }
