@@ -10,7 +10,8 @@
     "build:href": "ng build --base-href ./",
     "delete:docs": "del docs",
     "copy:dist": "copyfiles dist/omodygym-app/browser/* ./docs -f",
-    "build:github": "npm run delete:docs && npm run build:href && npm run copy:dist"
+    "copy:404": "cp docs/index.html docs/404.html",
+    "build:github": "npm run delete:docs && npm run build:href && npm run copy:dist && npm run copy:404"
   },
   "private": true,
   "dependencies": {
