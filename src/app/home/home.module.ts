@@ -18,8 +18,9 @@ import { MiProgresoComponent } from './mi-progreso/mi-progreso.component';
 import { SedesComponent } from './sedes/sedes.component';
 import { ColaboradoresComponent } from './colaboradores/colaboradores.component';
 import { MembresiasComponent } from './membresias/membresias.component';
-import { HeaderComponent } from './header/header.component';
-import { AuthModule } from '../auth/auth.module';
+import { HeaderComponent } from '../shared/pages/header/header.component';
+import { SharedModule } from '../shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -38,9 +39,8 @@ import { AuthModule } from '../auth/auth.module';
     MiProgresoComponent,
     SedesComponent,
     ColaboradoresComponent,
-    MembresiasComponent,
-    HeaderComponent
+    MembresiasComponent
   ],
-  imports: [CommonModule, HomeRoutingModule, AuthModule],
+  imports: [CommonModule, HomeRoutingModule, SharedModule],
 })
 export class HomeModule { }

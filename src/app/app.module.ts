@@ -1,16 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
-import { CountriesModule } from './countries/countries.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from './auth/auth.module';
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons';
-
 import { HomeModule } from './home/home.module';
+import { DirectivesModule } from './directives/directives.module';
 
 
 @NgModule({
@@ -20,13 +18,14 @@ import { HomeModule } from './home/home.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule,
     FormsModule,
     HttpClientModule,
     AuthModule,
     HomeModule,
+    SharedModule,
+    DirectivesModule,
     NgxBootstrapIconsModule
-    
+
   ],
   providers: [],
   bootstrap: [AppComponent]
