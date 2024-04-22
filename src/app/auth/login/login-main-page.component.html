@@ -1,9 +1,12 @@
 <div
-  class="login-container row align-items-center d-flex justify-content-center">
+  class="login-container row  px-3">
 
-  <div class="col col-md-4"></div>
+  <!-- <div class="col col-md-4 col-sm-0"></div> -->
 
-  <div class="card custom-card-color p-5 col col-md-3">
+  <!-- <div class="card custom-card-color p-5 col col-md-12 col-sm-12"> -->
+  <div
+    class="card custom-card-color p-5 col col-md-4 offset-md-4 align-self-center">
+
     <h2 class="pb-3">INICIAR SESIÓN</h2>
 
     <form (ngSubmit)="login()" #loginForm="ngForm">
@@ -48,5 +51,5 @@
     </form>
   </div>
 
-  <div class="col col-md-4"></div>
+  <!-- <div class="col col-md-4 col-sm-0"></div> -->
 </div>
