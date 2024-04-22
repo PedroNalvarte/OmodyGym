@@ -7,11 +7,11 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build:href": "ng build --base-href ./",
     "delete:docs": "del docs",
+    "build:href": "ng build --base-href ./",
     "copy:dist": "copyfiles dist/omodygym-app/browser/* ./docs -f",
-    "copy:404": "cp docs/index.html docs/404.html",
-    "build:github": "npm run delete:docs && npm run build:href && npm run copy:dist && npm run copy:404"
+    "copy:404": "cp dist/omodygym-app/browser/index.html dist/omodygym-app/browser/404.html",
+    "build:github": "npm run build:href  && npm run copy:404"
   },
   "private": true,
   "dependencies": {
