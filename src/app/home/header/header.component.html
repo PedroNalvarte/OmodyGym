@@ -1,19 +1,36 @@
 <div class="wrapper">
-  <a id="logo" routerLink="/inicio"><img src="https://cdn.discordapp.com/attachments/1228834360367775860/1231750975925260398/Logo_omody.png?ex=6626f4fd&is=6625a37d&hm=bc48b0a5d72f7203f078f491e2ac4ce33c4fd318d7631d2e2d72b31196d58750&" alt=""></a>
+  <a id="logo" routerLink="/inicio"><img
+      src="https://cdn.discordapp.com/attachments/1228834360367775860/1231750975925260398/Logo_omody.png?ex=6626f4fd&is=6625a37d&hm=bc48b0a5d72f7203f078f491e2ac4ce33c4fd318d7631d2e2d72b31196d58750&"
+      alt></a>
   <span class="spacer"></span>
   <nav>
-    <a *appShowForRoles="['Administrador', 'Cliente', 'Recepcionista', 'Entrenador']" routerLink="/inicio">Inicio</a>
-    <a *appShowForRoles="['Recepcionista']" routerLink="/entrenadores">Entrenadores</a>
-    <a *appShowForRoles="['Recepcionista']" routerLink="/verificarAcceso">Verificar acceso</a>
-    <a *appShowForRoles="['Administrador']" routerLink="/sedes">Sedes</a>
-    <a *appShowForRoles="['Administrador']" routerLink="/colaboradores">Colaboradores</a>
-    <a *appShowForRoles="['Recepcionista', 'Entrenador', 'Administrador']" routerLink="/clientes">Clientes</a>
-    <a *appShowForRoles="['Entrenador']" routerLink="/ejercicios">Ejercicios</a>
-    <a *appShowForRoles="['Administrador']" routerLink="/membresias">Membresias</a>
-    <a *appShowForRoles="['Cliente']" routerLink="/entrenador">Entrenador</a>
-    <a *appShowForRoles="['Cliente']" routerLink="/miPlan">Mi Plan</a>
-    <a *appShowForRoles="['Cliente']" routerLink="/estadisticas">Estadísticas</a>
-    <a *appShowForRoles="['Administrador', 'Cliente', 'Recepcionista', 'Entrenador']" routerLink="/perfil">Perfil</a>
+    <a
+      *appShowForRoles="['Administrador', 'Cliente', 'Recepcionista', 'Entrenador']"
+      routerLink="/inicio" routerLinkActive="active">Inicio</a>
+    <a *appShowForRoles="['Recepcionista']"
+      routerLink="/entrenadores" routerLinkActive="active">Entrenadores</a>
+    <a *appShowForRoles="['Recepcionista']"
+      routerLink="/verificarAcceso" routerLinkActive="active">Verificar
+      acceso</a>
+    <a *appShowForRoles="['Administrador']" routerLink="/sedes"
+      routerLinkActive="active">Sedes</a>
+    <a *appShowForRoles="['Administrador']"
+      routerLink="/colaboradores" routerLinkActive="active">Colaboradores</a>
+    <a *appShowForRoles="['Recepcionista', 'Entrenador', 'Administrador']"
+      routerLink="/clientes" routerLinkActive="active">Clientes</a>
+    <a *appShowForRoles="['Entrenador']" routerLink="/ejercicios"
+      routerLinkActive="active">Ejercicios</a>
+    <a *appShowForRoles="['Administrador']"
+      routerLink="/membresias" routerLinkActive="active">Membresias</a>
+    <a *appShowForRoles="['Cliente']" routerLink="/entrenador"
+      routerLinkActive="active">Entrenador</a>
+    <a *appShowForRoles="['Cliente']" routerLink="/miPlan"
+      routerLinkActive="active">Mi Plan</a>
+    <a *appShowForRoles="['Cliente']"
+      routerLink="/estadisticas" routerLinkActive="active">Estadísticas</a>
+    <a
+      *appShowForRoles="['Administrador', 'Cliente', 'Recepcionista', 'Entrenador']"
+      routerLink="/perfil" routerLinkActive="active">Perfil</a>
   </nav>
 
 </div>

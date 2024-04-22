@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { HomeLayoutComponent } from './home-layout/home-layout.component';
-import { PruebaComponent } from './prueba/pruebacomponent';
 import { InicioComponent } from './inicio/inicio.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { ClientesComponent } from './clientes/clientes.component';
@@ -25,7 +24,6 @@ import { AuthModule } from '../auth/auth.module';
 @NgModule({
   declarations: [
     HomeLayoutComponent,
-    PruebaComponent,
     InicioComponent,
     PerfilComponent,
     ClientesComponent,

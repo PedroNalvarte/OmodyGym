@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router'
 import { HomeLayoutComponent } from './home-layout/home-layout.component';
-import { PruebaComponent } from './prueba/pruebacomponent';
 import { InicioComponent } from './inicio/inicio.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { ClientesComponent } from './clientes/clientes.component';
@@ -24,14 +23,10 @@ const routes: Routes = [
     component: HomeLayoutComponent,
     children: [
       {
-        path: 'prueba',
-        component: PruebaComponent
-      },
-      {
         path: 'inicio',
         canActivate: [hasRoleGuard],
-        canLoad:[hasRoleGuard],
-        data:{
+        canLoad: [hasRoleGuard],
+        data: {
           allowedRoles: ['Administrador', 'Recepcionista', 'Entrenador', 'Cliente']
         },
         component: InicioComponent
@@ -39,8 +34,8 @@ const routes: Routes = [
       {
         path: 'perfil',
         canActivate: [hasRoleGuard],
-        canLoad:[hasRoleGuard],
-        data:{
+        canLoad: [hasRoleGuard],
+        data: {
           allowedRoles: ['Administrador', 'Recepcionista', 'Entrenador', 'Cliente']
         },
         component: PerfilComponent
@@ -48,8 +43,8 @@ const routes: Routes = [
       {
         path: 'clientes',
         canActivate: [hasRoleGuard],
-        canLoad:[hasRoleGuard],
-        data:{
+        canLoad: [hasRoleGuard],
+        data: {
           allowedRoles: ['Administrador', 'Recepcionista', 'Entrenador']
         },
         component: ClientesComponent
@@ -57,8 +52,8 @@ const routes: Routes = [
       {
         path: 'verificarAcceso',
         canActivate: [hasRoleGuard],
-        canLoad:[hasRoleGuard],
-        data:{
+        canLoad: [hasRoleGuard],
+        data: {
           allowedRoles: ['Recepcionista']
         },
         component: VerificarAccesoComponent
@@ -66,8 +61,8 @@ const routes: Routes = [
       {
         path: 'miSede',
         canActivate: [hasRoleGuard],
-        canLoad:[hasRoleGuard],
-        data:{
+        canLoad: [hasRoleGuard],
+        data: {
           allowedRoles: ['Recepcionista']
         },
         component: MiSedeComponent
@@ -75,8 +70,8 @@ const routes: Routes = [
       {
         path: 'entrenadores',
         canActivate: [hasRoleGuard],
-        canLoad:[hasRoleGuard],
-        data:{
+        canLoad: [hasRoleGuard],
+        data: {
           allowedRoles: ['Recepcionista']
         },
         component: EntrenadoresComponent
@@ -84,8 +79,8 @@ const routes: Routes = [
       {
         path: 'ejercicios',
         canActivate: [hasRoleGuard],
-        canLoad:[hasRoleGuard],
-        data:{
+        canLoad: [hasRoleGuard],
+        data: {
           allowedRoles: ['Entrenador']
         },
         component: EjerciciosComponent
@@ -93,8 +88,8 @@ const routes: Routes = [
       {
         path: 'rutinas',
         canActivate: [hasRoleGuard],
-        canLoad:[hasRoleGuard],
-        data:{
+        canLoad: [hasRoleGuard],
+        data: {
           allowedRoles: ['Entrenador']
         },
         component: RutinasComponent
@@ -102,8 +97,8 @@ const routes: Routes = [
       {
         path: 'entrenador',
         canActivate: [hasRoleGuard],
-        canLoad:[hasRoleGuard],
-        data:{
+        canLoad: [hasRoleGuard],
+        data: {
           allowedRoles: ['Cliente']
         },
         component: EntrenadorComponent
@@ -111,8 +106,8 @@ const routes: Routes = [
       {
         path: 'miPlan',
         canActivate: [hasRoleGuard],
-        canLoad:[hasRoleGuard],
-        data:{
+        canLoad: [hasRoleGuard],
+        data: {
           allowedRoles: ['Cliente']
         },
         component: MiPlanComponent
@@ -120,8 +115,8 @@ const routes: Routes = [
       {
         path: 'estadisticas',
         canActivate: [hasRoleGuard],
-        canLoad:[hasRoleGuard],
-        data:{
+        canLoad: [hasRoleGuard],
+        data: {
           allowedRoles: ['Cliente']
         },
         component: EstadisticasComponent
@@ -129,8 +124,8 @@ const routes: Routes = [
       {
         path: 'miProgreso',
         canActivate: [hasRoleGuard],
-        canLoad:[hasRoleGuard],
-        data:{
+        canLoad: [hasRoleGuard],
+        data: {
           allowedRoles: ['Cliente']
         },
         component: MiProgresoComponent
@@ -138,8 +133,8 @@ const routes: Routes = [
       {
         path: 'sedes',
         canActivate: [hasRoleGuard],
-        canLoad:[hasRoleGuard],
-        data:{
+        canLoad: [hasRoleGuard],
+        data: {
           allowedRoles: ['Administrador']
         },
         component: SedesComponent
@@ -147,8 +142,8 @@ const routes: Routes = [
       {
         path: 'colaboradores',
         canActivate: [hasRoleGuard],
-        canLoad:[hasRoleGuard],
-        data:{
+        canLoad: [hasRoleGuard],
+        data: {
           allowedRoles: ['Administrador']
         },
         component: ColaboradoresComponent
@@ -156,8 +151,8 @@ const routes: Routes = [
       {
         path: 'membresias',
         canActivate: [hasRoleGuard],
-        canLoad:[hasRoleGuard],
-        data:{
+        canLoad: [hasRoleGuard],
+        data: {
           allowedRoles: ['Administrador']
         },
         component: MembresiasComponent

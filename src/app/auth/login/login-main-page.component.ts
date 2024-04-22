@@ -11,9 +11,9 @@ import { AuthService } from '../auth.service';
   styleUrl: './login-main-page.component.css'
 })
 export class LoginPageComponent implements OnInit {
-  
+
   private triggerSubscription: Subscription;
-  
+
   ngOnInit(): void {
     this.triggerSubscription = this.authService.getTriggerComponentMethodObservable().subscribe(() => {
       this.handleUnauthorized();
@@ -36,7 +36,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   login() {
-
+    this.invalidCredentials = false;
     this.processingRequest = true;
 
     this.authService

@@ -1,7 +1,5 @@
 <div
-  class="login-container row align-items-center d-flex justify-content-center"
->
-
+  class="login-container row align-items-center d-flex justify-content-center">
 
   <div class="col col-md-4"></div>
 
@@ -12,25 +10,25 @@
       <div class="form-floating mb-3">
         <input
           [(ngModel)]="credentials.username"
+          [disabled]="processingRequest"
           name="dni"
           type="text"
           class="form-control"
           id="floatingInput"
           placeholder="00000000"
-          required
-        />
+          required />
         <label class="tipoLetra" for="floatingInput">Número de documento</label>
       </div>
       <div class="form-floating">
         <input
           [(ngModel)]="credentials.password"
+          [disabled]="processingRequest"
           name="contra"
           type="password"
           class="form-control"
           id="floatingPassword"
           placeholder="Contraseña"
-          required
-        />
+          required />
         <label class="tipoLetra" for="floatingPassword">Contraseña</label>
       </div>
 
@@ -38,13 +36,13 @@
         <i class="bi-exclamation-circle" *ngIf="invalidCredentials"></i>
         Las credenciales son incorrectas
       </p>
-      <shared-loading-spinner *ngIf="processingRequest"></shared-loading-spinner>
+      <shared-loading-spinner
+        *ngIf="processingRequest"></shared-loading-spinner>
       <button
         class="btn form-control mt-4"
         type="submit"
         [disabled]="!loginForm.valid"
-        [hidden]="processingRequest"
-      >
+        [hidden]="processingRequest">
         Ingresar
       </button>
     </form>

@@ -54,20 +54,16 @@ export class AuthService {
 
     );
 
-
   }
-  logout(): void{
+  logout(): void {
     this.removeUserFromLocalStorage();
     this.user.next(null);
     this.router.navigateByUrl('/login');
   }
 
-  private removeUserFromLocalStorage(): void{
+  private removeUserFromLocalStorage(): void {
     localStorage.removeItem(USER_LOCAL_STORAGE_KEY);
   }
-
-
-
 
 
   //-------------------funciones de local storage-------------------
@@ -93,7 +89,7 @@ export class AuthService {
   }
 
   private redirectToDashboard(): void {
-    this.router.navigateByUrl('/prueba');
+    this.router.navigateByUrl('/inicio');
   }
 
 }

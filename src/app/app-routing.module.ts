@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'prueba',
+    redirectTo: 'inicio',
   },
   {
     path: 'login',
@@ -22,10 +22,6 @@ const routes: Routes = [
     canLoad: [isLoggedInGuard],
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule)
   },
-  // {
-  //   path: '**',
-  //   redirectTo: 'prueba'
-  // }
 
 ]
 
