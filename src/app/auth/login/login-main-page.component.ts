@@ -3,6 +3,9 @@ import { LoginCredentials } from '../model/login-credentials.interface';
 import { EMPTY, Subscription, catchError, finalize, pipe, tap } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../auth.service';
+import { bootstrap } from 'ngx-bootstrap-icons';
+import { Modal } from 'bootstrap';
+
 
 
 @Component({
@@ -12,27 +15,37 @@ import { AuthService } from '../auth.service';
 })
 export class LoginPageComponent implements OnInit {
 
-  private triggerSubscription: Subscription;
+  private triggerHandleUnauthorized: Subscription;
+  private triggerOpenPasswordReset: Subscription;
 
   ngOnInit(): void {
-    this.triggerSubscription = this.authService.getTriggerComponentMethodObservable().subscribe(() => {
+    this.triggerHandleUnauthorized = this.authService.getTriggerHandleUnauthorizedMethodObservable().subscribe(() => {
       this.handleUnauthorized();
+    });
+
+    this.triggerOpenPasswordReset = this.authService.getTriggerOpenPasswordResetMethodObservable().subscribe(() => {
+      this.openPasswordReset();
     });
   }
 
   public processingRequest: boolean = false;
-
   public invalidCredentials: boolean = false;
 
   public credentials: LoginCredentials = {
     username: '',
     password: ''
-
   }
+
+  //Password reset variable
+  public resetPassword: string = '';
+  public resetPassword2: string = '';
+  public resetErrorMensaje: string = '';
+  public invalidResetPassword: boolean = false;
 
   constructor(public authService: AuthService, private cdr: ChangeDetectorRef) {
 
-    this.triggerSubscription = new Subscription();
+    this.triggerHandleUnauthorized = new Subscription();
+    this.triggerOpenPasswordReset = new Subscription();
   }
 
   login() {
@@ -64,5 +77,34 @@ export class LoginPageComponent implements OnInit {
     this.cdr.markForCheck();
   }
 
+  openPasswordReset() {
+    const modalElement = document.getElementById('myModal') as HTMLElement;
+
+    if (modalElement) {
+      const myModal = new Modal(modalElement);
+      myModal.show();
+    }
+  }
+
+  passwordReset() {
+
+    if (this.resetPassword !== this.resetPassword2) {
+      this.invalidResetPassword = true;
+      this.resetErrorMensaje = 'Las contraseñas deben coincidir'
+    } else if (this.credentials.password == this.resetPassword) {
+      this.invalidResetPassword = true;
+      this.resetErrorMensaje = 'Las contraseña no puede ser igual a la actual.';
+    }
+
+
+  }
+
+
+
+
+
+
 
 }
+
+

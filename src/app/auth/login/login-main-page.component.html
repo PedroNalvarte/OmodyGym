@@ -52,4 +52,66 @@
   </div>
 
   <!-- <div class="col col-md-4 col-sm-0"></div> -->
+
+  <button (click)="openPasswordReset()">Prueba
+    modal</button>
+
+  //Modal cambio de contraseña
+
+  <div id="myModal" class="modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Actualización de contraseña.</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <form (ngSubmit)="passwordReset()" #resetForm="ngForm">
+          <div class="modal-body">
+            <p>Para continuar debe actualizar su contraseña.</p>
+
+            <div class="form-floating mb-3">
+              <input
+                [(ngModel)]="resetPassword"
+                name="contra"
+                type="password"
+                class="form-control"
+                id="floatingPassword"
+                placeholder="Contraseña"
+                required />
+              <label class="tipoLetra" for="floatingPassword">Contraseña</label>
+            </div>
+            <div class="form-floating">
+              <input
+                [(ngModel)]="resetPassword2"
+                name="contra2"
+                type="password"
+                class="form-control"
+                id="floatingPassword2"
+                placeholder="Contraseña"
+                required />
+              <label class="tipoLetra" for="floatingPassword2">Repetir
+                contraseña</label>
+            </div>
+
+            <p class="credenciales-i" *ngIf="invalidResetPassword">
+              <i class="bi-exclamation-circle"></i>
+              {{resetErrorMensaje}}
+            </p>
+            <shared-loading-spinner
+              *ngIf="processingRequest"></shared-loading-spinner>
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"
+              data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary"
+              [disabled]="!resetForm.valid">Actualizar contraseña</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
 </div>

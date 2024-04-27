@@ -16,18 +16,27 @@ export class AuthService {
   user$ = this.user.asObservable();
   isLoggedIn$: Observable<boolean> = this.user$.pipe(map(Boolean));
 
-  //metodo
+  //metodo de html
 
-  private triggerComponentMethodSubject = new Subject<void>();
+  private triggerHandleUnauthorized = new Subject<void>();
+  private triggerOpenPasswordReset = new Subject<void>();
 
-  triggerComponentMethod() {
-    this.triggerComponentMethodSubject.next();
+  triggerHandleUnauthorizedMethod() {
+    this.triggerHandleUnauthorized.next();
   }
 
-  getTriggerComponentMethodObservable() {
-    return this.triggerComponentMethodSubject.asObservable();
+  triggertriggerOpenPasswordReset() {
+    this.triggerOpenPasswordReset.next();
   }
-  //fgin meopto
+
+  getTriggerHandleUnauthorizedMethodObservable() {
+    return this.triggerHandleUnauthorized.asObservable();
+  }
+
+  getTriggerOpenPasswordResetMethodObservable() {
+    return this.triggerOpenPasswordReset.asObservable();
+  }
+  //fin metodo de html
 
 
   constructor(private HttpClient: HttpClient, private router: Router) {
@@ -41,12 +50,18 @@ export class AuthService {
       tap((userToken) => {
         if (userToken === 'null') {
           //console.log('es null');
-          this.triggerComponentMethod();
+          this.triggerHandleUnauthorizedMethod();
         } else {
           //console.log('no es null')
-          this.saveTokenToLocalStore(userToken);
-          this.pushNewUser(userToken);
-          this.redirectToDashboard();
+          if (credentials.username !== credentials.password) {
+            console.log("Son diferentes");
+          } else {
+            console.log("Son iguales");
+            this.triggertriggerOpenPasswordReset();
+          }
+          // this.saveTokenToLocalStore(userToken);
+          // this.pushNewUser(userToken);
+          // this.redirectToDashboard();
         }
       }),
 
