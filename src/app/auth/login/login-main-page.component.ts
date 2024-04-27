@@ -23,10 +23,11 @@ export class LoginPageComponent implements OnInit {
       this.handleUnauthorized();
     });
 
-    this.triggerOpenPasswordReset = this.authService.getTriggerOpenPasswordResetMethodObservable().subscribe(() => {
-      this.openPasswordReset();
+    this.triggerOpenPasswordReset = this.authService.getTriggerOpenPasswordResetMethodObservable().subscribe((accion: string) => {
+      this.openPasswordReset(accion);
     });
   }
+
 
   public processingRequest: boolean = false;
   public invalidCredentials: boolean = false;
@@ -42,6 +43,8 @@ export class LoginPageComponent implements OnInit {
   public resetErrorMensaje: string = '';
   public invalidResetPassword: boolean = false;
   public processingPasswordResetRequest: boolean = false;
+  public successReset: boolean = false;
+  public modalHide: boolean = false;
 
   constructor(public authService: AuthService, private cdr: ChangeDetectorRef) {
 
@@ -78,18 +81,31 @@ export class LoginPageComponent implements OnInit {
     this.cdr.markForCheck();
   }
 
-  openPasswordReset() {
-    
+  openPasswordReset(accion: string) {
+
+    console.log(accion);
+
     this.invalidResetPassword = false;
     this.resetPassword = '';
     this.resetPassword2 = '';
 
     const modalElement = document.getElementById('myModal') as HTMLElement;
+    const myModal = new Modal(modalElement);
 
-    if (modalElement) {
-      const myModal = new Modal(modalElement);
+    if (accion == 'abrir') {
       myModal.show();
+    } else if (accion == 'cerrar') {
+
+      this.successReset = true;
+      this.processingPasswordResetRequest = false;
+
+      this.credentials.password = '';
+
     }
+
+
+
+
   }
 
   passwordReset() {
@@ -106,17 +122,36 @@ export class LoginPageComponent implements OnInit {
       this.invalidResetPassword = true;
       this.resetErrorMensaje = 'Las contraseña no puede ser igual a la actual.';
 
-    }else{
+    } else {
 
       this.processingPasswordResetRequest = true;
 
       this.authService
-      .resetPassword(this.resetPassword);
+        .resetPassword(this.resetPassword, this.credentials.username)
+        .pipe(
+          tap((result) => console.log('Resultado antes de catchError:', result)),
+          finalize(() => (this.processingRequest = false)),
+          catchError((error: HttpErrorResponse) => {
+            if (error.status === 401) {
+              this.handleUnauthorized();
+              return EMPTY;
+            }
+
+            throw error;
+          })
+        )
+        .subscribe();
 
     }
 
 
   }
+
+  cerrarModal() {
+    this.modalHide = true;
+  }
+
+
 
 
 

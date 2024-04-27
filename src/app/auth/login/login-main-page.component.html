@@ -53,66 +53,72 @@
 
   <!-- <div class="col col-md-4 col-sm-0"></div> -->
 
-  <button (click)="openPasswordReset()">Prueba
-    modal</button>
-
   //Modal cambio de contraseña
 
-  <div id="myModal" class="modal" tabindex="-1">
+  <div [hidden]="modalHide" id="myModal" class="modal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
-      
+
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Actualización de contraseña</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"
-            aria-label="Close"></button>
         </div>
-        <div *ngIf="processingPasswordResetRequest">
-          <shared-loading-spinner></shared-loading-spinner>
-          <p>Espere por favor.</p>
-        </div>
-        <form *ngIf="!processingPasswordResetRequest" (ngSubmit)="passwordReset()" #resetForm="ngForm">
+
+        <form
+          (ngSubmit)="passwordReset()" #resetForm="ngForm">
+
           <div class="modal-body">
-            
-            
-            <p>Para continuar debe actualizar su contraseña.</p>
 
-            <div class="form-floating mb-3">
-              <input
-                [(ngModel)]="resetPassword"
-                name="contra"
-                type="password"
-                class="form-control"
-                id="floatingPassword"
-                placeholder="Contraseña"
-                required />
-              <label class="tipoLetra" for="floatingPassword">Contraseña</label>
-            </div>
-            <div class="form-floating">
-              <input
-                [(ngModel)]="resetPassword2"
-                name="contra2"
-                type="password"
-                class="form-control"
-                id="floatingPassword2"
-                placeholder="Contraseña"
-                required />
-              <label class="tipoLetra" for="floatingPassword2">Repetir
-                contraseña</label>
+            <div *ngIf="successReset">
+              <p>Contraseña cambiada exitosamente, ya puede cerrar la ventana e
+                iniciar sesión.</p>
             </div>
 
-            <p class="credenciales-i" *ngIf="invalidResetPassword">
-              <i class="bi-exclamation-circle"></i>
-              {{resetErrorMensaje}}
-            </p>
-            <shared-loading-spinner
-              *ngIf="processingRequest"></shared-loading-spinner>
+            <div *ngIf="processingPasswordResetRequest">
+              <shared-loading-spinner></shared-loading-spinner>
+              <p>Espere por favor.</p>
+            </div>
+
+            <div *ngIf="!processingPasswordResetRequest && !successReset">
+              <p>Para continuar debe actualizar su contraseña.</p>
+
+              <div class="form-floating mb-3">
+                <input
+                  [(ngModel)]="resetPassword"
+                  name="contra"
+                  type="password"
+                  class="form-control"
+                  id="floatingPassword2"
+                  placeholder="Contraseña"
+                  required />
+                <label class="tipoLetra"
+                  for="floatingPassword2">Contraseña</label>
+              </div>
+              <div class="form-floating">
+                <input
+                  [(ngModel)]="resetPassword2"
+                  name="contra2"
+                  type="password"
+                  class="form-control"
+                  id="floatingPassword3"
+                  placeholder="Contraseña"
+                  required />
+                <label class="tipoLetra" for="floatingPassword3">Repetir
+                  contraseña</label>
+              </div>
+
+              <p class="credenciales-i" *ngIf="invalidResetPassword">
+                <i class="bi-exclamation-circle"></i>
+                {{resetErrorMensaje}}
+              </p>
+
+            </div>
 
           </div>
 
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary"
-              data-bs-dismiss="modal">Close</button>
+          <div *ngIf="!successReset" class="modal-footer">
+            <button type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal">Cerrar</button>
             <button type="submit" class="btn btn-primary"
               [disabled]="!resetForm.valid">Actualizar contraseña</button>
           </div>

@@ -10,7 +10,11 @@ const USER_LOCAL_STORAGE_KEY = 'userData';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  public apiUrl: string = 'https://omodygym-backend.onrender.com';
+  //Prod
+  //public apiUrl: string = 'https://omodygym-backend.onrender.com';
+
+  //Pruebas
+  public apiUrl: string = 'http://localhost:3001';
 
   private user = new BehaviorSubject<UserWithToken | null>(null);
   user$ = this.user.asObservable();
@@ -19,14 +23,14 @@ export class AuthService {
   //metodo de html
 
   private triggerHandleUnauthorized = new Subject<void>();
-  private triggerOpenPasswordReset = new Subject<void>();
+  private triggerOpenPasswordReset = new Subject<string>();
 
   triggerHandleUnauthorizedMethod() {
     this.triggerHandleUnauthorized.next();
   }
 
-  triggertriggerOpenPasswordReset() {
-    this.triggerOpenPasswordReset.next();
+  triggertriggerOpenPasswordReset(accion: string) {
+    this.triggerOpenPasswordReset.next(accion);
   }
 
   getTriggerHandleUnauthorizedMethodObservable() {
@@ -54,14 +58,15 @@ export class AuthService {
         } else {
           //console.log('no es null')
           if (credentials.username !== credentials.password) {
-            console.log("Son diferentes");
+            //console.log("Son diferentes");
+            this.saveTokenToLocalStore(userToken);
+            this.pushNewUser(userToken);
+            this.redirectToDashboard();
           } else {
-            console.log("Son iguales");
-            this.triggertriggerOpenPasswordReset();
+            //console.log("Son iguales");
+            this.triggertriggerOpenPasswordReset('abrir');
           }
-          // this.saveTokenToLocalStore(userToken);
-          // this.pushNewUser(userToken);
-          // this.redirectToDashboard();
+
         }
       }),
 
@@ -77,9 +82,21 @@ export class AuthService {
     this.router.navigateByUrl('/login');
   }
 
-  resetPassword(resetPassword: string): void {
+  resetPassword(resetPassword: string, user: string): Observable<never> {
 
-    console.log('resetPassword: ',resetPassword);
+    const url = `${this.apiUrl}/reset/${user}/${resetPassword}`;
+
+    return this.HttpClient.post<boolean>(url, user).pipe(
+      tap((res) => {
+        if (res == true) {
+
+          this.triggertriggerOpenPasswordReset('cerrar');
+
+        }
+      }),
+      ignoreElements()
+
+    );
 
   }
 
@@ -118,26 +135,6 @@ export class AuthService {
   }
 
 }
-
-
-
-
-// login(credentials: LoginCredentials): Observable<String> {
-
-//   const url = `${this.apiUrl}/login/${credentials.username}/${credentials.password}`
-//   return this.getRolsRequest(url)
-//     .pipe(
-//       tap(result => console.log(result))
-//     )
-
-// }
-
-// private getRolsRequest(url: string): Observable<String> {
-//   return this.htpp.get<String>(url)
-//     .pipe(
-//       delay(1000)
-//     );
-// }
 
 
 
