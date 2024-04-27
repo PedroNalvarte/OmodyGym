@@ -41,6 +41,7 @@ export class LoginPageComponent implements OnInit {
   public resetPassword2: string = '';
   public resetErrorMensaje: string = '';
   public invalidResetPassword: boolean = false;
+  public processingPasswordResetRequest: boolean = false;
 
   constructor(public authService: AuthService, private cdr: ChangeDetectorRef) {
 
@@ -78,6 +79,11 @@ export class LoginPageComponent implements OnInit {
   }
 
   openPasswordReset() {
+    
+    this.invalidResetPassword = false;
+    this.resetPassword = '';
+    this.resetPassword2 = '';
+
     const modalElement = document.getElementById('myModal') as HTMLElement;
 
     if (modalElement) {
@@ -88,12 +94,25 @@ export class LoginPageComponent implements OnInit {
 
   passwordReset() {
 
+    this.invalidResetPassword = false;
+
     if (this.resetPassword !== this.resetPassword2) {
+
       this.invalidResetPassword = true;
-      this.resetErrorMensaje = 'Las contraseñas deben coincidir'
+      this.resetErrorMensaje = 'Las contraseñas deben coincidir';
+
     } else if (this.credentials.password == this.resetPassword) {
+
       this.invalidResetPassword = true;
       this.resetErrorMensaje = 'Las contraseña no puede ser igual a la actual.';
+
+    }else{
+
+      this.processingPasswordResetRequest = true;
+
+      this.authService
+      .resetPassword(this.resetPassword);
+
     }
 
 

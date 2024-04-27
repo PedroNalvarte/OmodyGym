@@ -60,14 +60,21 @@
 
   <div id="myModal" class="modal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
+      
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Actualización de contraseña.</h5>
+          <h5 class="modal-title">Actualización de contraseña</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"
             aria-label="Close"></button>
         </div>
-        <form (ngSubmit)="passwordReset()" #resetForm="ngForm">
+        <div *ngIf="processingPasswordResetRequest">
+          <shared-loading-spinner></shared-loading-spinner>
+          <p>Espere por favor.</p>
+        </div>
+        <form *ngIf="!processingPasswordResetRequest" (ngSubmit)="passwordReset()" #resetForm="ngForm">
           <div class="modal-body">
+            
+            
             <p>Para continuar debe actualizar su contraseña.</p>
 
             <div class="form-floating mb-3">

@@ -70,11 +70,21 @@ export class AuthService {
     );
 
   }
+
   logout(): void {
     this.removeUserFromLocalStorage();
     this.user.next(null);
     this.router.navigateByUrl('/login');
   }
+
+  resetPassword(resetPassword: string): void {
+
+    console.log('resetPassword: ',resetPassword);
+
+  }
+
+
+
 
   private removeUserFromLocalStorage(): void {
     localStorage.removeItem(USER_LOCAL_STORAGE_KEY);
