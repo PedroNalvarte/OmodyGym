@@ -6,13 +6,15 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 import { HeaderComponent } from './pages/header/header.component';
 import { AuthModule } from '../auth/auth.module';
 import { DirectivesModule } from '../directives/directives.module';
+import { FooterComponent } from './pages/footer/footer.component';
 
 
 
 @NgModule({
   declarations: [
     LoadingSpinnerComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,7 @@ import { DirectivesModule } from '../directives/directives.module';
     DirectivesModule
   ],
   exports: [
-    LoadingSpinnerComponent, HeaderComponent
+    LoadingSpinnerComponent, HeaderComponent, FooterComponent
   ]
 })
 export class SharedModule { }
