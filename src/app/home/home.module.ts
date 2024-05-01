@@ -7,7 +7,6 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { ClientesComponent } from './clientes/clientes.component';
 import { HomeRoutingModule } from './homerouting.module';
 import { VerificarAccesoComponent } from './verificar-acceso/verificar-acceso.component';
-import { EntrenadoresComponent } from './entrenadores/entrenadores.component';
 import { MiSedeComponent } from './mi-sede/mi-sede.component';
 import { EjerciciosComponent } from './ejercicios/ejercicios.component';
 import { RutinasComponent } from './rutinas/rutinas.component';
@@ -30,7 +29,6 @@ import { SharedModule } from '../shared/shared.module';
     ClientesComponent,
     VerificarAccesoComponent,
     MiSedeComponent,
-    EntrenadoresComponent,
     EjerciciosComponent,
     RutinasComponent,
     EntrenadorComponent,

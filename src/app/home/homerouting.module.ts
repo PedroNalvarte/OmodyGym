@@ -6,7 +6,6 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { ClientesComponent } from './clientes/clientes.component';
 import { VerificarAccesoComponent } from './verificar-acceso/verificar-acceso.component';
 import { MiSedeComponent } from './mi-sede/mi-sede.component';
-import { EntrenadoresComponent } from './entrenadores/entrenadores.component';
 import { EjerciciosComponent } from './ejercicios/ejercicios.component';
 import { RutinasComponent } from './rutinas/rutinas.component';
 import { EntrenadorComponent } from './entrenador/entrenador.component';
@@ -66,15 +65,6 @@ const routes: Routes = [
           allowedRoles: ['Recepcionista']
         },
         component: MiSedeComponent
-      },
-      {
-        path: 'entrenadores',
-        canActivate: [hasRoleGuard],
-        canLoad: [hasRoleGuard],
-        data: {
-          allowedRoles: ['Recepcionista']
-        },
-        component: EntrenadoresComponent
       },
       {
         path: 'ejercicios',
