@@ -11,10 +11,10 @@ const USER_LOCAL_STORAGE_KEY = 'userData';
 export class AuthService {
 
   //Prod
-  public apiUrl: string = 'https://omodygym-backend.onrender.com';
+  //public apiUrl: string = 'https://omodygym-backend.onrender.com';
 
   //Pruebas
-  //public apiUrl: string = 'http://localhost:3001';
+  public apiUrl: string = 'http://localhost:3001';
 
   private user = new BehaviorSubject<UserWithToken | null>(null);
   user$ = this.user.asObservable();

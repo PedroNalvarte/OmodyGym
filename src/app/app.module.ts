@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons';
 import { HomeModule } from './home/home.module';
 import { DirectivesModule } from './directives/directives.module';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 @NgModule({
@@ -24,7 +25,9 @@ import { DirectivesModule } from './directives/directives.module';
     HomeModule,
     SharedModule,
     DirectivesModule,
-    NgxBootstrapIconsModule
+    NgxBootstrapIconsModule,
+    ModalModule.forRoot(),
+
 
   ],
   providers: [],

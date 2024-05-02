@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { HomeLayoutComponent } from './home-layout/home-layout.component';
 import { InicioComponent } from './inicio/inicio.component';
@@ -39,6 +40,6 @@ import { SharedModule } from '../shared/shared.module';
     ColaboradoresComponent,
     MembresiasComponent
   ],
-  imports: [CommonModule, HomeRoutingModule, SharedModule],
+  imports: [CommonModule, HomeRoutingModule, SharedModule, FormsModule],
 })
 export class HomeModule { }
