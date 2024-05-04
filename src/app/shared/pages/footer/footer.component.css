@@ -1,92 +1,83 @@
 footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #111;
-  width: 100%;
-  padding: 5px 0;
-  color: #fff;
-  z-index: 999;
-}
-
-.container {
-  max-width: 100%;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.socials {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 1rem 0 2rem 0;
-}
-
-.socials li {
-  margin: 0 10px;
-}
-
-.socials a {
-  text-decoration: none;
-  color: #fff;
-}
-
-.socials a i {
-  font-size: 1.5rem;
-  transition: color .4s ease;
-}
-
-.socials a:hover i {
-  color: rgb(127, 255, 0);
-}
-
-.designer {
-  color: rgb(127, 255, 0);
-  opacity: .7;
-  text-transform: uppercase;
-}
-
-#logo img {
-  width: 100px;
-  /* Ancho deseado */
-  height: auto;
-  /* Altura automática para mantener la proporción */
-}
-
-
-
-.column {
-  flex: 1;
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-}
-
-
-
-@media screen and (max-width: 768px) {
-  .column {
-    flex-basis: 100%;
-    margin-bottom: 20px;
-  }
-
-  footer {
-    position: absolute;
+    position: fixed; /* Cambiado a fixed para asegurar que el footer permanezca en la parte inferior de la página */
     bottom: 0;
     left: 0;
     right: 0;
     background: #111;
     width: 100%;
-    padding: 5px 0;
+    padding: 1px 0;
     color: #fff;
     z-index: 999;
   }
-
-}
+  
+  .container {
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .socials {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0 1rem 0;
+  }
+  
+  .socials li {
+    margin: 0 10px;
+  }
+  
+  .socials a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  .socials a i {
+    font-size: 1rem .4s ease;
+  }
+  
+  .socials a:hover i {
+    color: #7fff00;
+  }
+  
+  .designer {
+    color: rgb(127, 255, 0);
+    opacity: .7;
+    text-transform: uppercase;
+  }
+  #logo img {
+    width: auto; 
+    height: 70px; 
+  }
+  p {
+    padding-top: 10px;
+    font-size:small;
+  }
+  
+  .column {
+    flex: 1;
+    display:flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .column {
+      flex-basis: 100%;
+      margin-bottom: 40px;
+    }
+    footer {
+      position: relative;
+    }
+  
+    .column{
+      padding-bottom: 10px!important;
+    }
+    
+  
+    }

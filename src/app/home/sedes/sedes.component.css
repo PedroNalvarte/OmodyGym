@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400..800&display=swap');
+h1,h4{
+    font-family:'Baloo Bhai 2';
+    font-weight:bold;
+}
+.btn-no-border{
+    border-radius: 20px; 
+    padding: 5px 0px; 
+    font-size: 14px; 
+    background-color: #72ce16;
+    border-color: #72ce16;
+}
+
+.btn-no-border1{
+    
+    background-color: #72ce16;
+    border-color: #72ce16;
+    padding: 4px;
+}
+.btn-no-border2{
+    padding: 5px 0px; 
+    padding: 4px;
+
+}
+.card {
+    border-color: white;
+}
+.sede-button {
+    background-color: #f0f0f0; /* Color de fondo del botón */
+    border: none;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+  }
+  
+  .sede-info p {
+    margin: 5px 0;
+  }
+  
+  .sede-info p strong {
+    color: #333; /* Color del texto en negrita */
+  }

@@ -1,26 +1,28 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h1>Sedes</h1>
+      <h1>MIS SEDES</h1>
     </div>
   </div>
 
   <div class="row">
     <div *ngFor="let sede of sedes" class="card col-md-3">
-      <button>
-        <p>{{sede.idSede}}</p>
-        <p>{{sede.nombreSede}}</p>
-        <p>{{sede.abreviacion}}</p>
-        <p>{{sede.direccion}}</p>
-        <p>{{sede.fechaCreacion | date:'short'}}</p>
-        <p>{{sede.fechaModificacion | date:'short'}}</p>
-        <p>{{sede.estado}}</p>
-        <p>{{sede.usuarioModificacion}}</p>
+      <button class="sede-button">
+        <div class="sede-info">
+          <p><strong>ID:</strong> {{sede.idSede}}</p>
+          <p><strong>Nombre:</strong> {{sede.nombreSede}}</p>
+          <p><strong>Abreviación:</strong> {{sede.abreviacion}}</p>
+          <p><strong>Dirección:</strong> {{sede.direccion}}</p>
+          <p><strong>Fecha de Creación:</strong> {{sede.fechaCreacion | date:'short'}}</p>
+          <p><strong>Fecha de Modificación:</strong> {{sede.fechaModificacion | date:'short'}}</p>
+          <p><strong>Estado:</strong> {{sede.estado}}</p>
+          <p><strong>Usuario de Modificación:</strong> {{sede.usuarioModificacion}}</p>
+        </div>
       </button>
     </div>
 
     <div class="card col-md-3">
-      <button type="button" class="btn btn-primary"
+      <button type="button" class=" btn btn-primary btn-no-border"
         (click)="openModal(template)">Registrar Sede</button>
     </div>
 
@@ -47,7 +49,7 @@
           <p>Ingrese los datos de la nueva sede a registrar</p>
 
           <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">xd</span>
+            <span class="input-group-text" id="basic-addon1">Nombre</span>
             <input [(ngModel)]="sedeRegistro.nombreSede" name="nombreSede"
               class="form-control"
               type="text" placeholder="Nombre"
@@ -55,7 +57,7 @@
           </div>
 
           <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">xd</span>
+            <span class="input-group-text" id="basic-addon1">Abreviacion</span>
             <input [(ngModel)]="sedeRegistro.abreviacion" name="abreviacion"
               class="form-control"
               type="text" placeholder="Abreviación"
@@ -63,7 +65,7 @@
           </div>
 
           <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">xd</span>
+            <span class="input-group-text" id="basic-addon1">Direccion</span>
             <input [(ngModel)]="sedeRegistro.direccion" name="direccion"
               class="form-control"
               type="text" placeholder="Dirección"
@@ -72,10 +74,10 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary"
+          <button type="button" class="btn btn-secondary btn-no-border2"
             data-bs-dismiss="modal" (click)="modalRef?.hide()">Cerrar</button>
           <button
-            class="btn btn-primary"
+            class="btn btn-primary btn-no-border1"
             type="submit"
             [disabled]="!sedeForm.valid">
             Registrar sede
