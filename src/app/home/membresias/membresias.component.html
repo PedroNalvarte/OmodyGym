@@ -1,1 +1,41 @@
+
 <button type="button" class="btn btn-primary" (click)="openModalWithComponent()">NUEVA MEMBRESIA</button>
+<div class="container">
+    <div class="row">
+        <div class="col">
+          <h1>Membresías</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+        <button (click)="showActive()">
+            <h1>Membresías Activas</h1>
+          </button>
+          <button (click)="showInactive()">
+            <h1>Membresías Inactivas</h1>
+          </button>
+        </div>
+    </div>
+      <div class="row" *ngIf="listActive">
+        <div *ngFor="let membership of memberships" class="card col-md-3">
+ 
+                <h5 class="card-title">{{ membership.nombre }}</h5>
+                <p class="card-text">{{ membership.detalle }}</p>
+
+                <select [(ngModel)]="membership.estado" (change)="updateStatus(membership.Id)">
+                    <option value="A">Activo</option>
+                    <option value="I">Inactivo</option>
+                </select>
+        </div>
+
+</div>
+
+<div class="row"  *ngIf="listInactive" >
+    <div *ngFor="let membership of inactiveMemberships" class="card col-md-3">
+            <h5 class="card-title">{{ membership.nombre }}</h5>
+            <p class="card-text">{{ membership.detalle }}</p>
+            <select [(ngModel)]="membership.estado" (change)="updateStatus(membership.Id)">
+                <option value="A">Activo</option>
+                <option value="I">Inactivo</option>
+            </select>
+    </div>

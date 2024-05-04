@@ -20,6 +20,7 @@ import { MembresiasComponent } from './membresias/membresias.component';
 import { HeaderComponent } from '../shared/pages/header/header.component';
 import { SharedModule } from '../shared/shared.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     HomeLayoutComponent,
@@ -38,6 +39,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     ColaboradoresComponent,
     MembresiasComponent
   ],
-  imports: [CommonModule, HomeRoutingModule, SharedModule,  ModalModule.forRoot()],
+  imports: [CommonModule, HomeRoutingModule, SharedModule,  ModalModule.forRoot(),FormsModule ],
 })
 export class HomeModule { }
