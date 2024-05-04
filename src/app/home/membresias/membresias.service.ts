@@ -10,10 +10,10 @@ import { IdMembership } from './model/id-membership.interface';
 export class MembresiasService {
 
   //Prod
-  public apiUrl: string = 'https://omodygym-backend.onrender.com';
+  //public apiUrl: string = 'https://omodygym-backend.onrender.com';
 
   //Pruebas
-  //public apiUrl: string = 'http://localhost:3001';
+  public apiUrl: string = 'http://localhost:3001';
   public memberships: DetailMembership[] = [];
  
 

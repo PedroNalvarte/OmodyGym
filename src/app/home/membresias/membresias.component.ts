@@ -56,6 +56,7 @@ export class MembresiasComponent {
     this.membresiaService.getInactiveMemberships().subscribe(
       (data) => {
         this.inactiveMemberships = data;
+        console.log(data);
       },
       (error) => {
         console.log('Error al cargar las membresías:', error);

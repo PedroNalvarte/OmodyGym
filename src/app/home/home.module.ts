@@ -21,6 +21,8 @@ import { HeaderComponent } from '../shared/pages/header/header.component';
 import { SharedModule } from '../shared/shared.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule } from '@angular/forms';
+import { SexoPipe } from './colaboradores/pipes/sexo.pipe';
+import { CalcularEdadPipe } from './colaboradores/pipes/calcular-edad.pipe';
 @NgModule({
   declarations: [
     HomeLayoutComponent,
@@ -37,7 +39,9 @@ import { FormsModule } from '@angular/forms';
     MiProgresoComponent,
     SedesComponent,
     ColaboradoresComponent,
-    MembresiasComponent
+    MembresiasComponent,
+    SexoPipe,
+    CalcularEdadPipe
   ],
   imports: [CommonModule, HomeRoutingModule, SharedModule,  ModalModule.forRoot(),FormsModule ],
 })
