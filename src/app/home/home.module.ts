@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 
 import { HomeLayoutComponent } from './home-layout/home-layout.component';
 import { InicioComponent } from './inicio/inicio.component';
@@ -20,10 +19,8 @@ import { ColaboradoresComponent } from './colaboradores/colaboradores.component'
 import { MembresiasComponent } from './membresias/membresias.component';
 import { HeaderComponent } from '../shared/pages/header/header.component';
 import { SharedModule } from '../shared/shared.module';
-import { CalcularEdadPipe } from './colaboradores/pipes/calcular-edad.pipe';
-import { SexoPipe } from './colaboradores/pipes/sexo.pipe';
-
-
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     HomeLayoutComponent,
@@ -40,10 +37,8 @@ import { SexoPipe } from './colaboradores/pipes/sexo.pipe';
     MiProgresoComponent,
     SedesComponent,
     ColaboradoresComponent,
-    MembresiasComponent,
-    CalcularEdadPipe,
-    SexoPipe
+    MembresiasComponent
   ],
-  imports: [CommonModule, HomeRoutingModule, SharedModule, FormsModule],
+  imports: [CommonModule, HomeRoutingModule, SharedModule,  ModalModule.forRoot(),FormsModule ],
 })
 export class HomeModule { }

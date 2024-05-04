@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+
 
 @Component({
   selector: 'perfil',
@@ -7,11 +9,21 @@ import { AuthService } from '../../auth/auth.service';
   styleUrls: ['./perfil.component.css'],
 })
 export class PerfilComponent {
+  modalRef?: BsModalRef;
   currentUser$ =  this.authService.user$;
-  constructor(private authService : AuthService){}
+  constructor(private authService : AuthService, private modalService: BsModalService){}
 
-  logout(): void{
+  openModal(template: TemplateRef<void>) {
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+  }
+ 
+  confirm(): void {
     this.authService.logout();
+    this.modalRef?.hide();
+  }
+ 
+  decline(): void {
+    this.modalRef?.hide();
   }
 
 
