@@ -18,7 +18,12 @@ export class SedesComponent {
 
   public processingRequest: boolean = false;
 
-  constructor(private sedesService: SedesService, private modalService: BsModalService) { }
+  constructor(private sedesService: SedesService, private modalService: BsModalService) {
+  }
+
+  ngOnInit(): void {
+    this.sedesService.listSede().subscribe();
+  }
 
   get sedes(): Sede[] {
     return this.sedesService.sedeList;
@@ -49,6 +54,7 @@ export class SedesComponent {
         finalize(() => {
           this.processingRequest = false;
           this.closeModal();
+          this.sedesService.listSede().subscribe();
         }
         ),
         catchError((error: HttpErrorResponse) => {

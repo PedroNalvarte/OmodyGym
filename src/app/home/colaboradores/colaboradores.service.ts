@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Sede } from './model/sedes.interface';
 import { Observable, Subscription, ignoreElements, map, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../auth/auth.service';
 import { User } from '../../auth/model/user.interface';
+import { PersonaColaborador } from './model/personaColaborador.interface';
 
 @Injectable({ providedIn: 'root' })
-export class SedesService {
+export class ColaboradoresService {
 
   //Prod
   //public apiUrl: string = 'https://omodygym-backend.onrender.com';
@@ -29,28 +29,28 @@ export class SedesService {
 
   }
 
-  public sedeList: Sede[] = [
+  public colaboradoresList: PersonaColaborador[] = [
 
   ];
 
-  registerSede(sede: Sede): Observable<never> {
+  // registerSede(sede: Sede): Observable<never> {
 
-    const url = `${this.apiUrl}/registerSede/${this.dni}`;
+  //   const url = `${this.apiUrl}/registerSede/${this.dni}`;
 
-    return this.HttpClient.post<boolean>(url, sede).pipe(
+  //   return this.HttpClient.post<boolean>(url, sede).pipe(
 
-      ignoreElements()
-    );
+  //     ignoreElements()
+  //   );
 
-  }
+  // }
 
-  listSede(): Observable<Sede[]> {
+  listColaboradores(): Observable<PersonaColaborador[]> {
 
-    const url = `${this.apiUrl}/listSedes`;
+    const url = `${this.apiUrl}/listColaboradores`;
 
-    return this.HttpClient.post<Sede[]>(url, {}).pipe(
-      tap((result: Sede[]) => {
-        this.sedeList = result; // Almacenar el resultado en sedeList
+    return this.HttpClient.post<PersonaColaborador[]>(url, {}).pipe(
+      tap((result: PersonaColaborador[]) => {
+        this.colaboradoresList = result; // Almacenar el resultado en sedeList
       })
     );
 

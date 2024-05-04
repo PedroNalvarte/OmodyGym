@@ -20,6 +20,8 @@ import { ColaboradoresComponent } from './colaboradores/colaboradores.component'
 import { MembresiasComponent } from './membresias/membresias.component';
 import { HeaderComponent } from '../shared/pages/header/header.component';
 import { SharedModule } from '../shared/shared.module';
+import { CalcularEdadPipe } from './colaboradores/pipes/calcular-edad.pipe';
+import { SexoPipe } from './colaboradores/pipes/sexo.pipe';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { SharedModule } from '../shared/shared.module';
     MiProgresoComponent,
     SedesComponent,
     ColaboradoresComponent,
-    MembresiasComponent
+    MembresiasComponent,
+    CalcularEdadPipe,
+    SexoPipe
   ],
   imports: [CommonModule, HomeRoutingModule, SharedModule, FormsModule],
 })

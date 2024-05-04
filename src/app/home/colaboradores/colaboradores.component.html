@@ -1,1 +1,72 @@
-<p>Colaboradores funciona</p>
+<div class="container">
+
+  <div class="row">
+    <div class="col">
+      <h1>Colaboradores</h1>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col col-md-2">
+      <button>Entrenadores</button>
+    </div>
+
+    <div class="col col-md-2">
+      <button>Recepcionistas</button>
+    </div>
+
+    <div class="col offset-md-6 col-md-2">
+      <button>Agregar colaborador</button>
+    </div>
+
+  </div>
+
+  <div class="row mt-3">
+    <div class="col col-md-12">
+      <input type="text" placeholder="Buscar colaboradores">
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col col-md-12">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Rol</th>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Correo</th>
+            <th>Sexo</th>
+            <th>Teléfono</th>
+            <th>#</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let colaborador of colaboradores; let i = index">
+            <td>{{ i + 1}}</td>
+            <td>{{colaborador.detalle_tipo}}</td>
+            <td>{{ colaborador.nombre_1 +" "+ colaborador.apellido_2}}</td>
+
+            <td>{{ colaborador.nombre_1 +" "+ colaborador.nombre_2 +" "+
+              colaborador.apellido_1 +" "+ colaborador.apellido_2}}</td>
+
+            <td>{{colaborador.fecha_nacimiento | calcularEdad}}</td>
+            <td>{{colaborador.correo}}</td>
+            <td>{{colaborador.sexo | sexo}}</td>
+            <td>{{colaborador.telefono}}</td>
+            <td>{{colaborador.numero_documento_identidad}}</td>
+            <td>{{colaborador.fecha_creacion | date:'short'}}</td>
+
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+<pre>
+  {{colaboradores | json}}
+</pre>
