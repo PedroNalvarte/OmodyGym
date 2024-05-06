@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../auth/auth.service';
 import { User, UserWithToken } from '../../auth/model/user.interface';
 import { IdMembership } from '../membresias/model/id-membership.interface';
+import { DetailClient } from './model/detail-client.interface';
+
 @Injectable({ providedIn: 'root' })
 export class ClientsService {
 
@@ -22,16 +24,7 @@ export class ClientsService {
 
 
 
-/* registerMembership(membership: CreateMembership): Observable<never> {
 
-    const url = `${this.apiUrl}/createMembership/${membership.detail}/${membership.cost}/${membership.name}/${membership.user}`;
-
-    var response = this.HttpClient.post<string>(url, membership).pipe(
-        ignoreElements()
-    );
-
-    return response;
-  } */
 
   getClients(): Observable<any> {
     const url = `${this.apiUrl}/getClients`;
@@ -40,20 +33,16 @@ export class ClientsService {
     );
   }
 
-  getClientsFiltered(input: IdMembership): Observable<any> {
-    const url = `${this.apiUrl}/getClientsFiltered/${input.id}`;
-    return this.HttpClient.post<any>(url, input).pipe(
+  registerCliente(client: DetailClient): Observable<string> {
+
+    const url = `${this.apiUrl}/createClient/${client.nombre}/${client.apellido1}/${client.apellido2}/${client.sede}/${client.membresia}/${client.dni}/${client.fechaNacimiento}/${client.telefono}/${client.usuario}`;
+
+    var response = this.HttpClient.post<string>(url, client).pipe(
+      tap(response => {
+        console.log('Respuesta del servidor:', response);
+      })
     );
-  }
 
- /*  updateStatus(id: IdMembership): Observable<never>{
-    const url = `${this.apiUrl}/updateMembershipStatus/${id.id}`;
-    console.log(url);
-    var response = this.HttpClient.post<string>(url, id).pipe(
-      ignoreElements()
-  );
-
-  return response;
+    return response;
   }
- */
 }

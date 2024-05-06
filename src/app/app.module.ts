@@ -10,11 +10,13 @@ import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons';
 import { HomeModule } from './home/home.module';
 import { DirectivesModule } from './directives/directives.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { ClientFilterPipe } from './home/clientes/pipes/client-filter.pipe';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ClientFilterPipe
   ],
   imports: [
     BrowserModule,

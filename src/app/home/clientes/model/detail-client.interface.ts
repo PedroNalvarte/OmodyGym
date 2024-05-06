@@ -7,5 +7,8 @@ export interface DetailClient {
     telefono: string,
     sede: string, 
     membresia: string,
-    fechafin: string
+    fechafin: string,
+    dni: string,
+    fechaNacimiento: string,
+    usuario? : string
   }

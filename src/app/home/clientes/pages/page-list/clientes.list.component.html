@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+          <h1>Clientes</h1>
+        </div>
+        <div class="col">
+            <div>
+                <button class="btn btn-primary" (click)="onButtonClick()" >Registrar</button>
+            </div>
+        </div>  
+    </div>
+
+    <div class="row">
+        <div class="col-md-5">
+            <input class="form-control"
+            placeholder="Ingrese el nombre/DNI del cliente a buscar"
+            (keyup)="realizarBusqueda($event.target)"/>
+            <br>
+            <div *ngFor="let client of clients" class="card row-md-3">
+    
+                    <p class="card-text">{{ client.nombre }} {{client.apellido1}} {{client.apellido2}}  ({{client.edad}})</p>
+                    <p class="card-text">{{ client.telefono }}</p>
+                    <div class="d-flex justify-content-end">
+                        <button class="card col-md-1 btn btn-primary" (click)="onSelect(client)">
+                            <h4>Ver</h4>
+                        </button>
+                    </div>
+            </div>
+            
+        </div>
+        <div class="col-md-5 ">
+            <div  class="card row-md-9 h-100">
+                <p class="card-text" *ngIf="!clientSelected">Seleccione un cliente para visualizar su información</p>
+                <div *ngIf="clientSelected">
+                    <div class="row">
+                    <div class="col-md-5">                      
+                            <h4>NOMBRE</h4>                  
+                            <h4>A. PATERNO</h4>                  
+                            <h4>A. MATERNO</h4>                 
+                            <h4>SEDE</h4>                 
+                            <h4>MEMBRESÍA</h4>                 
+                            <h4>FECHA FIN</h4>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row-md-3"   >
+                            <h4>{{ selectedClient.nombre}}</h4>
+                        </div>
+                        <div class="row-md-3"   >
+                            <h4>{{ selectedClient.apellido1}}</h4>
+                        </div>
+                        <div class="row-md-3"   >
+                            <h4>{{ selectedClient.apellido2}}</h4>
+                        </div>
+                        <div class="row-md-3"   >
+                            <h4>{{ selectedClient.sede}}</h4>
+                        </div>
+                        <div class="row-md-3"   >
+                            <h4>{{ selectedClient.membresia}}</h4>
+                        </div>
+                        <div class="row-md-3"   >
+                            <h4>{{ selectedClient.fechafin}}</h4>
+                        </div>
+                    </div>
+                </div>
+                </div>  
+            </div>
+
+ 
+                
+      
+        </div>
+    </div>
+</div>

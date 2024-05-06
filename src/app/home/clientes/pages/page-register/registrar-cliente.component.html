@@ -1,0 +1,95 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+         
+            <div  class="card row-md-3">
+                <h2>DATOS DEL CLIENTE</h2>
+                <form (ngSubmit)="onSubmit(confirmation)">
+                <div>
+                    <label for="floatingInput">NOMBRE</label>
+                    <input
+                        [(ngModel)]="registerClient.nombre"
+                        name="nombre"
+                        type="text"
+                        class="form-control"
+                        />
+                        
+                  </div>
+                  <div>
+                    <label for="floatingInput">PRIMER APELLIDO</label>
+                    <input
+                        [(ngModel)]="registerClient.apellido1"
+                        name="apellido1"
+                        type="text"
+                        class="form-control"
+                        />
+                  </div>
+                  <div>
+                    <label for="floatingInput">SEGUNDO APELLLIDO</label>
+                    <input
+                        [(ngModel)]="registerClient.apellido2"
+                        name="apellido2"
+                        type="text"
+                        class="form-control"
+                        />
+                  </div>
+                  <div>
+                    <label for="floatingInput">Documento de Identidad</label>
+                    <input
+                        [(ngModel)]="registerClient.dni"
+                        name="dni"
+                        type="text"
+                        class="form-control"
+                        />
+                  </div>
+                  <div>
+                    <label for="floatingInput">FECHA NACIMIENTO</label>
+                    <input
+                        [(ngModel)]="registerClient.fechaNacimiento"
+                        name="fechaNacimiento"
+                        type="date"
+                        class="form-control"
+                        />
+                  </div>
+                  <div>
+                    <label for="floatingInput">CELULAR</label>
+                    <input
+                        [(ngModel)]="registerClient.telefono"
+                        name="celular"
+                        type="text"
+                        class="form-control"
+                        />
+                  </div>
+                  <div>
+                    <label for="floatingInput">SEDE</label>
+                    <select class="form-control" [(ngModel)]="registerClient.sede" name="sede">
+                        <option *ngFor="let sede of sedes" [value]="sede.idSede">{{ sede.nombreSede }}</option>
+                    </select>
+                    <p *ngIf="emptyField"> Es necesario ingresar todos los campos y seleccionar la membresía</p>
+                    <p *ngIf="invalidDni"> El DNI no puede tener letras</p>
+                    <p *ngIf="invalidPhone"> El celular no puede tener letras</p>
+                  </div>
+                    <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary">Agregar</button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+        <div class="col-md-5 ">
+            <div class="row">
+                <div *ngFor="let membership of memberships" (click)="membershipSelected(membership.Id)" class="card col-md-3">
+                        <h5 class="card-title" >{{ membership.nombre }}</h5>
+                </div>
+        </div>
+
+        <ng-template  #confirmation>
+            <div class="modal-header">
+              <h4 class="modal-title pull-left">Registro finalizado</h4>
+            </div>
+            <div class="modal-body">
+              Cliente registrado exitosamente
+            </div>
+          </ng-template>
+    </div>
+

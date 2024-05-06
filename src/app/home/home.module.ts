@@ -23,6 +23,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule } from '@angular/forms';
 import { SexoPipe } from './colaboradores/pipes/sexo.pipe';
 import { CalcularEdadPipe } from './colaboradores/pipes/calcular-edad.pipe';
+import { ClientesListComponent } from './clientes/pages/page-list/clientes.list.component';
+import { RegistrarClienteComponent } from './clientes/pages/page-register/registrar-cliente.component';
 @NgModule({
   declarations: [
     HomeLayoutComponent,
@@ -41,7 +43,9 @@ import { CalcularEdadPipe } from './colaboradores/pipes/calcular-edad.pipe';
     ColaboradoresComponent,
     MembresiasComponent,
     SexoPipe,
-    CalcularEdadPipe
+    CalcularEdadPipe,
+    ClientesListComponent,
+    RegistrarClienteComponent
   ],
   imports: [CommonModule, HomeRoutingModule, SharedModule,  ModalModule.forRoot(),FormsModule ],
 })

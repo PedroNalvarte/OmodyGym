@@ -16,7 +16,7 @@ export class MembresiasComponent {
   currentUser$ =  this.authService.user$;
   memberships: any[] = [];
   inactiveMemberships: any[] = [];
-  listActive = false;
+  listActive = true;
   listInactive = false;
   updatedId: IdMembership = {
     id: ''
@@ -66,13 +66,17 @@ export class MembresiasComponent {
 
   }
   showActive(){
-    this.listActive  = !this.listActive;
-    this.listInactive = false;
+    if(!this.listActive){
+      this.listActive  = !this.listActive;
+      this.listInactive = false;
+    }
   } 
 
   showInactive(){
-    this.listInactive  = !this.listInactive;
-    this.listActive = false;
+    if(!this.listInactive){
+      this.listInactive  = !this.listInactive;
+      this.listActive = false;
+    }
   }
 
   updateStatus(id : string){
