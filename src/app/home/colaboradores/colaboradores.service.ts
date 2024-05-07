@@ -56,6 +56,16 @@ export class ColaboradoresService {
 
   }
 
+  registerColaboradores(personaRegistro: PersonaColaborador): Observable<never> {
+
+    const url = `${this.apiUrl}/registerColaborador`;
+
+    return this.HttpClient.post<boolean>(url, personaRegistro).pipe(
+      ignoreElements()
+    );
+
+  }
+
 
 
 

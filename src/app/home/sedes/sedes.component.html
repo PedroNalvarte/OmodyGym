@@ -13,10 +13,13 @@
           <p><strong>Nombre:</strong> {{sede.nombreSede}}</p>
           <p><strong>Abreviación:</strong> {{sede.abreviacion}}</p>
           <p><strong>Dirección:</strong> {{sede.direccion}}</p>
-          <p><strong>Fecha de Creación:</strong> {{sede.fechaCreacion | date:'short'}}</p>
-          <p><strong>Fecha de Modificación:</strong> {{sede.fechaModificacion | date:'short'}}</p>
+          <p><strong>Fecha de Creación:</strong> {{sede.fechaCreacion |
+            date:'short'}}</p>
+          <p><strong>Fecha de Modificación:</strong> {{sede.fechaModificacion |
+            date:'short'}}</p>
           <p><strong>Estado:</strong> {{sede.estado}}</p>
-          <p><strong>Usuario de Modificación:</strong> {{sede.usuarioModificacion}}</p>
+          <p><strong>Usuario de Modificación:</strong>
+            {{sede.usuarioModificacion}}</p>
         </div>
       </button>
     </div>
@@ -86,5 +89,7 @@
       </div>
     </form>
   </ng-template>
+
+  <!-- Fin Modal -->
 
 </div>

@@ -25,6 +25,8 @@ import { SexoPipe } from './colaboradores/pipes/sexo.pipe';
 import { CalcularEdadPipe } from './colaboradores/pipes/calcular-edad.pipe';
 import { ClientesListComponent } from './clientes/pages/page-list/clientes.list.component';
 import { RegistrarClienteComponent } from './clientes/pages/page-register/registrar-cliente.component';
+import { SortByPipe } from './colaboradores/pipes/sort-by.pipe';
+import { SortNamePipe } from './colaboradores/pipes/sort-name.pipe';
 @NgModule({
   declarations: [
     HomeLayoutComponent,
@@ -44,9 +46,11 @@ import { RegistrarClienteComponent } from './clientes/pages/page-register/regist
     MembresiasComponent,
     SexoPipe,
     CalcularEdadPipe,
+    SortByPipe,
+    SortNamePipe,
     ClientesListComponent,
     RegistrarClienteComponent
   ],
-  imports: [CommonModule, HomeRoutingModule, SharedModule,  ModalModule.forRoot(),FormsModule ],
+  imports: [CommonModule, HomeRoutingModule, SharedModule, ModalModule.forRoot(), FormsModule],
 })
 export class HomeModule { }

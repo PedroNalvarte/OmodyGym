@@ -9,22 +9,29 @@
   <div class="row">
 
     <div class="col col-md-2 ">
-      <button class="primario-boton">Entrenadores</button>
+      <button
+        (click)="clickEntrenadoresFilter()"
+        [ngClass]="activeFilterEntrenador ? 'primario-boton' : 'segundo'">Entrenadores</button>
     </div>
 
     <div class="col col-md-2">
-      <button class="segundo">Recepcionistas</button>
+      <button
+        (click)="clickRecepcionistaFilter()"
+        [ngClass]="activeFilterRecepcionista ? 'primario-boton' : 'segundo'">Recepcionistas</button>
     </div>
 
     <div class="col offset-md-6 col-md-2">
-      <button>Agregar colaborador</button>
+      <button (click)="openModal(ModalRegistrarColaborador)">Registrar nuevo
+        colaborador</button>
     </div>
 
   </div>
 
   <div class="row mt-3">
     <div class="col">
-      <input class="form-control" type="text" placeholder="Buscar colaboradores" aria-label="Buscar colaboradores" aria-describedby="button-addon2">
+      <input [(ngModel)]="searchByName" class="form-control" type="text"
+        placeholder="Buscar colaboradores"
+        aria-label="Buscar colaboradores" aria-describedby="button-addon2">
     </div>
   </div>
 
@@ -45,7 +52,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let colaborador of colaboradores; let i = index">
+          <tr
+            *ngFor="let colaborador of colaboradores|sortBy:sortTipoColab|sortName:searchByName; let i = index">
             <td>{{ i + 1}}</td>
             <td>{{colaborador.detalle_tipo}}</td>
             <td>{{ colaborador.nombre_1 +" "+ colaborador.apellido_2}}</td>
@@ -63,8 +71,181 @@
       </table>
     </div>
   </div>
-</div>
 
-<pre class="script">
-  {{colaboradores | json}}
-</pre>
+  <!-- Modal -->
+
+  <ng-template #ModalRegistrarColaborador>
+    <form (ngSubmit)="registerColaborador()" #colaboradorForm="ngForm">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Registrar Nueva Colaborador</h4>
+        <button type="button" class="btn-close close pull-right"
+          aria-label="Close" (click)="modalRef?.hide()">
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+      </div>
+      <div *ngIf="processingRequest; else FormBody">
+        <div class="modal-body">
+          <shared-loading-spinner></shared-loading-spinner>
+          <p>Espere mientras se registra el colaborador</p>
+        </div>
+      </div>
+      <ng-template #FormBody>
+        <div class="modal-body">
+
+          <p>Ingrese los datos del nuevo colaborar a registrar</p>
+
+          <div class="row">
+            <div class="col col-md-6">
+              <div class="mb-3">
+                <label for="exampleInputPassword1"
+                  class="form-label">Primer nombre</label>
+                <input [(ngModel)]="personaRegistro.nombre_1" name="nombre_1"
+                  type="text"
+                  class="form-control"
+                  id="exampleInputPassword1" required>
+              </div>
+            </div>
+            <div class="col col-md-6">
+              <div class="mb-3">
+                <label for="exampleInputPassword1"
+                  class="form-label">Segundo nombre</label>
+                <input [(ngModel)]="personaRegistro.nombre_2" name="nombre_2"
+                  type="text"
+                  class="form-control"
+                  id="exampleInputPassword1" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col col-md-6">
+              <div class="mb-3">
+                <label for="exampleInputPassword1"
+                  class="form-label">Primer apellido</label>
+                <input [(ngModel)]="personaRegistro.apellido_1"
+                  name="apellido_1" type="text"
+                  class="form-control"
+                  id="exampleInputPassword1" required>
+              </div>
+            </div>
+            <div class="col col-md-6">
+              <div class="mb-3">
+                <label for="exampleInputPassword1"
+                  class="form-label">Segundo apellido</label>
+                <input [(ngModel)]="personaRegistro.apellido_2"
+                  name="apellido_2" type="text"
+                  class="form-control"
+                  id="exampleInputPassword1" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col col-md-3">
+              <div class="mb-3">
+                <label for="exampleInputPassword1"
+                  class="form-label">Fecha de nacimiento</label>
+                <input [(ngModel)]="personaRegistro.fecha_nacimiento"
+                  name="fecha_nacimiento"
+                  type="date" class="form-control"
+                  id="exampleInputPassword1" required>
+              </div>
+            </div>
+            <div class="col col-md-6">
+              <div class="mb-3">
+                <label for="exampleInputPassword1"
+                  class="form-label">Correo</label>
+                <input [(ngModel)]="personaRegistro.correo" name="correo"
+                  type="mail"
+                  class="form-control"
+                  id="exampleInputPassword1" required>
+              </div>
+            </div>
+            <div class="col col-md-3">
+              <div class="mb-3">
+                <label for="exampleInputPassword1"
+                  class="form-label">Sexo</label>
+                <select class="form-select" aria-label="Default select example"
+                  [(ngModel)]="personaRegistro.sexo" name="sexo"
+                  required>
+                  <option value>Seleccione Sexo</option>
+                  <option value="M">Masculino</option>
+                  <option value="F">Femenino</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col col-md-3">
+              <div class="mb-3">
+                <label for="exampleInputPassword1"
+                  class="form-label">Teléfono</label>
+                <input [(ngModel)]="personaRegistro.telefono" name="telefono"
+                  type="number"
+                  class="form-control"
+                  id="exampleInputPassword1" required>
+              </div>
+            </div>
+            <div class="col col-md-5">
+              <div class="mb-3">
+                <label for="exampleInputPassword1"
+                  class="form-label">Número documento de identidad</label>
+                <input [(ngModel)]="personaRegistro.numero_documento_identidad"
+                  name="numero_documento_identidad"
+                  type="number" class="form-control"
+                  id="exampleInputPassword1" required>
+              </div>
+            </div>
+            <div class="col col-md-4">
+              <div class="mb-3">
+                <label for="exampleInputPassword1"
+                  class="form-label">Tipo colaborador</label>
+                <select [(ngModel)]="personaRegistro.id_tipo_persona"
+                  name="id_tipo_persona" class="form-select"
+                  required>
+                  <option aria-label="Default select example"
+                    value="0">Seleccione Tipo</option>
+                  <option value="1">Entrenador</option>
+                  <option value="2">Recepcionista</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col col-md-4">
+              <div class="mb-3">
+                <label for="exampleInputPassword1"
+                  class="form-label">Sede</label>
+                <select [(ngModel)]="personaRegistro.idSede"
+                  name="idSede" class="form-select"
+                  required>
+                  <option aria-label="Default select example"
+                    value="0">Seleccione sede</option>
+
+                  <option *ngFor="let sede of sedes"
+                    [value]="sede.idSede">{{sede.nombreSede}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-no-border2"
+            data-bs-dismiss="modal" (click)="modalRef?.hide()">Cerrar</button>
+          <button
+            class="btn btn-primary btn-no-border1"
+            type="submit"
+            [disabled]="!colaboradorForm.valid">
+            Registrar colaborador
+          </button>
+        </div>
+      </ng-template>
+    </form>
+  </ng-template>
+
+  <!-- Fin Modal -->
+
+</div>
