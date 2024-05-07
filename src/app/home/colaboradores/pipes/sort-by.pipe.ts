@@ -1,7 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { PersonaColaborador } from '../model/personaColaborador.interface';
 
-
 @Pipe({
   name: 'sortBy'
 })
@@ -23,7 +22,5 @@ export class SortByPipe implements PipeTransform {
         return colaboradores;
 
     }
-
   }
-
 }

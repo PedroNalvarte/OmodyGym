@@ -19,8 +19,6 @@ export class SortNamePipe implements PipeTransform {
 
     }
 
-
-
   }
 
 }
