@@ -1,0 +1,89 @@
+.container {
+    background-color: #f8f9fa; /* Color de fondo */
+    padding: 10px 0; /* Espaciado interno superior e inferior */
+}
+.form-control-sm {
+    padding: 0.25rem 0.5rem; /* Ajusta el relleno del campo de entrada */
+    font-size: 0.875rem; /* Ajusta el tamaño de la fuente del campo de entrada */
+    height: calc(1.5em + 1rem + 5px); /* Ajusta la altura del campo de entrada */
+  }
+/* Estilo para la tarjeta de datos del cliente */
+.card {
+    background-color: #fff; /* Color de fondo */
+    border-radius: 15px!important; /* Borde redondeado */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+/* Estilo para el título de la tarjeta */
+.card-title {
+    color: #333; /* Color del texto */
+    font-size: 24px; /* Tamaño de la fuente */
+    font-weight: bold; /* Negrita */
+    margin-bottom: 30px; /* Espaciado inferior */
+    text-align: center; /* Alineación centrada */
+}
+
+/* Estilo para las etiquetas de los campos */
+.form-label {
+    color: #555; /* Color del texto */
+    font-size: 15px; /* Tamaño de la fuente */
+    font-weight: bold; /* Negrita */
+}
+
+/* Estilo para los campos de entrada */
+.form-control {
+    border-radius: 10px; /* Borde redondeado */
+    border: 2px solid #ccc; /* Borde */
+    font-size: 14px; /* Tamaño de la fuente */
+    margin-bottom: 10px; /* Espaciado inferior */
+    padding: 10px; /* Espaciado interno */
+}
+
+/* Estilo para el botón */
+.btn-primary {
+    background-color: #72ce16; /* Color de fondo */
+    border-color: #72ce16; /* Color del borde */
+    border-radius: 10px; /* Borde redondeado */
+    color: #fff; /* Color del texto */
+    font-size: 18px; /* Tamaño de la fuente */
+    font-weight: bold; /* Negrita */
+    padding: 12px 24px; /* Espaciado interno */
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s; /* Transición suave */
+}
+
+/* Estilo para el botón al pasar el ratón */
+.btn-primary:hover {
+    background-color: #60ad13; /* Color de fondo */
+    border-color: #60ad13; /* Color del borde */
+    color: #fff; /* Color del texto */
+}
+
+/* Estilo para el mensaje de error */
+.text-danger {
+    color: #dc3545; /* Color del texto */
+    font-size: 16px; /* Tamaño de la fuente */
+    font-weight: bold; /* Negrita */
+    margin-top: 10px; /* Espaciado superior */
+}
+
+.membresias{
+    text-align: center;
+    justify-items: center;
+    margin: 5px;
+}
+.membresias:hover{
+    background-color: #72ce16;
+    border-color: #72ce16;
+    cursor: pointer;
+    transition: 0.5s;
+    
+}
+.selected {
+    background-color: #72ce16;
+    border-color: #72ce16;
+    h5{
+        color: aliceblue !important;
+    }
+  }
+  
+

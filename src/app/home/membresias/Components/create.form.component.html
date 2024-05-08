@@ -1,50 +1,39 @@
-<div>
-  <div class="modal-header">
-    <h5  class="modal-title pull-left">REGISTRAR NUEVA MEMBRESÍA</h5>
+<div class="modal-content custom-modal-content">
+
+  <div class="modal-header custom-modal-header">
+    <h5 class="modal-title pull-left">REGISTRAR NUEVA MEMBRESÍA</h5>
     <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
       <span aria-hidden="true" class="visually-hidden">&times;</span>
     </button>
   </div>
-  <form #membershipForm="ngForm"  (ngSubmit)="onSubmit()">
-    <div>
-      <label for="floatingInput">Nombre:</label>
-      <input
-          [(ngModel)]="createMembership.name"
-          name="nombre"
-          type="text"
-          class="form-control"
-          />  
+
+  <form #membershipForm="ngForm" (ngSubmit)="onSubmit()" class="custom-form">
+    <div class="form-group custom-form-group">
+      <label for="nombreInput" class="custom-label">Nombre:</label>
+      <input [(ngModel)]="createMembership.name" name="nombre" type="text" class="form-control custom-input" id="nombreInput" />
+    </div>
+    <div class="form-group custom-form-group">
+      <label for="descripcionInput" class="custom-label">Descripción:</label>
+      <input [(ngModel)]="createMembership.detail" name="descripcion" type="text" class="form-control custom-input" id="descripcionInput" />
+    </div>
+    <div class="form-group custom-form-group">
+      <label for="costoInput" class="custom-label">Costo:</label>
+      <input [(ngModel)]="createMembership.cost" name="costo" type="text" class="form-control custom-input" id="costoInput" />
     </div>
     <div>
-      <label for="floatingInput">Descripción:</label>
-      <input
-          [(ngModel)]="createMembership.detail"
-          name="descripcion"
-          type="text"
-          class="form-control"/>  
-    </div>
-    <div>
-      <label for="floatingInput">Costo:</label>
-      <input
-          [(ngModel)]="createMembership.cost"
-          name="costo"
-          type="text"
-          class="form-control"/>  
-    </div>
-    <div>
-      <p class="credenciales-i" *ngIf="emptyField">
+      <p class="credenciales-i custom-error-message" *ngIf="emptyField">
         <i class="bi-exclamation-circle" *ngIf="emptyField"></i>
-        Ningún campo debe estar vacio
+        Ningún campo debe estar vacío
       </p>
     </div>
     <div>
-      <p class="credenciales-i" *ngIf="invalidCost">
+      <p class="credenciales-i custom-error-message" *ngIf="invalidCost">
         <i class="bi-exclamation-circle" *ngIf="invalidCost"></i>
         El campo costo debe ser un número
       </p>
     </div>
     <div class="modal-footer">
-      <button type="submit" class="btn btn-default">Guardar</button>
+      <button type="submit" class="btn btn-default custom-button">Guardar</button>
     </div>
   </form>
 

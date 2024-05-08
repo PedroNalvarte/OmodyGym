@@ -11,6 +11,8 @@ import { ClientesListComponent } from './pages/page-list/clientes.list.component
   templateUrl: './clientes.component.html',
   styleUrls: ['./clientes.component.css']
 })
+
+
 export class ClientesComponent {
   public onRegister = false;
   public onList = true;

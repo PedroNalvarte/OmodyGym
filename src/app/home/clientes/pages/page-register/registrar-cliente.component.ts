@@ -12,7 +12,7 @@ import { BsModalRef, BsModalService , ModalDirective } from 'ngx-bootstrap/modal
 })
 export class RegistrarClienteComponent {
   @Output() registerButtonClick = new EventEmitter<void>();
-
+  selectedMembershipId: string | null = null;
   public registerClient : DetailClient = {
     id: '',
     nombre: '',
@@ -67,6 +67,7 @@ export class RegistrarClienteComponent {
   membershipSelected(membership : string){
     this.isMembershipSelected = true;
    this.registerClient.membresia = membership.toString(); 
+   this.selectedMembershipId = membership;
   }
 
   onSubmit(modal : TemplateRef<void>) {

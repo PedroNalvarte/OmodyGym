@@ -1,0 +1,37 @@
+.btn-nueva-membresia {
+    background-color: #72ce16;
+    border-color: #72ce16;
+    color:#fff;
+    float: right;
+}
+
+.btn-nueva-membresia:hover {
+    background-color: #5bb414;
+}
+
+
+
+.btn-membresias-activas,
+.btn-membresias-inactivas {
+    background-color: #72ce16;
+    border-color: #72ce16;
+    color: #fff;
+    margin: 5px;
+}
+
+.btn-membresias-activas.active,
+.btn-membresias-inactivas.active {
+    background-color: #000;
+    border-color: #000; /* Cambiar el color de fondo al ser activo */
+}
+
+.btn-membresias-activas.active,
+.btn-membresias-inactivas.active:hover {
+    background-color: #000; 
+    border-color: #000;/* Mantener el color de fondo al ser activo y en el hover */
+}
+
+.form-select-green {
+    background-color: #72ce16;
+    color: #fff;
+}

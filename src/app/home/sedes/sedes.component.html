@@ -6,33 +6,28 @@
   </div>
 
   <div class="row">
-    <div *ngFor="let sede of sedes" class="card col-md-3">
-      <button class="sede-button">
-        <div class="sede-info">
-          <p><strong>ID:</strong> {{sede.idSede}}</p>
-          <p><strong>Nombre:</strong> {{sede.nombreSede}}</p>
-          <p><strong>Abreviación:</strong> {{sede.abreviacion}}</p>
-          <p><strong>Dirección:</strong> {{sede.direccion}}</p>
-          <p><strong>Fecha de Creación:</strong> {{sede.fechaCreacion |
-            date:'short'}}</p>
-          <p><strong>Fecha de Modificación:</strong> {{sede.fechaModificacion |
-            date:'short'}}</p>
-          <p><strong>Estado:</strong> {{sede.estado}}</p>
-          <p><strong>Usuario de Modificación:</strong>
-            {{sede.usuarioModificacion}}</p>
-        </div>
-      </button>
+    <div *ngFor="let sede of sedes" class="col-md-3">
+      <div class="card sede-card">
+        <button class="sede-button">
+          <div class="sede-info">
+            <p><strong>Nombre:</strong> {{sede.nombreSede}}</p>
+            <p><strong>Abreviación:</strong> {{sede.abreviacion}}</p>
+            <p><strong>Dirección:</strong> {{sede.direccion}}</p>
+            <p><strong>Estado:</strong> {{sede.estado}}</p>
+          </div>
+        </button>
+      </div>
     </div>
 
-    <div class="card col-md-3">
-      <button type="button" class=" btn btn-primary btn-no-border"
-        (click)="openModal(template)">Registrar Sede</button>
+    <div class="col-md-3">
+      <div class="card sede-card">
+        <button type="button" class="btn btn-primary btn-no-border btn-registrar-sede"
+          (click)="openModal(template)">Registrar Sede</button>
+      </div>
     </div>
-
   </div>
 
   <!-- Modal -->
-
   <ng-template #template>
     <form (ngSubmit)="registerSede()" #sedeForm="ngForm">
       <div class="modal-header">
@@ -48,9 +43,7 @@
       </div>
       <div *ngIf="!processingRequest">
         <div class="modal-body">
-
           <p>Ingrese los datos de la nueva sede a registrar</p>
-
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Nombre</span>
             <input [(ngModel)]="sedeRegistro.nombreSede" name="nombreSede"
@@ -58,7 +51,6 @@
               type="text" placeholder="Nombre"
               required>
           </div>
-
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Abreviacion</span>
             <input [(ngModel)]="sedeRegistro.abreviacion" name="abreviacion"
@@ -66,7 +58,6 @@
               type="text" placeholder="Abreviación"
               required>
           </div>
-
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Direccion</span>
             <input [(ngModel)]="sedeRegistro.direccion" name="direccion"
@@ -74,7 +65,6 @@
               type="text" placeholder="Dirección"
               required>
           </div>
-
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary btn-no-border2"
@@ -89,7 +79,4 @@
       </div>
     </form>
   </ng-template>
-
-  <!-- Fin Modal -->
-
 </div>
