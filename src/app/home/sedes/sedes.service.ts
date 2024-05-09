@@ -9,10 +9,10 @@ import { User } from '../../auth/model/user.interface';
 export class SedesService {
 
   //Prod
-  //public apiUrl: string = 'https://omodygym-backend.onrender.com';
+  public apiUrl: string = 'https://omodygym-backend.onrender.com';
 
   //Pruebas
-  public apiUrl: string = 'http://localhost:3001';
+  //public apiUrl: string = 'http://localhost:3001';
 
   dni: string = '';
   private subscription: Subscription;

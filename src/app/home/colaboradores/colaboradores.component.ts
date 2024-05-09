@@ -26,6 +26,9 @@ export class ColaboradoresComponent {
   public activeFilterRecepcionista: boolean = false;
   //-----------End filtros-------------
 
+  //Detalle
+  public detalleIndex: number = 0;
+
   public personaRegistro: PersonaColaborador = {
     nombre_1: '',
     nombre_2: '',
@@ -94,6 +97,12 @@ export class ColaboradoresComponent {
     if (this.modalRef) {  // Comprueba si modalRef es no nulo antes de llamar a hide
       this.modalRef.hide();
     }
+  }
+
+  openModalDetalles(ModalDetalleColaborador: TemplateRef<any>, index: number): void {
+
+    this.detalleIndex = index;
+    this.modalRef = this.modalService.show(ModalDetalleColaborador, {});
   }
   //----------------------Fin Modal Registrar Colaborador--------------------------------
 

@@ -34,9 +34,10 @@
         aria-label="Buscar colaboradores" aria-describedby="button-addon2">
     </div>
   </div>
+  <br>
 
   <div class="row mt-3">
-    <div class="col col-md-12">
+    <div class="col offset-md-2 col-md-8">
       <table class="table table-hover">
         <thead>
           <tr>
@@ -44,11 +45,8 @@
             <th>Rol</th>
             <th>Nombre</th>
             <th>Edad</th>
-            <th>Correo</th>
-            <th>Sexo</th>
-            <th>Teléfono</th>
             <th>DNI</th>
-            <th>Fecha de Ingresos</th>
+            <th>Ver detalle</th>
           </tr>
         </thead>
         <tbody>
@@ -57,13 +55,12 @@
             <td>{{ i + 1}}</td>
             <td>{{colaborador.detalle_tipo}}</td>
             <td>{{ colaborador.nombre_1 +" "+ colaborador.apellido_2}}</td>
-
             <td>{{colaborador.fecha_nacimiento | calcularEdad}}</td>
-            <td>{{colaborador.correo}}</td>
-            <td>{{colaborador.sexo | sexo}}</td>
-            <td>{{colaborador.telefono}}</td>
             <td>{{colaborador.numero_documento_identidad}}</td>
-            <td>{{colaborador.fecha_creacion | date:'short'}}</td>
+            <td><button
+                (click)="openModalDetalles(ModalDetalleColaborador, i)"><i
+                  class="fa fa-eye"
+                  aria-hidden="true"></i></button></td>
 
           </tr>
         </tbody>
@@ -248,9 +245,129 @@
 
   <!-- Fin Modal -->
 
-</div>
-<br>
-<br>
-<br>
-<br>
+  <!-- Modal -->
 
+  <ng-template #ModalDetalleColaborador>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Datos del Colaborador</h4>
+      <button type="button" class="btn-close close pull-right"
+        aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row">
+        <div class="col col-md-12">
+          <div class="mb-3">
+            <label for="exampleInputPassword1"
+              class="form-label">Nombre completo</label>
+            <input
+              type="text"
+              class="form-control"
+              disabled
+              [value]="colaboradores[detalleIndex].nombre_1+' '+colaboradores[detalleIndex].nombre_2+' '+colaboradores[detalleIndex].apellido_1+' '+colaboradores[detalleIndex].apellido_2">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-md-4">
+          <div class="mb-3">
+            <label for="exampleInputPassword1"
+              class="form-label">Rol</label>
+            <input
+              type="text"
+              class="form-control"
+              disabled
+              [value]="colaboradores[detalleIndex].detalle_tipo">
+          </div>
+        </div>
+        <div class="col col-md-4">
+          <div class="mb-3">
+            <label for="exampleInputPassword1"
+              class="form-label">Sexo</label>
+            <input
+              type="text"
+              class="form-control"
+              disabled
+              [value]="colaboradores[detalleIndex].sexo | sexo">
+          </div>
+        </div>
+        <div class="col col-md-4">
+          <div class="mb-3">
+            <label for="exampleInputPassword1"
+              class="form-label">Edad</label>
+            <input
+              type="text"
+              class="form-control"
+              disabled
+              [value]="colaboradores[detalleIndex].fecha_nacimiento |
+              calcularEdad">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-md-6">
+          <div class="mb-3">
+            <label for="exampleInputPassword1"
+              class="form-label">Numero documento</label>
+            <input
+              type="text"
+              class="form-control"
+              disabled
+              [value]="colaboradores[detalleIndex].numero_documento_identidad">
+          </div>
+        </div>
+        <div class="col col-md-6">
+          <div class="mb-3">
+            <label for="exampleInputPassword1"
+              class="form-label">Correo</label>
+            <input
+              type="text"
+              class="form-control"
+              disabled
+              [value]="colaboradores[detalleIndex].correo">
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col col-md-6">
+          <div class="mb-3">
+            <label for="exampleInputPassword1"
+              class="form-label">Telefono</label>
+            <input
+              type="text"
+              class="form-control"
+              disabled
+              [value]="colaboradores[detalleIndex].telefono">
+          </div>
+        </div>
+        <div class="col col-md-6">
+          <div class="mb-3">
+            <label for="exampleInputPassword1"
+              class="form-label">Fecha inicio</label>
+            <input
+              type="text"
+              class="form-control"
+              disabled
+              [value]="colaboradores[detalleIndex].fecha_inicio |
+              date:'short'">
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary btn-no-border2"
+        data-bs-dismiss="modal" (click)="modalRef?.hide()">Cerrar</button>
+    </div>
+  </ng-template>
+
+  <!-- Fin Modal -->
+
+</div>

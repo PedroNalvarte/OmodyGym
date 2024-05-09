@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, ignoreElements, catchError, delay, map, of, tap, throwError, Subject, Subscription} from 'rxjs';
+import { BehaviorSubject, Observable, ignoreElements, catchError, delay, map, of, tap, throwError, Subject, Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../auth/auth.service';
 import { User, UserWithToken } from '../../auth/model/user.interface';
@@ -10,12 +10,12 @@ import { DetailClient } from './model/detail-client.interface';
 export class ClientsService {
 
   //Prod
-  //public apiUrl: string = 'https://omodygym-backend.onrender.com';
+  public apiUrl: string = 'https://omodygym-backend.onrender.com';
 
   //Pruebas
-  public apiUrl: string = 'http://localhost:3001';
+  //public apiUrl: string = 'http://localhost:3001';
 
- 
+
 
   constructor(private HttpClient: HttpClient, private authService: AuthService) {
 

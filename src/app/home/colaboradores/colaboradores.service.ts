@@ -9,10 +9,10 @@ import { PersonaColaborador } from './model/personaColaborador.interface';
 export class ColaboradoresService {
 
   //Prod
-  //public apiUrl: string = 'https://omodygym-backend.onrender.com';
+  public apiUrl: string = 'https://omodygym-backend.onrender.com';
 
   //Pruebas
-  public apiUrl: string = 'http://localhost:3001';
+  //public apiUrl: string = 'http://localhost:3001';
 
   dni: string = '';
   private subscription: Subscription;
