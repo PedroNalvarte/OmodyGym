@@ -43,13 +43,13 @@ export class ColaboradoresComponent {
     idSede: 0
   }
 
-  public personaDetalle: PersonaColaborador | null= null;
+  public personaDetalle: PersonaColaborador | undefined = undefined;
 
   constructor(
     private colaboradoresService: ColaboradoresService,
     private modalService: BsModalService,
     private sedesService: SedesService
-    
+
   ) { }
 
   ngOnInit(): void {
@@ -104,7 +104,7 @@ export class ColaboradoresComponent {
 
   openModalDetalles(ModalDetalleColaborador: TemplateRef<any>, id?: number): void {
 
-    if(id){
+    if (id) {
 
       // this.colaboradoresService.listColaboradores().subscribe((colaboradores: PersonaColaborador[] | undefined) => {
       //   if (colaboradores && colaboradores.length > 0) {
@@ -113,18 +113,18 @@ export class ColaboradoresComponent {
       //     this.personaDetalle = null;
       //   }
 
-        if (this.colaboradores && this.colaboradores.length > 0) {
-          this.personaDetalle = this.colaboradores.find(colaborador => colaborador.apellido_1 === id
-        } else {
-          this.personaDetalle = null;
-        }
+      if (this.colaboradores && this.colaboradores.length > 0) {
+        this.personaDetalle = this.colaboradores.find(colaborador => colaborador.id_persona === id);
+      } else {
+        this.personaDetalle = undefined;
+      }
 
       this.modalRef = this.modalService.show(ModalDetalleColaborador, {});
-      
+
       //});
     }
 
-    
+
   }
   //----------------------Fin Modal Registrar Colaborador--------------------------------
 
