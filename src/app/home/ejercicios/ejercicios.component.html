@@ -1,1 +1,128 @@
-<p>Ejercicios funciona</p>
+<div class="container">
+
+  <div class="row mt-2">
+    <div class="col offset-md-10 col-md-2">
+      <button (click)="openModal(ModalRegistrarEjercicio)">Registrar
+        ejercicio</button>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+
+    <div class="col col-md-3">
+      <select [(ngModel)]="filterByGrupoMuscular"
+        name="idSede" class="form-select"
+        required>
+        <option aria-label="Default select example"
+          value="0">Seleccione grupo muscular</option>
+
+        <option *ngFor="let grupoMuscular of gruposMusculares"
+          [value]="grupoMuscular.id_grupo_muscular">{{grupoMuscular.nombre_grupo_muscular}}</option>
+      </select>
+    </div>
+
+    <div class="col col-md-8">
+      <input [(ngModel)]="searchEjercicioName" name="searchEjercicioName"
+        class="form-control" type="text"
+        placeholder="Buscar ejercicios"
+        aria-label="Buscar ejercicios" aria-describedby="button-addon2">
+    </div>
+
+    <div class="col col-md-1">
+      <button (click)="resetFilters()"><i
+          class="bi bi-arrow-counterclockwise"></i></button>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div
+      *ngFor="let ejercicio of ejercicios|sortEjerciciosName:searchEjercicioName|sortGrupoMuscular:filterByGrupoMuscular"
+      class="col col-md-3 mt-2">
+      <div class="card">
+        <img [src]="ejercicio.imagen" alt="imagen ejercicio">
+        {{ejercicio.id_grupo_muscular}}
+        {{ejercicio.id_ejercicio}}
+        {{ejercicio.nombre | titlecase}}
+        -
+        {{ejercicio.nombre_grupo_muscular}}
+      </div>
+    </div>
+  </div>
+
+  <ng-template #ModalRegistrarEjercicio>
+    <form (ngSubmit)="registerEjercicio()" #colaboradorForm="ngForm">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Registrar Ejercicio</h4>
+        <button type="button" class="btn-close close pull-right"
+          aria-label="Close" (click)="modalRef?.hide()">
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+      </div>
+      <div *ngIf="processingRequest; else FormBody">
+        <div class="modal-body">
+          <shared-loading-spinner></shared-loading-spinner>
+          <p>Espere mientras se registra el ejercicio</p>
+        </div>
+      </div>
+      <ng-template #FormBody>
+        <div class="modal-body">
+
+          <p>Ingrese los datos del ejercicio a registrar</p>
+
+          <div class="row">
+            <div class="col col-md-6">
+              <div class="mb-3">
+                <label for="exampleInputPassword1"
+                  class="form-label">Grupo Muscular</label>
+                <select [(ngModel)]="ejercicioRegistro.id_grupo_muscular"
+                  name="idSede" class="form-select"
+                  required>
+                  <option aria-label="Default select example"
+                    value="0">Seleccione grupo muscular</option>
+
+                  <option *ngFor="let grupoMuscular of gruposMusculares"
+                    [value]="grupoMuscular.id_grupo_muscular">{{grupoMuscular.nombre_grupo_muscular}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col col-md-6">
+              <div class="mb-3">
+                <label for="exampleInputPassword1"
+                  class="form-label">Nombre Ejercicio</label>
+                <input [(ngModel)]="ejercicioRegistro.nombre" name="nombre_2"
+                  type="text"
+                  class="form-control"
+                  id="exampleInputPassword1" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col col-md-12">
+              <div class="mb-3">
+                <label for="exampleInputPassword1"
+                  class="form-label">Enlace imagen</label>
+                <input [(ngModel)]="ejercicioRegistro.imagen" name="enlace"
+                  type="text"
+                  class="form-control"
+                  id="exampleInputPassword1" required>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-no-border2"
+            data-bs-dismiss="modal" (click)="modalRef?.hide()">Cerrar</button>
+          <button
+            class="btn btn-primary btn-no-border1"
+            type="submit"
+            [disabled]="!colaboradorForm.valid">
+            Registrar ejecicio
+          </button>
+        </div>
+      </ng-template>
+    </form>
+  </ng-template>
+
+</div>
