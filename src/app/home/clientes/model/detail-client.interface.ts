@@ -1,5 +1,5 @@
 export interface DetailClient {
-    id: string;
+    Id: string;
     nombre: string;
     apellido1: string;
     apellido2: string;
@@ -10,5 +10,6 @@ export interface DetailClient {
     fechafin: string,
     dni: string,
     fechaNacimiento: string,
+    fecha_nacimiento: string,
     usuario? : string
   }

@@ -16,8 +16,9 @@ export class ClientesListComponent {
   datePipe: DatePipe = new DatePipe('en-US');
   clientPipe: ClientFilterPipe = new ClientFilterPipe();
   @Output() listButtonClick = new EventEmitter<void>();
+  currentUserRole : any;
   public selectedClient : DetailClient = {
-    id: '',
+    Id: '',
     nombre: '',
     apellido1: '',
     apellido2: '',
@@ -27,7 +28,8 @@ export class ClientesListComponent {
     membresia: '',
     fechafin: '',
     dni: '',
-    fechaNacimiento: ''
+    fechaNacimiento: '',
+    fecha_nacimiento: ''
   }
   public clientSelected = false;
   inputContainer: IdMembership = {
@@ -38,10 +40,14 @@ export class ClientesListComponent {
   ngOnInit() {
     this.GetClients();
     this.clientSelected = false;
+    this.authService.user$.subscribe(user => {
+      this.currentUserRole = user?.role;
+    });
+
    }
 
    GetClients(){
-    this.clientService.getClients().subscribe(
+    this.clientService.getClients(undefined).subscribe(
       (data) => {
         this.clients = data;
         this.allClients = data;

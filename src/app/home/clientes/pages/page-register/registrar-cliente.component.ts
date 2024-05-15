@@ -14,7 +14,7 @@ export class RegistrarClienteComponent {
   @Output() registerButtonClick = new EventEmitter<void>();
   selectedMembershipId: string | null = null;
   public registerClient : DetailClient = {
-    id: '',
+    Id: '',
     nombre: '',
     apellido1: '',
     apellido2: '',
@@ -25,7 +25,8 @@ export class RegistrarClienteComponent {
     fechafin: '',
     dni: '', 
     fechaNacimiento: '',
-    usuario: ''
+    usuario: '',
+    fecha_nacimiento: ''
   }
   modalRef?: BsModalRef;
   public isMembershipSelected = false;

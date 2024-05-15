@@ -1,0 +1,83 @@
+<div class="container" *ngIf="!clientSelected">
+    <div class="row">
+        <div class="col">
+          <h1>Clientes</h1>
+        </div>
+        <div class="mb-1">
+            <select class="form-control form-control-sm" name="sede" id="sede" (change)="filtrarPorSede($event.target)">
+             <option value="empty">Filtrar por sede</option>
+              <option *ngFor="let sede of sedes" [value]="sede.nombreSede">{{ sede.nombreSede }}</option>
+            </select>
+          </div>
+    </div>
+
+    <div class="row">
+        <div >
+            <input class="form-control"
+            placeholder="Ingrese el nombre/DNI del cliente a buscar"
+            (keyup)="realizarBusqueda($event.target)"/>
+            <br>
+            <div *ngFor="let client of clients" class="card row-md-3">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="row">
+                            <p class="card-text">Cliente: {{ client.nombre }} {{client.apellido1}} {{client.apellido2}}</p>
+                            </div>
+                            <div class="row">
+                                <div class="col mb-12">
+                                    <p class="card-text">Celular: {{ client.telefono }}</p>
+                                    <p class="card-text">Edad: {{client.edad}}</p>
+                                    <p class="card-text">Sede: {{client.sede}}</p>
+                                </div>
+                                <div class="col mb-6">
+                                    <p class="card-text">Actualización de Plan: {{ client.modificacion_plan }}</p>
+                                    <p class="card-text">Actualización de Métricas: {{client.modificacion_metricas}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <button class="btn btn-primary" (click)="onSelect(client)">
+                                <h5>Ver</h5>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+       
+    
+    </div>
+</div>
+<div class="container" *ngIf="clientSelected">
+    <div class="row">
+        <div class="col">
+          <h1>Cliente</h1>
+        </div>
+        <div class="card row-md-3">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <p class="card-text">Nombre: {{ selectedClient.nombre }}</p>
+                        <p class="card-text">Primer apellido: {{selectedClient.apellido1}}</p>
+                        <p class="card-text">Segundo apellido: {{selectedClient.apellido2}}</p>
+                        <p class="card-text">Fecha de nacimiento: {{selectedClient.fecha_nacimiento}}</p>
+                        <p class="card-text">Celular: {{ selectedClient.telefono }}</p>
+                        <p class="card-text">Sede: {{selectedClient.sede}}</p>                           
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button btn btn-primary (click)="asignTrainer(confirmation)">Añadir Alumno</button>
+        </div>
+    </div>
+</div>
+
+<ng-template #confirmation>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Registro finalizado</h4>
+    </div>
+    <div class="modal-body">Cliente registrado exitosamente</div>
+  </ng-template>

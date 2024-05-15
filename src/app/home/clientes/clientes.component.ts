@@ -14,17 +14,45 @@ import { ClientesListComponent } from './pages/page-list/clientes.list.component
 
 
 export class ClientesComponent {
-  public onRegister = false;
-  public onList = true;
+  public onRegisterRecepcionista = false;
+  public onListRecepcionista = false;
+  public onListTrainer = false;
+  public onRegisterTrainer = false;
+  currentUserRole : any;
   constructor(private authService : AuthService, private clientService : ClientsService) { }
 
+  ngOnInit() {
+    this.authService.user$.subscribe(user => {
+      this.currentUserRole = user?.role;
+    });
+
+    if(this.currentUserRole == "Entrenador"){
+      this.onListTrainer = true;
+    }
+    else{
+      this.onListRecepcionista = true;
+    }
+   }
   goToRegister(){
-    this.onRegister = true;
-    this.onList = false;
+    if(this.currentUserRole == "Entrenador"){
+      this.onListTrainer = false;
+      this.onRegisterTrainer = true;
+    }
+    else{
+      this.onRegisterRecepcionista = true;
+      this.onListRecepcionista = true;
+    }
+    
   }
 
   goToList(){
-    this.onRegister = false;
-    this.onList = true;
+    if(this.currentUserRole == "Entrenador"){
+      this.onListTrainer = true;
+      this.onRegisterTrainer = false;
+    }
+    else{
+      this.onRegisterRecepcionista = false;
+      this.onListRecepcionista = true;
+    }
   }
 }

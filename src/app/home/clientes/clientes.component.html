@@ -1,2 +1,3 @@
-<clientes-list *ngIf="onList" (listButtonClick)="goToRegister()"></clientes-list>
-<registrar-cliente *ngIf="onRegister" (registerButtonClick)="goToList()"></registrar-cliente>
+<clientes-list *ngIf="onListRecepcionista" (listButtonClick)="goToRegister()"></clientes-list>
+<clientes-trainer-list *ngIf="onListTrainer"></clientes-trainer-list>
+<registrar-cliente *ngIf="onRegisterRecepcionista" (registerButtonClick)="goToList()"></registrar-cliente>
