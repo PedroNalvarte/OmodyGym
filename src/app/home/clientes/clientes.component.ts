@@ -40,7 +40,7 @@ export class ClientesComponent {
     }
     else{
       this.onRegisterRecepcionista = true;
-      this.onListRecepcionista = true;
+      this.onListRecepcionista = false;
     }
     
   }
