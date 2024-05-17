@@ -11,5 +11,8 @@ export interface DetailClient {
     dni: string,
     fechaNacimiento: string,
     fecha_nacimiento: string,
-    usuario? : string
+    usuario? : string,
+    entrenador: string,
+    modificacion_metricas?: string,
+    modificacion_plan?: string
   }

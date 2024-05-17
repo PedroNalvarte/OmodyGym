@@ -26,7 +26,8 @@ export class RegistrarClienteComponent {
     dni: '', 
     fechaNacimiento: '',
     usuario: '',
-    fecha_nacimiento: ''
+    fecha_nacimiento: '',
+    entrenador: ''
   }
   modalRef?: BsModalRef;
   public isMembershipSelected = false;

@@ -58,7 +58,7 @@
         <div class="card row-md-3">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
-                    <div>
+                    <div class="col mb-6">
                         <p class="card-text">Nombre: {{ selectedClient.nombre }}</p>
                         <p class="card-text">Primer apellido: {{selectedClient.apellido1}}</p>
                         <p class="card-text">Segundo apellido: {{selectedClient.apellido2}}</p>
@@ -66,11 +66,17 @@
                         <p class="card-text">Celular: {{ selectedClient.telefono }}</p>
                         <p class="card-text">Sede: {{selectedClient.sede}}</p>                           
                     </div>
+                    <div class="col mb-6" *ngIf="selectedClient.entrenador">
+                        <p>Entrenador: {{selectedClient.entrenador}}</p>
                 </div>
             </div>
         </div>
         <div>
-            <button btn btn-primary (click)="asignTrainer(confirmation)">Añadir Alumno</button>
+            <button btn btn-primary (click)="asignTrainer(confirmation)"   *ngIf="!selectedClient.entrenador">Añadir Alumno</button>
+            <button btn btn-primary (click)="asignTrainer(confirmation)"   *ngIf="selectedClient.entrenador && !selectedClient.modificacion_plan">Registrar Plan</button>
+            <button btn btn-primary (click)="asignTrainer(confirmation)"   *ngIf="selectedClient.entrenador && !selectedClient.modificacion_metricas">Registrar Métricas</button>
+            <button btn btn-primary (click)="asignTrainer(confirmation)"   *ngIf="selectedClient.entrenador && selectedClient.modificacion_plan">Ver Plan de Entrenamiento</button>
+            <button btn btn-primary (click)="asignTrainer(confirmation)"   *ngIf="selectedClient.entrenador && selectedClient.modificacion_metricas">Ver Métricas</button>
         </div>
     </div>
 </div>

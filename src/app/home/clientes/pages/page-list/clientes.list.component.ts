@@ -29,7 +29,8 @@ export class ClientesListComponent {
     fechafin: '',
     dni: '',
     fechaNacimiento: '',
-    fecha_nacimiento: ''
+    fecha_nacimiento: '',
+    entrenador: ''
   }
   public clientSelected = false;
   inputContainer: IdMembership = {

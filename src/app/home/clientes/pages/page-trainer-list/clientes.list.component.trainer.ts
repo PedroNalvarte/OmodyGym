@@ -37,7 +37,10 @@ export class ClientesListTrainerComponent {
     fechafin: '',
     dni: '',
     fecha_nacimiento: '',
-    fechaNacimiento: ''
+    fechaNacimiento: '',
+    entrenador: '',
+    modificacion_plan: '',
+    modificacion_metricas: ''
   }
   inputContainer: IdMembership = {
     id: ''

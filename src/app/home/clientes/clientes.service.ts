@@ -10,10 +10,10 @@ import { asignTrainerDto } from './pages/models/asign-trainer.interface';
 export class ClientsService {
 
   //Prod
-  public apiUrl: string = 'https://omodygym-backend.onrender.com';
+  //public apiUrl: string = 'https://omodygym-backend.onrender.com';
 
   //Pruebas
-  //public apiUrl: string = 'http://localhost:3001';
+  public apiUrl: string = 'http://localhost:3001';
 
 
 
@@ -27,6 +27,7 @@ export class ClientsService {
 
 
   getClients(id : any): Observable<any> {
+
     const url = `${this.apiUrl}/getClients`;
     return this.HttpClient.post<any>(url, {id}).pipe(
     );

@@ -71,7 +71,7 @@ const routes: Routes = [
         canActivate: [hasRoleGuard],
         canLoad: [hasRoleGuard],
         data: {
-          allowedRoles: ['Entrenador']
+          allowedRoles: ['Entrenador', 'Administrador']
         },
         component: EjerciciosComponent
       },
