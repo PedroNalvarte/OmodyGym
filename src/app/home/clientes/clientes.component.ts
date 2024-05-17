@@ -18,6 +18,8 @@ export class ClientesComponent {
   public onListRecepcionista = false;
   public onListTrainer = false;
   public onRegisterTrainer = false;
+  public onRegisterPlan = false;
+  selectedClient : any;
   currentUserRole : any;
   constructor(private authService : AuthService, private clientService : ClientsService) { }
 
@@ -49,10 +51,19 @@ export class ClientesComponent {
     if(this.currentUserRole == "Entrenador"){
       this.onListTrainer = true;
       this.onRegisterTrainer = false;
+      this.onRegisterPlan = false;
     }
     else{
       this.onRegisterRecepcionista = false;
       this.onListRecepcionista = true;
+      this.onRegisterPlan = false;
     }
+  }
+
+  goToRegisterPlan(eventData: any){
+    this.selectedClient = eventData;
+    this.onRegisterPlan = true;
+    this.onRegisterTrainer = false;
+    this.onListTrainer = false;
   }
 }

@@ -1,0 +1,82 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<div class="container" *ngIf="onChoosingDay">
+    <div class="row">
+        <h1 class="text-center">Plan de Entrenamiento</h1>
+        <div class="d-flex justify-content-center align-items-center w-100">
+            <h2 class="mb-0 me-2">{{receivedClient.nombre}} {{receivedClient.apellido1}}  {{receivedClient.apellido2}}</h2>
+            <i class="fas fa-chevron-circle-left fa-lg ms-5" *ngIf="!planCompleted" (click)="goBack()"></i>
+            <button btn btn-primary class="ms-5" *ngIf="planCompleted">Registrar Plan</button>
+        </div>
+    </div>
+    <h3>Seleccionar</h3>
+    <div class="row">
+        <div
+        [ngClass]="{'card': true, 'col-6': true, 'col-md-4': true, 'mb-3': true, 'membresias': true}" (click)="dayClicked(1)" >
+            <div class="d-flex justify-content-center ">
+                <h4 class="card-title text-center">Día 1 </h4>
+                <i *ngIf="!day1Completed" class="fa-regular fa-circle ms-3 mt-2"></i>
+                <i *ngIf="day1Completed" class="fa-regular fa-circle-check ms-3 mt-2"></i>
+            </div>
+        </div>
+        <div
+        [ngClass]="{'card': true, 'col-6': true, 'col-md-4': true, 'mb-3': true, 'membresias': true}" (click)="dayClicked(2)" >
+            <div class="d-flex justify-content-center ">
+                <h5 class="card-title text-center">Día 2</h5>
+                <i *ngIf="!day2Completed" class="fa-regular fa-circle ms-3 mt-2"></i>
+                <i *ngIf="day2Completed" class="fa-regular fa-circle-check ms-3 mt-2"></i>
+            </div>
+        </div>
+        <div
+        [ngClass]="{'card': true, 'col-6': true, 'col-md-4': true, 'mb-3': true, 'membresias': true}" (click)="dayClicked(3)" >
+            <div class="d-flex justify-content-center ">
+                <h5 class="card-title text-center">Día 3</h5>
+                <i *ngIf="!day3Completed" class="fa-regular fa-circle ms-3 mt-2"></i>
+                <i *ngIf="day3Completed" class="fa-regular fa-circle-check ms-3 mt-2"></i>
+            </div>
+        </div>
+        <div
+        [ngClass]="{'card': true, 'col-6': true, 'col-md-4': true, 'mb-3': true, 'membresias': true}" (click)="dayClicked(4)" >
+            <div class="d-flex justify-content-center ">
+                <h5 class="card-title text-center">Día 4</h5>
+                <i *ngIf="!day4Completed" class="fa-regular fa-circle ms-3 mt-2"></i>
+                <i *ngIf="day4Completed" class="fa-regular fa-circle-check ms-3 mt-2"></i>
+            </div>
+        </div>
+        <div
+        [ngClass]="{'card': true, 'col-6': true, 'col-md-4': true, 'mb-3': true, 'membresias': true}" (click)="dayClicked(5)" >
+            <div class="d-flex justify-content-center ">
+                <h5 class="card-title text-center">Día 5</h5>
+                <i *ngIf="!day5Completed" class="fa-regular fa-circle ms-3 mt-2"></i>
+                <i *ngIf="day5Completed" class="fa-regular fa-circle-check ms-3 mt-2"></i>
+            </div>
+        </div>
+        <div
+        [ngClass]="{'card': true, 'col-6': true, 'col-md-4': true, 'mb-3': true, 'membresias': true}" (click)="dayClicked(6)" >
+            <div class="d-flex justify-content-center ">
+                <h5 class="card-title text-center">Día 6</h5>
+                <i *ngIf="!day6Completed" class="fa-regular fa-circle ms-3 mt-2"></i>
+                <i *ngIf="day6Completed" class="fa-regular fa-circle-check ms-3 mt-2"></i>
+            </div>
+        </div>
+        <div
+        [ngClass]="{'card': true, 'col-6': true, 'col-md-4': true, 'mb-3': true, 'membresias': true}" (click)="dayClicked(7)" >
+            <div class="d-flex justify-content-center ">
+                <h5 class="card-title text-center">Día 7</h5>
+                <i *ngIf="!day7Completed" class="fa-regular fa-circle ms-3 mt-2"></i>
+                <i *ngIf="day7Completed" class="fa-regular fa-circle-check ms-3 mt-2"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container" *ngIf="onExcerciseStore">
+    <div class="row">
+        <h1 class="text-center">Registro de entrenamiento</h1>
+        <div class="d-flex justify-content-center align-items-center w-100">
+            <h2 class="mb-0 me-2">{{receivedClient.nombre}} {{receivedClient.apellido1}}  {{receivedClient.apellido2}}</h2>
+            <button btn btn-primary class="ms-5">Guardar</button>
+        </div>
+        <h4 class="text-center">Día {{selectedDay}}</h4>
+    </div>
+</div>

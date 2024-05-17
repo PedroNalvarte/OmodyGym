@@ -30,6 +30,7 @@ import { SortNamePipe } from './colaboradores/pipes/sort-name.pipe';
 import { ClientesListTrainerComponent } from './clientes/pages/page-trainer-list/clientes.list.component.trainer';
 import { SortEjerciciosNamePipe } from './ejercicios/pipes/sort-ejercicios-name.pipe';
 import { SortGrupoMuscularPipe } from './ejercicios/pipes/sort-grupoMuscular.pipe';
+import { RegisterTrainingPlan } from './clientes/pages/page-register-training-plan/register.training.plan.component';
 @NgModule({
   declarations: [
     HomeLayoutComponent,
@@ -55,7 +56,8 @@ import { SortGrupoMuscularPipe } from './ejercicios/pipes/sort-grupoMuscular.pip
     RegistrarClienteComponent,
     ClientesListTrainerComponent,
     SortEjerciciosNamePipe,
-    SortGrupoMuscularPipe
+    SortGrupoMuscularPipe,
+    RegisterTrainingPlan
   ],
   imports: [CommonModule, HomeRoutingModule, SharedModule, ModalModule.forRoot(), FormsModule],
 })

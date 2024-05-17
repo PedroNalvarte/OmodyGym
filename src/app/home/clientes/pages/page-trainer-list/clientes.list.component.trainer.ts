@@ -22,6 +22,7 @@ export class ClientesListTrainerComponent {
   datePipe: DatePipe = new DatePipe('en-US');
   clientPipe: ClientFilterPipe = new ClientFilterPipe();
   sedesPipe: ClientSedePipe = new ClientSedePipe();
+  @Output() registerPlanButtonClick = new EventEmitter<any>();
   clientSelected = false;
   currentUserRole : any;
   currentUserId : any;
@@ -123,4 +124,8 @@ export class ClientesListTrainerComponent {
     this.modalRef = this.modalService.show(template);
   }
 
+
+  toRegisterPlan(){
+    this.registerPlanButtonClick.emit(this.selectedClient);
+  }
 }

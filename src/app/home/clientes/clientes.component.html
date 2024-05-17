@@ -1,3 +1,4 @@
 <clientes-list *ngIf="onListRecepcionista" (listButtonClick)="goToRegister()"></clientes-list>
-<clientes-trainer-list *ngIf="onListTrainer"></clientes-trainer-list>
+<clientes-trainer-list *ngIf="onListTrainer" (registerPlanButtonClick)="goToRegisterPlan($event)"></clientes-trainer-list>
 <registrar-cliente *ngIf="onRegisterRecepcionista" (registerButtonClick)="goToList()"></registrar-cliente>
+<register-training-plan *ngIf="onRegisterPlan" [receivedClient]="selectedClient" (back)="goToList()"></register-training-plan>
