@@ -12,7 +12,7 @@ export class MiPlanComponent implements OnInit {
 
   public processingRequest = true;
 
-  id: string | null = null;
+  dni: string | null = null;
 
   dias: any[] = [];
 
@@ -20,11 +20,11 @@ export class MiPlanComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.id = params.get('id');
+      this.dni = params.get('dni');
     });
 
-    if (this.id) {
-      this.miPlanService.listMiPlan(this.id).subscribe(() => {
+    if (this.dni) {
+      this.miPlanService.listMiPlan(this.dni).subscribe(() => {
         this.organizarDatos();
         this.processingRequest = false;
       });

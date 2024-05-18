@@ -134,6 +134,6 @@ export class ClientesListTrainerComponent {
   //Boton Ver Plan de entrenamiento hander
   verPlanEntrenamiento(): void {
 
-    this.router.navigateByUrl('/miPlan/' + this.selectedClient.Id);
+    this.router.navigateByUrl('/miPlan/' + this.selectedClient.dni);
   }
 }

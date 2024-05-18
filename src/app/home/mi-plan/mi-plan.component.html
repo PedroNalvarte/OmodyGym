@@ -6,36 +6,41 @@
     </div>
   </div>
 
-  <div *ngIf="processingRequest" class="row mt-3">
+  <div *ngIf="processingRequest; else tabla" class="row mt-3">
     <div class="col offset-md-1 col-md-10">
       <shared-loading-spinner></shared-loading-spinner>
       <p>Cargando</p>
     </div>
   </div>
 
-  <div *ngIf="!processingRequest" class="row mt-3">
-    <div class="col offset-md-1 col-md-10">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th *ngFor="let dia of dias">Dia {{ dia.dia }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td *ngFor="let dia of dias">
-              <div *ngFor="let ejercicio of dia.ejercicios">
-                <p>{{ ejercicio.nombre_grupo_muscular }}</p>
-                <p>{{ ejercicio.nombre }}</p>
-                <p>Series: {{ ejercicio.series }} Repeticiones: {{
-                  ejercicio.repeticiones }}</p>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+  <ng-template #tabla>
+    <div *ngIf="miPlan.length !== 0;else nohay" class="row mt-3">
+      <div class="col offset-md-1 col-md-10">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th *ngFor="let dia of dias">Dia {{ dia.dia }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td *ngFor="let dia of dias">
+                <div *ngFor="let ejercicio of dia.ejercicios">
+                  <p>{{ ejercicio.nombre_grupo_muscular }}</p>
+                  <p>{{ ejercicio.nombre }}</p>
+                  <p>Series: {{ ejercicio.series }} Repeticiones: {{
+                    ejercicio.repeticiones }}</p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
+    <ng-template #nohay>
+      <p>Aun no tienes un plan registrado</p>
+    </ng-template>
+  </ng-template>
 </div>
 
 <br><br>

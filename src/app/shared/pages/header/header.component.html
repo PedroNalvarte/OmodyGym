@@ -2,50 +2,77 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a id="logo" routerLink="/inicio"><img
-        src="https://i.postimg.cc/VJmp3vSx/Logo-omody.png' border='0' alt='Logo-omody"
-        alt></a>
-        <span class="spacer"></span>
-      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          src="https://i.postimg.cc/VJmp3vSx/Logo-omody.png' border='0' alt='Logo-omody"
+          alt></a>
+      <span class="spacer"></span>
+      <button class="navbar-toggler ms-auto" type="button"
+        data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false"
+        aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+
+      <div class="collapse navbar-collapse justify-content-end"
+        id="navbarNavDropdown">
         <ul class="navbar-nav text-center">
           <li class="nav-item">
-            <a *appShowForRoles="['Administrador', 'Cliente', 'Recepcionista', 'Entrenador']" class="nav-link active" aria-current="page" routerLink="/inicio" routerLinkActive="active">Inicio</a>
+            <a
+              *appShowForRoles="['Administrador', 'Cliente', 'Recepcionista', 'Entrenador']"
+              class="nav-link active" aria-current="page" routerLink="/inicio"
+              routerLinkActive="active">Inicio</a>
           </li>
           <li class="nav-item">
-            <a *appShowForRoles="['Recepcionista']" class="nav-link" routerLink="/entrenadores" routerLinkActive="active">Entrenadores</a>
+            <a *appShowForRoles="['Recepcionista']" class="nav-link"
+              routerLink="/entrenadores"
+              routerLinkActive="active">Entrenadores</a>
           </li>
           <li class="nav-item">
-            <a *appShowForRoles="['Recepcionista']" class="nav-link" routerLink="/verificarAcceso" routerLinkActive="active">Verificar acceso</a>
+            <a *appShowForRoles="['Recepcionista']" class="nav-link"
+              routerLink="/verificarAcceso" routerLinkActive="active">Verificar
+              acceso</a>
           </li>
           <li class="nav-item">
-            <a *appShowForRoles="['Administrador']" class="nav-link" routerLink="/sedes" routerLinkActive="active">Sedes</a>
+            <a *appShowForRoles="['Administrador']" class="nav-link"
+              routerLink="/sedes" routerLinkActive="active">Sedes</a>
           </li>
           <li class="nav-item">
-            <a *appShowForRoles="['Administrador']" class="nav-link" routerLink="/colaboradores" routerLinkActive="active">Colaboradores</a>
+            <a *appShowForRoles="['Administrador']" class="nav-link"
+              routerLink="/colaboradores"
+              routerLinkActive="active">Colaboradores</a>
           </li>
           <li class="nav-item">
-            <a *appShowForRoles="['Recepcionista', 'Entrenador', 'Administrador']" class="nav-link" routerLink="/clientes" routerLinkActive="active">Clientes</a>
+            <a
+              *appShowForRoles="['Recepcionista', 'Entrenador', 'Administrador']"
+              class="nav-link" routerLink="/clientes"
+              routerLinkActive="active">Clientes</a>
           </li>
           <li class="nav-item">
-            <a *appShowForRoles="['Entrenador', 'Administrador']" class="nav-link" routerLink="/ejercicios" routerLinkActive="active">Ejercicios</a>
+            <a *appShowForRoles="['Entrenador', 'Administrador']"
+              class="nav-link" routerLink="/ejercicios"
+              routerLinkActive="active">Ejercicios</a>
           </li>
           <li class="nav-item">
-            <a *appShowForRoles="['Administrador']" class="nav-link" routerLink="/membresias" routerLinkActive="active">Membresias</a>
+            <a *appShowForRoles="['Administrador']" class="nav-link"
+              routerLink="/membresias" routerLinkActive="active">Membresias</a>
           </li>
           <li class="nav-item">
-            <a *appShowForRoles="['Cliente']" class="nav-link" routerLink="/entrenador" routerLinkActive="active">Entrenador</a>
+            <a *appShowForRoles="['Cliente']" class="nav-link"
+              routerLink="/entrenador" routerLinkActive="active">Entrenador</a>
           </li>
           <li class="nav-item">
-            <a *appShowForRoles="['Cliente']" class="nav-link" routerLink="/miPlan" routerLinkActive="active">Mi Plan</a>
+            <a *appShowForRoles="['Cliente']" class="nav-link"
+              [routerLink]="miPlanLink" routerLinkActive="active">Mi Plan</a>
           </li>
           <li class="nav-item">
-            <a *appShowForRoles="['Cliente']" class="nav-link" routerLink="/estadisticas" routerLinkActive="active">Estadísticas</a>
+            <a *appShowForRoles="['Cliente']" class="nav-link"
+              routerLink="/estadisticas"
+              routerLinkActive="active">Estadísticas</a>
           </li>
           <li class="nav-item">
-            <a *appShowForRoles="['Administrador', 'Cliente', 'Recepcionista', 'Entrenador']" class="nav-link" routerLink="/perfil" routerLinkActive="active">Perfil</a>
+            <a
+              *appShowForRoles="['Administrador', 'Cliente', 'Recepcionista', 'Entrenador']"
+              class="nav-link" routerLink="/perfil"
+              routerLinkActive="active">Perfil</a>
           </li>
         </ul>
       </div>

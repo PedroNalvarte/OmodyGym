@@ -33,17 +33,6 @@ export class ColaboradoresService {
 
   ];
 
-  // registerSede(sede: Sede): Observable<never> {
-
-  //   const url = `${this.apiUrl}/registerSede/${this.dni}`;
-
-  //   return this.HttpClient.post<boolean>(url, sede).pipe(
-
-  //     ignoreElements()
-  //   );
-
-  // }
-
   listColaboradores(): Observable<PersonaColaborador[]> {
 
     const url = `${this.apiUrl}/listColaboradores`;

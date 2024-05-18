@@ -148,7 +148,7 @@ const routes: Routes = [
         component: MembresiasComponent
       },
       {
-        path: 'miPlan/:id',
+        path: 'miPlan/:dni',
         canActivate: [hasRoleGuard],
         canLoad: [hasRoleGuard],
         data: {

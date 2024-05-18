@@ -9,10 +9,10 @@ import { MiPlan } from './model/miPlan.interface';
 export class MiPlanService {
 
   //Prod
-  public apiUrl: string = 'https://omodygym-backend.onrender.com';
+  //public apiUrl: string = 'https://omodygym-backend.onrender.com';
 
   //Pruebas
-  //public apiUrl: string = 'http://localhost:3001';
+  public apiUrl: string = 'http://localhost:3001';
 
   constructor(private HttpClient: HttpClient) { }
 
@@ -20,9 +20,9 @@ export class MiPlanService {
 
   ];
 
-  listMiPlan(id: string): Observable<MiPlan[]> {
+  listMiPlan(dni: string): Observable<MiPlan[]> {
 
-    const url = `${this.apiUrl}/listMiPlan/${id}`;
+    const url = `${this.apiUrl}/listMiPlan/${dni}`;
 
     return this.HttpClient.post<MiPlan[]>(url, {}).pipe(
       tap((result: MiPlan[]) => {
