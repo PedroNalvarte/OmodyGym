@@ -9,7 +9,8 @@ import { ClientSedePipe } from '../../pipes/client-sedes.pipe';
 import { SedesService } from '../../../sedes/sedes.service';
 import { Sede } from '../../../sedes/model/sedes.interface';
 import { inbox } from 'ngx-bootstrap-icons';
-import { BsModalRef, BsModalService , ModalDirective } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
+import { Router } from '@angular/router';
 @Component({
   selector: 'clientes-trainer-list',
   templateUrl: './clientes.list.trainer.component.html',
@@ -24,16 +25,16 @@ export class ClientesListTrainerComponent {
   sedesPipe: ClientSedePipe = new ClientSedePipe();
   @Output() registerPlanButtonClick = new EventEmitter<any>();
   clientSelected = false;
-  currentUserRole : any;
-  currentUserId : any;
-  public selectedClient : DetailClient = {
+  currentUserRole: any;
+  currentUserId: any;
+  public selectedClient: DetailClient = {
     Id: '',
     nombre: '',
     apellido1: '',
     apellido2: '',
     edad: '',
     telefono: '',
-    sede: '', 
+    sede: '',
     membresia: '',
     fechafin: '',
     dni: '',
@@ -47,7 +48,7 @@ export class ClientesListTrainerComponent {
   inputContainer: IdMembership = {
     id: ''
   };
-  constructor(private authService : AuthService,private modalService: BsModalService, private clientService : ClientsService, private sedesService : SedesService) { }
+  constructor(private authService: AuthService, private modalService: BsModalService, private clientService: ClientsService, private sedesService: SedesService, private router: Router) { }
 
   ngOnInit() {
     this.authService.user$.subscribe(user => {
@@ -58,9 +59,9 @@ export class ClientesListTrainerComponent {
     this.sedesService.listSede().subscribe();
 
 
-   }
+  }
 
-   GetClients(){
+  GetClients() {
     this.clientService.getClients(this.currentUserId).subscribe(
       (data) => {
         this.clients = data;
@@ -77,45 +78,45 @@ export class ClientesListTrainerComponent {
     return this.sedesService.sedeList;
   }
 
-  onSelect(client : DetailClient){
+  onSelect(client: DetailClient) {
     this.selectedClient = client;
     var truedate = this.datePipe.transform(this.selectedClient.fechafin, 'yyyy-MM-dd');
     var nacimiento = this.datePipe.transform(this.selectedClient.fecha_nacimiento, 'yyyy-MM-dd');
-    if(truedate){
+    if (truedate) {
       this.selectedClient.fechafin = truedate;
     }
-    if(nacimiento){
+    if (nacimiento) {
       this.selectedClient.fecha_nacimiento = nacimiento;
     };
     this.clientSelected = true;
   }
 
-  realizarBusqueda(input : any){
-    if(!input){
+  realizarBusqueda(input: any) {
+    if (!input) {
       this.clients = this.allClients;
     }
-    else{
-          this.clients = this.clientPipe.transform(this.allClients, input.value);
+    else {
+      this.clients = this.clientPipe.transform(this.allClients, input.value);
     }
   }
 
-  asignTrainer(modal : TemplateRef<void>){
+  asignTrainer(modal: TemplateRef<void>) {
     this.clientService.asignTrainer(this.selectedClient.Id, this.currentUserId)
-    .pipe().subscribe(() => {
-      this.openModal(modal);
-      setTimeout(() => {
-        this.modalRef?.hide();
-        this.clientSelected = false;
-      }, 2000);
-  })
-}
+      .pipe().subscribe(() => {
+        this.openModal(modal);
+        setTimeout(() => {
+          this.modalRef?.hide();
+          this.clientSelected = false;
+        }, 2000);
+      })
+  }
 
-  filtrarPorSede(input : any){
-    if(!input || input.value == "empty"){
+  filtrarPorSede(input: any) {
+    if (!input || input.value == "empty") {
       this.clients = this.allClients;
     }
-    else{
-          this.clients = this.sedesPipe.transform(this.allClients, input.value);
+    else {
+      this.clients = this.sedesPipe.transform(this.allClients, input.value);
     }
   }
 
@@ -126,7 +127,13 @@ export class ClientesListTrainerComponent {
   }
 
 
-  toRegisterPlan(){
+  toRegisterPlan() {
     this.registerPlanButtonClick.emit(this.selectedClient);
+  }
+
+  //Boton Ver Plan de entrenamiento hander
+  verPlanEntrenamiento(): void {
+
+    this.router.navigateByUrl('/miPlan/' + this.selectedClient.Id);
   }
 }

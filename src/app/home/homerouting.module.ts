@@ -146,6 +146,15 @@ const routes: Routes = [
           allowedRoles: ['Administrador']
         },
         component: MembresiasComponent
+      },
+      {
+        path: 'miPlan/:id',
+        canActivate: [hasRoleGuard],
+        canLoad: [hasRoleGuard],
+        data: {
+          allowedRoles: ['Administrador', 'Recepcionista', 'Entrenador', 'Cliente']
+        },
+        component: MiPlanComponent
       }
     ],
   },

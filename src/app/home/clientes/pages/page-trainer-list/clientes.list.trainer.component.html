@@ -1,74 +1,97 @@
 <div class="container" *ngIf="!clientSelected">
-    <!-- Filtro por sede y barra de búsqueda -->
-    <div class="row mb-3">
-        <div class="col-md-3">
-            <select class="form-control form-control-sm custom-select" name="sede" id="sede" (change)="filtrarPorSede($event.target)">
-                <option value="empty">Filtrar por sede</option>
-                <option *ngFor="let sede of sedes" [value]="sede.nombreSede">{{ sede.nombreSede }}</option>
-            </select>
-        </div>
-        <div class="col-md-9">
-            <input class="form-control" placeholder="Ingrese el nombre/DNI del cliente a buscar" (keyup)="realizarBusqueda($event.target)" />
-        </div>
+  <!-- Filtro por sede y barra de búsqueda -->
+  <div class="row mb-3">
+    <div class="col-md-3">
+      <select class="form-control form-control-sm custom-select" name="sede"
+        id="sede" (change)="filtrarPorSede($event.target)">
+        <option value="empty">Filtrar por sede</option>
+        <option *ngFor="let sede of sedes" [value]="sede.nombreSede">{{
+          sede.nombreSede }}</option>
+      </select>
     </div>
+    <div class="col-md-9">
+      <input class="form-control"
+        placeholder="Ingrese el nombre/DNI del cliente a buscar"
+        (keyup)="realizarBusqueda($event.target)" />
+    </div>
+  </div>
 
-    <!-- Lista de clientes -->
-    <div class="row">
-        <div *ngFor="let client of clients" class="card mb-3 p-3">
-            <div class="row g-0 align-items-center">
-                <div class="col-md-8">
-                    <p class="card-text"><strong>Cliente:</strong> {{ client.nombre }} {{client.apellido1}} {{client.apellido2}}</p>
-                    <p class="card-text"><strong>Celular:</strong> {{ client.telefono }}</p>
-                    <p class="card-text"><strong>Edad:</strong> {{client.edad}}</p>
-                    <p class="card-text"><strong>Sede:</strong> {{client.sede}}</p>
-                </div>
-                <div class="col-md-3">
-                    <p class="card-text"><strong>Actualización de Plan:</strong> {{ client.modificacion_plan }}</p>
-                    <p class="card-text"><strong>Actualización de Métricas:</strong> {{client.modificacion_metricas}}</p>
-                </div>
-                <div class="col-md-1 text-center">
-                    <button class="btn btn-primary" (click)="onSelect(client)">
-                        <h5>Ver</h5>
-                    </button>
-                </div>
-            </div>
+  <!-- Lista de clientes -->
+  <div class="row">
+    <div *ngFor="let client of clients" class="card mb-3 p-3">
+      <div class="row g-0 align-items-center">
+        <div class="col-md-8">
+          <p class="card-text"><strong>Cliente:</strong> {{ client.nombre }}
+            {{client.apellido1}} {{client.apellido2}}</p>
+          <p class="card-text"><strong>Celular:</strong> {{ client.telefono
+            }}</p>
+          <p class="card-text"><strong>Edad:</strong> {{client.edad}}</p>
+          <p class="card-text"><strong>Sede:</strong> {{client.sede}}</p>
         </div>
+        <div class="col-md-3">
+          <p class="card-text"><strong>Actualización de Plan:</strong> {{
+            client.modificacion_plan }}</p>
+          <p class="card-text"><strong>Actualización de Métricas:</strong>
+            {{client.modificacion_metricas}}</p>
+        </div>
+        <div class="col-md-1 text-center">
+          <button class="btn btn-primary" (click)="onSelect(client)">
+            <h5>Ver</h5>
+          </button>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <div class="container" *ngIf="clientSelected">
-    <div class="row">
-        <div class="col">
-            <h1>Cliente</h1>
-        </div>
+  <div class="row">
+    <div class="col">
+      <h1>Cliente</h1>
     </div>
-    <div class="card mb-3 p-3">
-        <div class="row g-0">
-            <div class="col-md-6">
-                <p class="card-text"><strong>Nombre:</strong> {{ selectedClient.nombre }}</p>
-                <p class="card-text"><strong>Primer apellido:</strong> {{selectedClient.apellido1}}</p>
-                <p class="card-text"><strong>Segundo apellido:</strong> {{selectedClient.apellido2}}</p>
-                <p class="card-text"><strong>Fecha de nacimiento:</strong> {{selectedClient.fecha_nacimiento}}</p>
-                <p class="card-text"><strong>Celular:</strong> {{ selectedClient.telefono }}</p>
-                <p class="card-text"><strong>Sede:</strong> {{selectedClient.sede}}</p>
-            </div>
-            <div class="col-md-6" *ngIf="selectedClient.entrenador">
-                <p class="card-text"><strong>Entrenador:</strong> {{selectedClient.entrenador}}</p>
-            </div>
-        </div>
+  </div>
+  <div class="card mb-3 p-3">
+    <div class="row g-0">
+      <div class="col-md-6">
+        <p class="card-text"><strong>Nombre:</strong> {{ selectedClient.nombre
+          }}</p>
+        <p class="card-text"><strong>Primer apellido:</strong>
+          {{selectedClient.apellido1}}</p>
+        <p class="card-text"><strong>Segundo apellido:</strong>
+          {{selectedClient.apellido2}}</p>
+        <p class="card-text"><strong>Fecha de nacimiento:</strong>
+          {{selectedClient.fecha_nacimiento}}</p>
+        <p class="card-text"><strong>Celular:</strong> {{
+          selectedClient.telefono }}</p>
+        <p class="card-text"><strong>Sede:</strong> {{selectedClient.sede}}</p>
+      </div>
+      <div class="col-md-6" *ngIf="selectedClient.entrenador">
+        <p class="card-text"><strong>Entrenador:</strong>
+          {{selectedClient.entrenador}}</p>
+      </div>
     </div>
-    <div>
-        <button class="btn btn-primary" (click)="asignTrainer(confirmation)" *ngIf="!selectedClient.entrenador">Añadir Alumno</button>
-        <button class="btn btn-primary" (click)="toRegisterPlan()" *ngIf="selectedClient.entrenador && !selectedClient.modificacion_plan">Registrar Plan</button>
-        <button class="btn btn-primary" *ngIf="selectedClient.entrenador && selectedClient.modificacion_plan">Ver Plan de Entrenamiento</button>
-        <button class="btn btn-primary" *ngIf="selectedClient.entrenador && !selectedClient.modificacion_metricas">Registrar Métricas</button>
-        <button class="btn btn-primary" *ngIf="selectedClient.entrenador && selectedClient.modificacion_metricas">Ver Métricas</button>
-    </div>
+  </div>
+  <div>
+    <button class="btn btn-primary" (click)="asignTrainer(confirmation)"
+      *ngIf="!selectedClient.entrenador">Añadir Alumno</button>
+    <button class="btn btn-primary" (click)="toRegisterPlan()"
+      *ngIf="selectedClient.entrenador && !selectedClient.modificacion_plan">Registrar
+      Plan</button>
+    <button class="btn btn-primary" (click)="verPlanEntrenamiento()"
+      *ngIf="selectedClient.entrenador && selectedClient.modificacion_plan">Ver
+      Plan de Entrenamiento</button>
+    <button class="btn btn-primary"
+      *ngIf="selectedClient.entrenador && !selectedClient.modificacion_metricas">Registrar
+      Métricas</button>
+    <button class="btn btn-primary"
+      *ngIf="selectedClient.entrenador && selectedClient.modificacion_metricas">Ver
+      Métricas</button>
+  </div>
 </div>
 
 <ng-template #confirmation>
-    <div class="modal-header">
-        <h4 class="modal-title pull-left">Registro finalizado</h4>
-    </div>
-    <div class="modal-body">Cliente registrado exitosamente</div>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Registro finalizado</h4>
+  </div>
+  <div class="modal-body">Cliente registrado exitosamente</div>
 </ng-template>
