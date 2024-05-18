@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400..800&display=swap');
+
+/* Estilos generales */
+body {
+    font-family: "Baloo Bhai 2", sans-serif;
+}
+
+button.btn-primary {
+    color: white;
+    background-color: #72ce16;
+    border-color: #72ce16;
+    border-radius: 15px;
+    padding: 5px 10px;
+    font-size: 14px;
+    transition: background-color 0.5s, border-color 0.5s;
+}
+
+button.btn-primary:hover {
+    background-color: #60ad13;
+    border-color: #60ad13;
+}
+
+button.btn-light {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    color: #212529;
+}
+
+button.btn-light:hover {
+    background-color: #e2e6ea;
+    border-color: #dae0e5;
+}
+
+/* Estilos específicos */
+.card-body {
+    text-align: center;
+}
+
+.card-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+/* Estilos de la modal */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+.modal-body p {
+    margin-bottom: 1rem;
+}
+
+.form-label {
+    font-size: 0.9rem;
+    color: #495057;
+}
+
+.btn-no-border2 {
+    border: none;
+}
+
+.btn-no-border1 {
+    border: none;
+}

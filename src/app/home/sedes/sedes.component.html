@@ -31,13 +31,10 @@
   <ng-template #template>
     <form (ngSubmit)="registerSede()" #sedeForm="ngForm">
       <div class="modal-header">
-        <h4 class="modal-title pull-left">Registrar Nueva Sede</h4>
-        <button type="button" class="btn-close close pull-right"
-          aria-label="Close" (click)="modalRef?.hide()">
-          <span aria-hidden="true" class="visually-hidden">&times;</span>
-        </button>
+        <h4 class="modal-title">Registrar Nueva Sede</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modalRef?.hide()"></button>
       </div>
-      <div *ngIf="processingRequest" class="modal-body">
+      <div *ngIf="processingRequest" class="modal-body d-flex flex-column align-items-center justify-content-center">
         <shared-loading-spinner></shared-loading-spinner>
         <p>Espere mientras se registra la sede</p>
       </div>
@@ -45,38 +42,22 @@
         <div class="modal-body">
           <p>Ingrese los datos de la nueva sede a registrar</p>
           <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">Nombre</span>
-            <input [(ngModel)]="sedeRegistro.nombreSede" name="nombreSede"
-              class="form-control"
-              type="text" placeholder="Nombre"
-              required>
+            <span class="input-group-text">Nombre</span>
+            <input [(ngModel)]="sedeRegistro.nombreSede" name="nombreSede" class="form-control" type="text" placeholder="Nombre" required>
           </div>
           <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">Abreviacion</span>
-            <input [(ngModel)]="sedeRegistro.abreviacion" name="abreviacion"
-              class="form-control"
-              type="text" placeholder="Abreviación"
-              required>
+            <span class="input-group-text">Abreviación</span>
+            <input [(ngModel)]="sedeRegistro.abreviacion" name="abreviacion" class="form-control" type="text" placeholder="Abreviación" required>
           </div>
           <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">Direccion</span>
-            <input [(ngModel)]="sedeRegistro.direccion" name="direccion"
-              class="form-control"
-              type="text" placeholder="Dirección"
-              required>
+            <span class="input-group-text">Dirección</span>
+            <input [(ngModel)]="sedeRegistro.direccion" name="direccion" class="form-control" type="text" placeholder="Dirección" required>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary btn-no-border2"
-            data-bs-dismiss="modal" (click)="modalRef?.hide()">Cerrar</button>
-          <button
-            class="btn btn-primary btn-no-border1"
-            type="submit"
-            [disabled]="!sedeForm.valid">
-            Registrar sede
-          </button>
+          <button type="button" class="btn btn-secondary btn-no-border2" data-bs-dismiss="modal" (click)="modalRef?.hide()">Cerrar</button>
+          <button class="btn btn-primary btn-no-border1" type="submit" [disabled]="!sedeForm.valid">Registrar sede</button>
         </div>
       </div>
     </form>
   </ng-template>
-</div>
