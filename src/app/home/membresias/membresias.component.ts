@@ -33,6 +33,12 @@ export class MembresiasComponent {
 
     this.modalCreate = this.modalService.show(CreateFormComponent, initialState);
     this.modalCreate.content.closeBtnName = 'Close';
+    if(this.modalCreate.onHidden != undefined){
+        this.modalCreate.onHidden.subscribe(() => {
+          this.GetMemberships();
+        })
+    }
+
   }
 
   ngOnInit() {

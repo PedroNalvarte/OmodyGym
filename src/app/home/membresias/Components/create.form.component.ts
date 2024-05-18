@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { CommonModule } from '@angular/common';
 import { CreateMembership } from '../model/create-membership.interface';
@@ -17,6 +17,7 @@ export class CreateFormComponent implements OnInit {
   title?: string;
   closeBtnName?: string;
   list: string[] = [];
+  @Output() formSubmitted = new EventEmitter<any>();
   constructor(public bsModalRef: BsModalRef, private authService: AuthService, private membresiaService: MembresiasService) {  }
   public emptyField = false;
   public invalidCost = false;
@@ -26,7 +27,6 @@ export class CreateFormComponent implements OnInit {
     cost: '',
     user: ''
   };
-
   ngOnInit() {
   }
   onSubmit() {
@@ -43,8 +43,11 @@ export class CreateFormComponent implements OnInit {
           if(this.createMembership.user.trim()){
             this.membresiaService.registerMembership(this.createMembership)
             .pipe().subscribe();
+            this.bsModalRef.hide();
+            this.formSubmitted.emit()
           }
         }
+
     }
     else{
       this.emptyField = true;

@@ -1,11 +1,13 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
 <div class="container" *ngIf="onChoosingDay">
     <div class="row">
         <h1 class="text-center">Plan de Entrenamiento</h1>
         <div class="d-flex justify-content-center align-items-center w-100">
             <h2 class="mb-0 me-2">{{receivedClient.nombre}} {{receivedClient.apellido1}}  {{receivedClient.apellido2}}</h2>
             <i class="fas fa-chevron-circle-left fa-lg ms-5" *ngIf="!planCompleted" (click)="goBack()"></i>
-            <button btn btn-primary class="ms-5" *ngIf="planCompleted">Registrar Plan</button>
+            <button btn btn-primary class="ms-5" *ngIf="planCompleted" (click)="registrarPlan(confirmation)">Registrar Plan</button>
         </div>
     </div>
     <h3>Seleccionar</h3>
@@ -13,7 +15,7 @@
         <div
         [ngClass]="{'card': true, 'col-6': true, 'col-md-4': true, 'mb-3': true, 'membresias': true}" (click)="dayClicked(1)" >
             <div class="d-flex justify-content-center ">
-                <h4 class="card-title text-center">Día 1 </h4>
+                <h5 class="card-title text-center">Día 1 </h5>
                 <i *ngIf="!day1Completed" class="fa-regular fa-circle ms-3 mt-2"></i>
                 <i *ngIf="day1Completed" class="fa-regular fa-circle-check ms-3 mt-2"></i>
             </div>
@@ -74,9 +76,73 @@
     <div class="row">
         <h1 class="text-center">Registro de entrenamiento</h1>
         <div class="d-flex justify-content-center align-items-center w-100">
+          
             <h2 class="mb-0 me-2">{{receivedClient.nombre}} {{receivedClient.apellido1}}  {{receivedClient.apellido2}}</h2>
-            <button btn btn-primary class="ms-5">Guardar</button>
+            <button btn btn-primary class="ms-5"  [disabled]="countExcercises === 0" (click)="registrarDia()">Guardar</button>
+          
         </div>
+        
         <h4 class="text-center">Día {{selectedDay}}</h4>
+        <div class="col col-md-3">
+            <select [(ngModel)]="filterByGrupoMuscular"
+              name="idSede" class="form-select"
+              required>
+              <option aria-label="Default select example"
+                value="0">Seleccione grupo muscular</option>
+      
+              <option *ngFor="let grupoMuscular of gruposMusculares"
+                [value]="grupoMuscular.id_grupo_muscular">{{grupoMuscular.nombre_grupo_muscular}}</option>
+            </select>
+          </div>
+       
+    </div>
+    <br>
+    <div class="row">
+        <div class="row">
+            <div 
+         [ngClass]="{'card': true, 'col-6': true, 'col-md-4': true, 'mb-3': true, 'membresias': true}" *ngFor="let ejercicio of ejercicios |sortGrupoMuscular:filterByGrupoMuscular" >
+         <div class="card" value="ejercicio.id_ejercicio">
+            <img [src]="ejercicio.imagen" alt="imagen ejercicio">
+            <h4 class="text-center">{{ejercicio.nombre}}</h4>
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <p class="mb-0" style="width: 97px;">Repeticiones:</p>
+                </div>
+                <div class="col-auto">
+                    <i class="fa-solid fa-circle-plus" style="cursor: pointer;" (click)="incrementar(ejercicio.id_ejercicio, 'r')"></i>
+                </div>
+                <div class="col-auto">
+                    <input type="number" class="form-control" style="width: 70px;" [(ngModel)]="ejercicio.repeticiones"/>
+                </div>
+                <div class="col-auto">
+                    <i class="fa-solid fa-circle-minus" style="cursor: pointer;" (click)="disminuir(ejercicio.id_ejercicio, 'r')"></i>
+                </div>
+            </div>
+            <br>
+            <div class="row align-items-center">
+                <div class="col-auto" style="width: 120px;">
+                    <p class="mb-0">Series: </p>
+                </div>
+                <div class="col-auto ml-5">
+                    <i class="fa-solid fa-circle-plus" style="cursor: pointer;" (click)="incrementar(ejercicio.id_ejercicio, 's')"></i>
+                </div>
+                <div class="col-auto">
+                    <input type="number" class="form-control" style="width: 70px;" [(ngModel)]="ejercicio.series"/>
+                </div>
+                <div class="col-auto">
+                    <i class="fa-solid fa-circle-minus" style="cursor: pointer;" (click)="disminuir(ejercicio.id_ejercicio, 's')"></i>
+                </div>
+            </div>
+            <button btn btn-primary class="mt-3" (click)="guardarEjercicio(ejercicio)" [disabled]="ejercicio.series === 0 || ejercicio.repeticiones === 0 || ejercicio.series === undefined || ejercicio.repeticiones === undefined">Guardar</button>
+          </div>
+    </div>
+          </div>
     </div>
 </div>
+
+<ng-template #confirmation>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Registro finalizado</h4>
+    </div>
+    <div class="modal-body">SE GUARDÓ LOS EJERCICIOS CORRECTAMENTE</div>
+  </ng-template>

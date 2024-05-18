@@ -74,8 +74,8 @@
         <div>
             <button btn btn-primary (click)="asignTrainer(confirmation)"   *ngIf="!selectedClient.entrenador">Añadir Alumno</button>
             <button btn btn-primary (click)="toRegisterPlan()" *ngIf="selectedClient.entrenador && !selectedClient.modificacion_plan">Registrar Plan</button>
-            <button btn btn-primary   *ngIf="selectedClient.entrenador && !selectedClient.modificacion_metricas">Registrar Métricas</button>
             <button btn btn-primary  *ngIf="selectedClient.entrenador && selectedClient.modificacion_plan">Ver Plan de Entrenamiento</button>
+            <button btn btn-primary   *ngIf="selectedClient.entrenador && !selectedClient.modificacion_metricas">Registrar Métricas</button>
             <button btn btn-primary    *ngIf="selectedClient.entrenador && selectedClient.modificacion_metricas">Ver Métricas</button>
         </div>
     </div>

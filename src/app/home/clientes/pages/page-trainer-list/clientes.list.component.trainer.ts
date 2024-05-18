@@ -40,6 +40,7 @@ export class ClientesListTrainerComponent {
     fecha_nacimiento: '',
     fechaNacimiento: '',
     entrenador: '',
+    idEntrenador: 0,
     modificacion_plan: '',
     modificacion_metricas: ''
   }

@@ -12,11 +12,7 @@ button{
     font-family: "Baloo Bhai 2";
 }
 
-button:hover{
-    background-color: #60ad13;
-    border-color: #60ad13;
-    transition: .5;
-}
+
 
 /*vosualizacion de informacion*/
 .detalle_cliente{
@@ -32,4 +28,10 @@ h5.oa{
 .altura{
     height: auto!important; /* Altura deseada para el card-body de la membresía */
     
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

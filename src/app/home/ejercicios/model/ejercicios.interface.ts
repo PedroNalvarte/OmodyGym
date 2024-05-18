@@ -4,4 +4,6 @@ export interface Ejercicios {
   nombre_grupo_muscular?: string;
   nombre: string;
   imagen: string;
+  series?: number;
+  repeticiones?: number;
 }
