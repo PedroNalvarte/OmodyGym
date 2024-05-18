@@ -1,6 +1,50 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400..800&display=swap');
 
+.container {
+    margin-top: 20px;
+    margin-bottom: 70px; /* Ajusta el valor según tu preferencia */
+}
+.custom-select {
+    color: white;
+    background-color: #72ce16;
+    border-color: #72ce16;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-family: "Baloo Bhai 2";
+    -webkit-appearance: none; /* Remove default arrow for WebKit browsers */
+    -moz-appearance: none; /* Remove default arrow for Firefox */
+    appearance: none; /* Remove default arrow */
+}
+
+.custom-select:hover {
+    background-color: #60ad13;
+    border-color: #60ad13;
+    transition: 0.5s;
+}
+
+.custom-select:focus {
+    box-shadow: 0 0 5px #60ad13;
+    border-color: #60ad13;
+    outline: none;
+}
+
+.custom-select option {
+    color: black;
+    background-color: white;
+}
+
+/* Additional styles to ensure the dropdown arrow is still visible */
+.custom-select::after {
+    content: '▼';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: white;
+}
 /*Boton de registrar*/
 button{
     color: white;
@@ -29,7 +73,3 @@ h5.oa{
     
 }
 
-.altura{
-    height: auto!important; /* Altura deseada para el card-body de la membresía */
-    
-}
