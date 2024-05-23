@@ -1,6 +1,9 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400..800&display=swap');
 
+.btn{
+    margin: 15px;
+}
 .container {
     margin-top: 20px;
     margin-bottom: 70px; /* Ajusta el valor según tu preferencia */
@@ -72,4 +75,3 @@ h5.oa{
     font-size: 1rem;
     
 }
-

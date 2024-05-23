@@ -1,35 +1,34 @@
-<div class="container">
-
-  <div class="row">
-    <div class="col">
-      <h1>Mi plan de entrenamiento</h1>
+ <div class="container my-5">
+    <div class="row">
+      <div class="col text-center">
+        <h1 class="display-4">Mi Plan de Entrenamiento</h1>
+      </div>
     </div>
-  </div>
 
-  <div *ngIf="processingRequest; else tabla" class="row mt-3">
-    <div class="col offset-md-1 col-md-10">
-      <shared-loading-spinner></shared-loading-spinner>
-      <p>Cargando</p>
+    <div *ngIf="processingRequest" class="row mt-3 justify-content-center">
+      <div class="col-md-10 text-center loading-container">
+        <shared-loading-spinner></shared-loading-spinner>
+        <p class="mt-2">Cargando...</p>
+      </div>
     </div>
-  </div>
 
-  <ng-template #tabla>
-    <div *ngIf="miPlan.length !== 0;else nohay" class="row mt-3">
-      <div class="col offset-md-1 col-md-10">
-        <table class="table table-hover">
-          <thead>
+    <div *ngIf="!processingRequest" class="row mt-3 justify-content-center">
+      <div class="col-md-10">
+        <table class="table table-hover table-bordered">
+          <thead class="thead-dark">
             <tr>
-              <th *ngFor="let dia of dias">Dia {{ dia.dia }}</th>
+              <th *ngFor="let dia of dias">Día {{ dia.dia }}</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td *ngFor="let dia of dias">
-                <div *ngFor="let ejercicio of dia.ejercicios">
-                  <p>{{ ejercicio.nombre_grupo_muscular }}</p>
-                  <p>{{ ejercicio.nombre }}</p>
-                  <p>Series: {{ ejercicio.series }} Repeticiones: {{
-                    ejercicio.repeticiones }}</p>
+                <div class="exercise-cell">
+                  <div *ngFor="let ejercicio of dia.ejercicios" class="exercise-container p-2 mb-2 bg-light rounded">
+                    <p class="font-weight-bold">{{ ejercicio.nombre_grupo_muscular }}</p>
+                    <p>{{ ejercicio.nombre }}</p>
+                    <p>Series: {{ ejercicio.series }} Repeticiones: {{ ejercicio.repeticiones }}</p>
+                  </div>
                 </div>
               </td>
             </tr>
@@ -37,10 +36,4 @@
         </table>
       </div>
     </div>
-    <ng-template #nohay>
-      <p>Aun no tienes un plan registrado</p>
-    </ng-template>
-  </ng-template>
-</div>
-
-<br><br>
+  </div>
