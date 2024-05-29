@@ -10,10 +10,10 @@ import { MisMetricas } from './model/misMetricas.interface';
 export class MiProgresoService {
 
   //Prod
-  //public apiUrl: string = 'https://omodygym-backend.onrender.com';
+  public apiUrl: string = 'https://omodygym-backend.onrender.com';
 
   //Pruebas
-  public apiUrl: string = 'http://localhost:3001';
+  //public apiUrl: string = 'http://localhost:3001';
 
   constructor(private HttpClient: HttpClient, private authService: AuthService) {
 
