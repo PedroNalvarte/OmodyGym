@@ -1,0 +1,189 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400..800&display=swap');
+
+/* General */
+body {
+    font-family: 'Baloo Bhai 2', cursive;
+    background-color: #f8f9fa;
+    color: #343a40;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4 {
+    text-align: center;
+    margin-top: 20px;
+    color: #343a40;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.75rem;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+h4 {
+    font-size: 1.5rem;
+    margin-top: 20px;
+}
+
+h5 {
+    font-size: 1.25rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+h5.oa {
+    font-size: 1rem;
+}
+
+/* Card */
+.card {
+    padding: 5px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    border: 2px solid #ccc;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.card.selected {
+    border-color: #28a745;
+}
+
+.card-title{
+    text-align: center;
+}
+
+
+/* Button */
+button {
+    color: white;
+    background-color: #72ce16;
+    border-color: #72ce16;
+    border-radius: 15px; 
+    padding: 5px 10px; 
+    font-size: 14px; 
+    font-family: 'Baloo Bhai 2';
+}
+
+button:disabled {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-success {
+    background-color: #72ce16;
+    border-color: #72ce16;
+}
+
+.btn-success:disabled {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.fa-chevron-circle-left {
+    cursor: pointer;
+    color: #28a745;
+}
+
+.fa-chevron-circle-left:hover {
+    color: #218838;
+}
+
+.fa-circle-plus, .fa-circle-minus {
+    font-size: 1.5rem;
+    color: #28a745;
+}
+
+.fa-circle-plus:hover, .fa-circle-minus:hover {
+    color: #218838;
+}
+
+/* Detalle Cliente */
+.detalle_cliente {
+    font-family: 'Baloo Bhai 2';
+}
+
+/* Input Number */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Layout and Other Styles */
+.membresias {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.altura {
+    height: auto!important;
+}
+
+.modal-header, .modal-body {
+    text-align: center;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.me-2 {
+    margin-right: 0.5rem;
+}
+
+.ms-5 {
+    margin-left: 3rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+@media (max-width: 767.98px) {
+    .col-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}

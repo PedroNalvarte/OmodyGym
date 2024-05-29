@@ -6,6 +6,10 @@
   </div>
 
   <div class="row">
+    <div class="d-flex justify-content-start">
+      <button class="btn btn-membresias-activas" [class.active]="showActive" (click)="changeFilter()">Membresías Activas</button>
+      <button class="btn btn-membresias-inactivas" [class.active]="!showActive"  (click)="changeFilter()">Membresías Inactivas</button>
+  </div>
     <div *ngFor="let sede of sedes" class="col-md-3">
       <div class="card sede-card">
         <button class="sede-button">
@@ -13,7 +17,10 @@
             <p><strong>Nombre:</strong> {{sede.nombreSede}}</p>
             <p><strong>Abreviación:</strong> {{sede.abreviacion}}</p>
             <p><strong>Dirección:</strong> {{sede.direccion}}</p>
-            <p><strong>Estado:</strong> {{sede.estado}}</p>
+            <select [(ngModel)]="sede.estado" (change)="updateStatus(sede.idSede + '')" class="form-select form-select-green">
+              <option value="A">Activo</option>
+              <option value="I">Inactivo</option>
+          </select>
           </div>
         </button>
       </div>

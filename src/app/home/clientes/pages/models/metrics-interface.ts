@@ -1,0 +1,23 @@
+export interface Metric {
+    id_persona: number,
+    peso?: string,
+    altura?: string,
+    edad?: string,
+    objetivo?: string,
+    consecutivo?: string,
+    grasa?: string,
+    imc?: string,
+    bicep_izquierdo?: number,
+    bicep_derecho?: number,
+    cadera?: number,
+    cintura?: number,
+    muslo_izquierdo?: number,
+    muslo_derecho?: number,
+    fecha?: string,
+    dia?: string,
+    mes: string,
+    mes_numero?: number,
+    estado?: string,
+    meta?: string,
+    usuario_modificacion?: string
+  }

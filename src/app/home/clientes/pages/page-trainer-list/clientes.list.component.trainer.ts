@@ -24,6 +24,7 @@ export class ClientesListTrainerComponent {
   clientPipe: ClientFilterPipe = new ClientFilterPipe();
   sedesPipe: ClientSedePipe = new ClientSedePipe();
   @Output() registerPlanButtonClick = new EventEmitter<any>();
+  @Output() seeMetricsButtonClick = new EventEmitter<any>();
   clientSelected = false;
   currentUserRole: any;
   currentUserId: any;
@@ -131,9 +132,12 @@ export class ClientesListTrainerComponent {
     this.registerPlanButtonClick.emit(this.selectedClient);
   }
 
-  //Boton Ver Plan de entrenamiento hander
   verPlanEntrenamiento(): void {
 
     this.router.navigateByUrl('/miPlan/' + this.selectedClient.dni);
+  }
+
+  toSeeMetrics(){
+    this.seeMetricsButtonClick.emit(this.selectedClient);
   }
 }

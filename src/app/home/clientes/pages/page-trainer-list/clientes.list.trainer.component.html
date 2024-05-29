@@ -81,10 +81,7 @@
       *ngIf="selectedClient.entrenador && selectedClient.modificacion_plan">Ver
       Plan de Entrenamiento</button>
     <button class="btn btn-primary"
-      *ngIf="selectedClient.entrenador && !selectedClient.modificacion_metricas">Registrar
-      Métricas</button>
-    <button class="btn btn-primary"
-      *ngIf="selectedClient.entrenador && selectedClient.modificacion_metricas">Ver
+      *ngIf="selectedClient.entrenador" (click)="toSeeMetrics()">Ver
       Métricas</button>
   </div>
 </div>

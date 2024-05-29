@@ -15,18 +15,33 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 export class SedesComponent {
 
   modalRef: BsModalRef | null = null;
-
+  public showActive: boolean = true;
   public processingRequest: boolean = false;
-
+  public activeSedes: Sede[] = [];
+  public inactiveSedes: Sede[] = [];
   constructor(private sedesService: SedesService, private modalService: BsModalService) {
   }
 
   ngOnInit(): void {
-    this.sedesService.listSede().subscribe();
+    this.sedesService.listSede().pipe(
+      tap((sedes: Sede[]) => {
+        this.activeSedes = sedes.filter(sede => sede.estado === 'A');
+        this.inactiveSedes = sedes.filter(sede => sede.estado !== 'A');
+      }),
+      catchError((error: HttpErrorResponse) => {
+        console.error('Error al listar sedes:', error);
+        return EMPTY;
+      })
+    ).subscribe();
   }
 
   get sedes(): Sede[] {
-    return this.sedesService.sedeList;
+    if(this.showActive){
+      return this.activeSedes;
+    }
+    else{
+      return this.inactiveSedes;
+    }
   }
 
   public sedeRegistro: Sede = {
@@ -54,7 +69,16 @@ export class SedesComponent {
         finalize(() => {
           this.processingRequest = false;
           this.closeModal();
-          this.sedesService.listSede().subscribe();
+          this.sedesService.listSede().pipe(
+            tap((sedes: Sede[]) => {
+              this.activeSedes = sedes.filter(sede => sede.estado === 'A');
+              this.inactiveSedes = sedes.filter(sede => sede.estado !== 'A');
+            }),
+            catchError((error: HttpErrorResponse) => {
+              console.error('Error al listar sedes:', error);
+              return EMPTY;
+            })
+          ).subscribe();
         }
         ),
         catchError((error: HttpErrorResponse) => {
@@ -80,6 +104,27 @@ export class SedesComponent {
     }
   }
 
+  changeFilter(){
+    this.showActive = !this.showActive;
+  }
 
+  updateStatus(id : string){
+    this.processingRequest = true;
+    this.sedesService.updateStatus(id).pipe(
+      finalize(() => {
+        this.sedesService.listSede().pipe(
+          tap((sedes: Sede[]) => {
+            this.activeSedes = sedes.filter(sede => sede.estado === 'A');
+            this.inactiveSedes = sedes.filter(sede => sede.estado !== 'A');
+            this.processingRequest = false;
+          }),
+          catchError((error: HttpErrorResponse) => {
+            console.error('Error al listar sedes:', error);
+            return EMPTY;
+          })
+        ).subscribe();
+      })
+    ).subscribe();
+  }
 
 }

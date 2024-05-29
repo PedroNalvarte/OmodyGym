@@ -53,7 +53,16 @@ export class SedesService {
         this.sedeList = result; // Almacenar el resultado en sedeList
       })
     );
+  }
 
+  updateStatus(id: string): Observable<never> {
+    const url = `${this.apiUrl}/updateSiteStatus/${id}`;
+    console.log(url);
+    var response = this.HttpClient.post<string>(url, id).pipe(
+      ignoreElements()
+    );
+
+    return response;
   }
 
 

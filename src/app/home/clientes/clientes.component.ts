@@ -19,6 +19,7 @@ export class ClientesComponent {
   public onListTrainer = false;
   public onRegisterTrainer = false;
   public onRegisterPlan = false;
+  public onSeeMetrics = false;
   selectedClient : any;
   currentUserRole : any;
   constructor(private authService : AuthService, private clientService : ClientsService) { }
@@ -52,17 +53,27 @@ export class ClientesComponent {
       this.onListTrainer = true;
       this.onRegisterTrainer = false;
       this.onRegisterPlan = false;
+      this.onSeeMetrics = false;
     }
     else{
       this.onRegisterRecepcionista = false;
       this.onListRecepcionista = true;
-      this.onRegisterPlan = false;
+      this.onSeeMetrics = false;
     }
   }
 
   goToRegisterPlan(eventData: any){
     this.selectedClient = eventData;
     this.onRegisterPlan = true;
+    this.onRegisterTrainer = false;
+    this.onListTrainer = false;
+    this.onSeeMetrics = false;
+  }
+
+  goToSeeMetrics(eventData: any){
+    this.selectedClient = eventData;
+    this.onSeeMetrics = true;
+    this.onRegisterPlan = false;
     this.onRegisterTrainer = false;
     this.onListTrainer = false;
   }
