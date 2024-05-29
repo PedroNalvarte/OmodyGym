@@ -1,1 +1,36 @@
-<p>Estadisticas funciona</p>
+<div class="container my-5">
+  <div class="row">
+    <div class="col text-center">
+      <h1 class="display-4">Mis estadísticas</h1>
+    </div>
+  </div>
+
+  <div *ngIf="processingRequest" class="row mt-3 justify-content-center">
+    <div class="col-md-10 text-center loading-container">
+      <shared-loading-spinner></shared-loading-spinner>
+      <p class="mt-2">Cargando...</p>
+    </div>
+  </div>
+
+  <div *ngIf="!processingRequest" class="row mt-3 justify-content-center">
+    <div class="col-md-10">
+      <p>peso: {{misMetricas[0].peso}}</p>
+      <p>objetivo: {{misMetricas[0].objetivo}}</p>
+      <p>altura: {{misMetricas[0].altura}}</p>
+      <p>grasa: {{misMetricas[0].grasa}}</p>
+      <p>imc: {{misMetricas[0].imc}}</p>
+      <p>fecha actualizacion: {{misMetricas[0].fecha_creacion |
+        date:"short"}}</p>
+      <p>bicep_izquierdo: {{misMetricas[0].bicep_izquierdo}}</p>
+      <p>bicep_derecho: {{misMetricas[0].bicep_derecho}}</p>
+      <p>cadera: {{misMetricas[0].cadera}}</p>
+      <p>cintura: {{misMetricas[0].cintura}}</p>
+
+      <p>muslo_derecho: {{misMetricas[0].muslo_derecho}}</p>
+      <p>muslo_izquierdo: {{misMetricas[0].muslo_izquierdo}}</p>
+
+      <button>Mi historial</button>
+    </div>
+  </div>
+
+</div>
