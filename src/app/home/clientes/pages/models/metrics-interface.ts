@@ -19,5 +19,7 @@ export interface Metric {
     mes_numero?: number,
     estado?: string,
     meta?: string,
-    usuario_modificacion?: string
+    usuario_modificacion?: string,
+    mensajeIMC? : string
+    mensajeCal? : string
   }

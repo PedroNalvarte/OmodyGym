@@ -1,4 +1,4 @@
-<div class="container my-5">
+<div class="container my-5" *ngIf="!onHistory">
   <div class="row">
     <div class="col text-center">
       <h1 class="display-4">Mis estadísticas</h1>
@@ -29,8 +29,45 @@
       <p>muslo_derecho: {{misMetricas[0].muslo_derecho}}</p>
       <p>muslo_izquierdo: {{misMetricas[0].muslo_izquierdo}}</p>
 
-      <button>Mi historial</button>
+      <button (click)="toHistory()">Mi historial</button>
     </div>
   </div>
 
 </div>
+<br>
+<br>
+
+<div class="container" *ngIf="onHistory">
+  <button (click)="Back()">Regresar</button>
+  <div style="width: 30%; display: flex; justify-content: flex-end; height: 100%; align-items: center;" >
+    <select (change)="filtrarPorMes($event.target)" class="form-control form-control-sm" name="mes" id="mes">
+        <option *ngFor="let mes of MonthList" [value]="mes.value">{{ mes.name }}</option>
+      </select>
+  </div>
+  <div>
+    <div class="card row w-100">
+          <div style="display: flex; flex-direction: row; width: 45%; margin-left: 2rem;">
+              <div style="width: 40%;">
+                  <h6 style="text-align: left;">Altura:</h6>
+                  <h6 style="text-align: left;">Peso:</h6>
+                  <h6 style="text-align: left;">IMC:</h6>
+                  <h6 style="text-align: left;">Objetivo</h6>   
+              </div>
+              <div style="width: 40%;">
+                  <h6 style="text-align: left;">{{actualMetric?.altura}}cm</h6>
+                  <h6 style="text-align: left;">{{actualMetric?.peso}}kg</h6>
+                  <h6 style="text-align: left;">{{actualMetric?.imc}}</h6>   
+                  <h6 style="text-align: left;">{{actualMetric?.objetivo}}kg</h6>
+                  <h6 style="text-align: left;">{{actualMetric?.meta}}</h6>              
+              </div>
+              <div>
+                <p style="text-align: left;">{{actualMetric?.mensajeIMC}}</p>
+                <p style="text-align: left;">{{actualMetric?.mensajeCal}}</p>
+              </div>
+          </div>
+         
+          </div>
+      </div>
+  </div>
+
+
