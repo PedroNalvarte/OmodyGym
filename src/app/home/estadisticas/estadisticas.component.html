@@ -14,60 +14,77 @@
 
   <div *ngIf="!processingRequest" class="row mt-3 justify-content-center">
     <div class="col-md-10">
-      <p>peso: {{misMetricas[0].peso}}</p>
-      <p>objetivo: {{misMetricas[0].objetivo}}</p>
-      <p>altura: {{misMetricas[0].altura}}</p>
-      <p>grasa: {{misMetricas[0].grasa}}</p>
-      <p>imc: {{misMetricas[0].imc}}</p>
-      <p>fecha actualizacion: {{misMetricas[0].fecha_creacion |
-        date:"short"}}</p>
-      <p>bicep_izquierdo: {{misMetricas[0].bicep_izquierdo}}</p>
-      <p>bicep_derecho: {{misMetricas[0].bicep_derecho}}</p>
-      <p>cadera: {{misMetricas[0].cadera}}</p>
-      <p>cintura: {{misMetricas[0].cintura}}</p>
-
-      <p>muslo_derecho: {{misMetricas[0].muslo_derecho}}</p>
-      <p>muslo_izquierdo: {{misMetricas[0].muslo_izquierdo}}</p>
-
-      <button (click)="toHistory()">Mi historial</button>
+      <div class="card statistics-card">
+        <div class="row">
+          <div class="col-md-6">
+            <p><strong>Peso:</strong> {{misMetricas[0].peso}} kg</p>
+            <p><strong>Objetivo:</strong> {{misMetricas[0].objetivo}} kg</p>
+            <p><strong>Altura:</strong> {{misMetricas[0].altura}} cm</p>
+            <p><strong>Grasa:</strong> {{misMetricas[0].grasa}} %</p>
+            <p><strong>IMC:</strong> {{misMetricas[0].imc}}</p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>Fecha Actualización:</strong> {{misMetricas[0].fecha_creacion | date:"short"}}</p>
+            <p><strong>Bíceps Izquierdo:</strong> {{misMetricas[0].bicep_izquierdo}} cm</p>
+            <p><strong>Bíceps Derecho:</strong> {{misMetricas[0].bicep_derecho}} cm</p>
+            <p><strong>Cadera:</strong> {{misMetricas[0].cadera}} cm</p>
+            <p><strong>Cintura:</strong> {{misMetricas[0].cintura}} cm</p>
+            <p><strong>Muslo Derecho:</strong> {{misMetricas[0].muslo_derecho}} cm</p>
+            <p><strong>Muslo Izquierdo:</strong> {{misMetricas[0].muslo_izquierdo}} cm</p>
+          </div>
+        </div>
+        
+      </div>
+      <div class="row justify-content-center mt-3">
+        <button class="history-button" (click)="toHistory()">Mi historial</button>
+      </div>
     </div>
   </div>
-
 </div>
 <br>
 <br>
 
-<div class="container" *ngIf="onHistory">
-  <button (click)="Back()">Regresar</button>
-  <div style="width: 30%; display: flex; justify-content: flex-end; height: 100%; align-items: center;" >
-    <select (change)="filtrarPorMes($event.target)" class="form-control form-control-sm" name="mes" id="mes">
+<div class="container statistics-container" *ngIf="onHistory">
+  <div class="row justify-content-between mt-3">
+    <div class="col-md-2 text-right">
+      <button class="back-button" (click)="Back()">Regresar</button>
+    </div>
+  </div>
+  <div class="row justify-content-center mt-3">
+    <div class="col-md-4 text-center">
+      <h2>Mi Historial</h2>
+    </div>
+  </div>
+  <div class="row mt-3 justify-content-center">
+    <div class="col-md-5">
+      <select (change)="filtrarPorMes($event.target)" class="form-control form-control-sm" name="mes" id="mes">
         <option *ngFor="let mes of MonthList" [value]="mes.value">{{ mes.name }}</option>
       </select>
+    </div>
   </div>
-  <div>
-    <div class="card row w-100">
-          <div style="display: flex; flex-direction: row; width: 45%; margin-left: 2rem;">
-              <div style="width: 40%;">
-                  <h6 style="text-align: left;">Altura:</h6>
-                  <h6 style="text-align: left;">Peso:</h6>
-                  <h6 style="text-align: left;">IMC:</h6>
-                  <h6 style="text-align: left;">Objetivo</h6>   
-              </div>
-              <div style="width: 40%;">
-                  <h6 style="text-align: left;">{{actualMetric?.altura}}cm</h6>
-                  <h6 style="text-align: left;">{{actualMetric?.peso}}kg</h6>
-                  <h6 style="text-align: left;">{{actualMetric?.imc}}</h6>   
-                  <h6 style="text-align: left;">{{actualMetric?.objetivo}}kg</h6>
-                  <h6 style="text-align: left;">{{actualMetric?.meta}}</h6>              
-              </div>
-              <div>
-                <p style="text-align: left;">{{actualMetric?.mensajeIMC}}</p>
-                <p style="text-align: left;">{{actualMetric?.mensajeCal}}</p>
-              </div>
+  <div class="row mt-3 justify-content-center">
+    <div class="col-md-10 statistics-content">
+      <div class="row">
+        <div class="col-6">
+          <div class="row">
+            <div class="col-6">
+              <p><strong>Altura:</strong></p>
+              <p><strong>Peso:</strong></p>
+              <p><strong>IMC:</strong></p>
+              <p><strong>Objetivo:</strong></p>
+            </div>
+            <div class="col-6">
+              <p>{{actualMetric?.altura}}cm</p>
+              <p>{{actualMetric?.peso}}kg</p>
+              <p>{{actualMetric?.imc}}</p>
+              <p>{{actualMetric?.objetivo}}kg</p>
+            </div>
           </div>
-         
-          </div>
+        </div>
+        <div class="col-6">
+          <p>{{actualMetric?.mensajeIMC}}</p>
+          <p>{{actualMetric?.mensajeCal}}</p>
+        </div>
       </div>
+    </div>
   </div>
-
-

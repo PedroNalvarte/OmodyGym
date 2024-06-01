@@ -75,10 +75,12 @@
             <input [(ngModel)]="ejercicioRegistro.imagen" name="enlace" id="enlaceImagen" type="text" class="form-control" required>
           </div>
         </div>
+        
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="modalRef?.hide()">Cerrar</button>
           <button type="submit" class="btn btn-primary" [disabled]="!colaboradorForm.valid">Registrar ejercicio</button>
         </div>
+
       </ng-template>
     </form>
   </ng-template>

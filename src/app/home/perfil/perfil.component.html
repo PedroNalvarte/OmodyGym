@@ -7,42 +7,36 @@
       </button>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-md-2">
-      <img
-        [src]="url"
-        class="card-img-top">
-    </div>
-
-    <div *ngFor="let perfil of miPerfil" class="col-md-7">
-      <p>nombre: {{perfil.nombre_1 +' '+ perfil.nombre_2 +' '+
-        perfil.apellido_1 +' '+ perfil.apellido_2}}</p>
-
-      <p>edad: {{perfil.fecha_nacimiento | calcularEdad}}</p>
-      <p>correo: {{perfil.correo}}</p>
-      <p>tipo usuario: {{perfil.detalle_tipo}}</p>
-      <p>sede: {{perfil.nombre_sede}}</p>
-
+  <div class="container profile-container">
+    <div class="row justify-content-center">
+      <div class="col-md-2">
+        <img [src]="url" class="card-img-top" alt="Profile Image">
+      </div>
+  
+      <div *ngFor="let perfil of miPerfil" class="col-md-7 profile-details">
+        <p><strong>Nombre:</strong> {{perfil.nombre_1 + ' ' + perfil.nombre_2 + ' ' + perfil.apellido_1 + ' ' + perfil.apellido_2}}</p>
+        <p><strong>Edad:</strong> {{perfil.fecha_nacimiento | calcularEdad}}</p>
+        <p><strong>Correo:</strong> {{perfil.correo}}</p>
+        <p><strong>Tipo Usuario:</strong> {{perfil.detalle_tipo}}</p>
+        <p><strong>Sede:</strong> {{perfil.nombre_sede}}</p>
+      </div>
     </div>
   </div>
-
-</div>
-
-<ng-template #template>
-  <div class="modal-header">
-    <button type="button" class="close btn-close pull-right" aria-label="Close"
-      (click)="modalRef?.hide()">
-      <span aria-hidden="true" class="visually-hidden">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <div class="modal-body text-center">
-      <p>¿Estás seguro de que deseas cerrar sesión?</p>
-      <button type="button" class="btn btn-primary"
-        (click)="confirm()">Sí</button>
-      <button type="button" class="btn btn-default"
-        (click)="decline()">No</button>
+  <ng-template #template>
+    <div class="modal-header">
+      <button type="button" class="close btn-close pull-right" aria-label="Close"
+        (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
     </div>
-  </div>
-</ng-template>
+    <div class="modal-body">
+      <div class="modal-body text-center">
+        <p>¿Estás seguro de que deseas cerrar sesión?</p>
+        <button type="button" class="btn btn-primary"
+          (click)="confirm()">Sí</button>
+        <button type="button" class="btn btn-default"
+          (click)="decline()">No</button>
+      </div>
+    </div>
+  </ng-template>
+  

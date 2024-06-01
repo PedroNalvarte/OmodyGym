@@ -4,6 +4,9 @@
 body {
     font-family: "Baloo Bhai 2", sans-serif;
 }
+.container{
+    padding-bottom: 10em;
+}
 
 button.btn-primary {
     color: white;

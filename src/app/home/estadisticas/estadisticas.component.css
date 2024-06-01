@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400..800&display=swap');
+
+.statistics-container {
+  padding: 20px;
+  background-color: white;
+}
+
+.statistics-container h2 {
+  font-family: 'Baloo Bhai 2';
+  font-size: 2em;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.statistics-content {
+  background-color: #e0f7e0;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 600px;
+  font-size: 1.1em;
+}
+
+.statistics-content p {
+    font-family: 'Baloo Bhai 2';
+  font-size: 1em;
+  color: #333;
+  margin: 5px 0;
+}
+
+.statistics-content p strong {
+  font-weight: bold;
+}
+
+.history-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.history-button:hover {
+  background-color: #218838;
+}
+
+.back-button {
+    font-family: 'Baloo Bhai 2';
+  background-color: #e92d2d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #af2323;
+}
+
+.form-control {
+  text-align: center;
+}
+
+
+
+
+/*----------------*/
+.statistics-card {
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+  
+  .statistics-card p {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.1em;
+    color: #333;
+    margin: 10px 0;
+  }
+  
+  .statistics-card p strong {
+    font-weight: bold;
+  }
+  
+  .statistics-card .row {
+    margin-bottom: 10px;
+  }
+  
+  .statistics-card .col-md-6 {
+    border-right: 1px solid #e0e0e0;
+  }
+  
+  .statistics-card .col-md-6:last-child {
+    border-right: none;
+  }
+  
+  .history-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .history-button:hover {
+    background-color: #218838;
+  }
+  
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  
+  .form-control {
+    text-align: center;
+  }
+  
+  h1.display-4 {
+    font-family: 'Baloo Bhai 2', cursive;
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+  }

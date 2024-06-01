@@ -2,145 +2,135 @@
 
 <div *ngIf="processingRequest" class="row mt-3 justify-content-center">
     <div class="col-md-10 text-center loading-container">
-      <shared-loading-spinner></shared-loading-spinner>
-      <p class="mt-2">Cargando...</p>
+        <shared-loading-spinner></shared-loading-spinner>
+        <p class="mt-2">Cargando...</p>
     </div>
-  </div>
+</div>
 
-<!--Ver metricas-->
-<div class="container" *ngIf="!processingRequest && !onRegisterMetrics" >
-    <div style="display: flex; flex-direction: row; column-gap: 50rem;  ">
-        <div>
-            <h2>Alumno</h2>
-        </div>  
-        <div *ngIf="hasMetrics" style="width: 30%; display: flex; justify-content: flex-end; height: 100%; align-items: center;" >
+<!-- Ver métricas -->
+<div class="container" *ngIf="!processingRequest && !onRegisterMetrics">
+    <div class="header">
+        <h2>Alumno</h2>
+        <div *ngIf="hasMetrics" class="select-container">
             <select (change)="filtrarPorMes($event.target)" class="form-control form-control-sm" name="mes" id="mes">
                 <option *ngFor="let mes of MonthList" [value]="mes.value">{{ mes.name }}</option>
-              </select>
+            </select>
         </div>
-        
     </div>
 
-    <div
-    [ngClass]="{'card': true, 'col-6': true, 'col-md-4': true, 'mb-3': true, 'membresias': true, 'w-100': true}" >
-    <h4 class="card-title">{{ receivedClient.nombre }} {{ receivedClient.apellido1}} {{receivedClient.apellido2}} </h4>
+    <div class="card member-card">
+        <h4 class="card-title">{{ receivedClient.nombre }} {{ receivedClient.apellido1 }} {{ receivedClient.apellido2 }}</h4>
     </div>
     <div *ngIf="hasMetrics">
-        <div class="card row w-100">
-        <div style="display: flex; flex-direction: row; width: 45%; margin-left: 2rem;">
-            <div style="width: 40%;">
-                <h6 style="text-align: left;">Altura:</h6>
-                <h6 style="text-align: left;">Peso:</h6>
-                <h6 style="text-align: left;">Bicep Derecho:</h6>
-                <h6 style="text-align: left;">Bicep Izquierdo:</h6>   
+        <div class="metrics-card">
+            <div class="metrics-row">
+                <div class="metrics-column">
+                    <h6>Altura:</h6>
+                    <h6>Peso:</h6>
+                    <h6>Bicep derecho:</h6>
+                    <h6>Bicep izquierdo:</h6>
+                </div>
+                <div class="metrics-column">
+                    <h6>{{ actualMetric?.altura }}cm</h6>
+                    <h6>{{ actualMetric?.peso }}kg</h6>
+                    <h6>{{ actualMetric?.bicep_derecho }}cm</h6>
+                    <h6>{{ actualMetric?.bicep_izquierdo }}cm</h6>
+                </div>
+                <div class="metrics-column">
+                    <h6>Cadera:</h6>
+                    <h6>Cintura:</h6>
+                    <h6>Muslo derecho:</h6>
+                    <h6>Muslo izquierdo:</h6>
+                </div>
+                <div class="metrics-column">
+                    <h6>{{ actualMetric?.cadera }}cm</h6>
+                    <h6>{{ actualMetric?.cintura }}cm</h6>
+                    <h6>{{ actualMetric?.muslo_derecho }}cm</h6>
+                    <h6>{{ actualMetric?.muslo_izquierdo }}cm</h6>
+                </div>
             </div>
-            <div style="width: 40%;">
-                <h6 style="text-align: left;">{{actualMetric?.altura}}cm</h6>
-                <h6 style="text-align: left;">{{actualMetric?.peso}}kg</h6>
-                <h6 style="text-align: left;">{{actualMetric?.bicep_derecho}}cm</h6>   
-                <h6 style="text-align: left;">{{actualMetric?.bicep_izquierdo}}cm</h6>         
+            <div class="objective">
+                <h6>Objetivo: {{ registerMetric.meta }}</h6>
+                <h6>Peso Ideal: {{ registerMetric.objetivo }}kg</h6>
             </div>
-        </div>
-        <div style="display: flex; flex-direction: row; width: 45%; margin-left: 2rem;">
-            <div style="width: 40%;">
-                <h6 style="text-align: left;">Cadera:</h6>
-                <h6 style="text-align: left;">Cintura:</h6>
-                <h6 style="text-align: left;">Muslo Derecho:</h6>
-                <h6 style="text-align: left;">Muslo Izquierdo:</h6>   
-            </div>
-            <div style="width: 40%;">
-                <h6 style="text-align: left;">{{actualMetric?.cadera}}cm</h6>
-                <h6 style="text-align: left;">{{actualMetric?.cintura}}cm</h6>
-                <h6 style="text-align: left;">{{actualMetric?.muslo_derecho}}cm</h6>   
-                <h6 style="text-align: left;">{{actualMetric?.muslo_izquierdo}}cm</h6>         
-            </div>
-        </div>
-       
         </div>
         <button class="btn btn-primary" (click)="toRegisterMetrics()">Actualizar métricas</button>
     </div>
     <div *ngIf="!hasMetrics">
-        <h5>Aun no se han registrado métricas</h5>
+        <h5>Aún no se han registrado métricas</h5>
         <button class="btn btn-primary" (click)="toRegisterMetrics()">Registrar métricas</button>
     </div>
 </div>
 
-
-<form class="container" *ngIf="!processingRequest && onRegisterMetrics"  (ngSubmit)="submitMetric(confirmation)" style="display: flex; flex-direction: row; width: 80%; height: 65vh;">
-    <div style="width: 35%; height: 100%; ">
-        <h2>Ingresar Datos</h2>
-        <div style="display: flex; flex-direction: column; row-gap: 5%; height: 40%; width: 100%;">
-            <div style="display: flex; flex-direction: row; column-gap: 20%;">
-                <h5 style="width: 30%;">Altura</h5>
-                <input (keyup)="validateForm()" [(ngModel)]="registerMetric.altura" name="altura" class="form-control form-control-sm" type="text" placeholder="ej: 1.70"
-                 required/>
-                 
+<form class="container" *ngIf="!processingRequest && onRegisterMetrics" (ngSubmit)="submitMetric(confirmation)">
+    <div class="row">
+        <div class="col-md-6 form-section">
+            <h2>Ingresar Datos</h2>
+            <div class="form-group">
+                <label>Altura</label>
+                <input (keyup)="validateForm()" [(ngModel)]="registerMetric.altura" name="altura" class="form-control form-control-sm" type="text" placeholder="ej: 1.70" required />
+                <p *ngIf="badHeightFormat">La altura tiene que tener el formato: '0.00' un entero y uno/dos decimales</p>
             </div>
-            <p *ngIf="badHeightFormat">La altura tiene que tener el formato: '0.00' un entero y uno/dos decimales</p>
-            <div style=" display: flex; flex-direction: row; column-gap: 20%;">
-                <h5 style="width: 30%;">Peso</h5>
-                <input  (keyup)="validateForm()" [(ngModel)]="registerMetric.peso" name="peso" class="form-control form-control-sm" type="text" placeholder="ej: 75" required/>
-            </div>
-            <p *ngIf="badWeightFormat">El peso tiene que tener el formato: '00.00' dos enteros y dos decimales</p>
-        </div>
-    </div>
-    <div style="width: 30%; height: 100%;">
-        <h2>Ingresar Medidas</h2>
-        <div style="display: flex; flex-direction: column; row-gap: 5%; height: 40%; width: 95%; align-items: center;">
-            <div style="width: 70%; display: flex; height: 100%; row-gap: 5%; flex-direction: column;">
-                <div style="display: flex; flex-direction: row; column-gap: 10%;">
-                    <h5 style="width: 80%;">Bicep Derecho</h5>
-                    <input (input)="onInput($event)" (keyup)="validateForm()" style="width: 20%;" name="bicep_derecho" [(ngModel)]="registerMetric.bicep_derecho" class="form-control form-control-sm" type="number" placeholder="00" required/>
-                </div>
-                <div style=" display: flex; flex-direction: row; column-gap: 10%;">
-                    <h5 style="width: 80%;">Bicep Izquierdo</h5>
-                    <input (input)="onInput($event)"  (keyup)="validateForm()" style="width: 20%;"name="bicep_izquierdo" [(ngModel)]="registerMetric.bicep_izquierdo" class="form-control form-control-sm" type="number" placeholder="00" required/>
-                </div>
-                <div style="display: flex; flex-direction: row; column-gap: 10%;">
-                    <h5 style="width: 80%;">Cadera</h5>
-                    <input (input)="onInput($event)"  (keyup)="validateForm()" style="width: 20%;" name="cadera" [(ngModel)]="registerMetric.cadera" class="form-control form-control-sm" type="number" placeholder="00" required/>
-                </div>
-                <div style=" display: flex; flex-direction: row; column-gap: 10%;">
-                    <h5 style="width: 80%;">Cintura</h5>
-                    <input (input)="onInput($event)"  (keyup)="validateForm()" style="width: 20%;" name="cintura" [(ngModel)]="registerMetric.cintura" class="form-control form-control-sm" type="number" placeholder="00" required/>
-                </div>
-                <div style=" display: flex; flex-direction: row; column-gap: 10%;">
-                    <h5 style="width: 80%;">Muslo Derecho</h5>
-                    <input (input)="onInput($event)"  (keyup)="validateForm()" style="width: 20%;" name="muslo_derecho" [(ngModel)]="registerMetric.muslo_derecho" class="form-control form-control-sm" type="number" placeholder="00" required/>
-                </div>
-                <div style=" display: flex; flex-direction: row; column-gap: 10%;">
-                    <h5 style="width: 80%;">Muslo Izquierdo</h5>
-                    <input (input)="onInput($event)"  (keyup)="validateForm()"  style="width: 20%;" name="muslo_izquierdo" [(ngModel)]="registerMetric.muslo_izquierdo" class="form-control form-control-sm" type="number" placeholder="00" required/>
-                </div>
+            <div class="form-group">
+                <label>Peso</label>
+                <input (keyup)="validateForm()" [(ngModel)]="registerMetric.peso" name="peso" class="form-control form-control-sm" type="text" placeholder="ej: 75" required />
+                <p *ngIf="badWeightFormat">El peso tiene que tener el formato: '00.00' dos enteros y dos decimales</p>
             </div>
         </div>
-    </div>
-    <div style="width: 35%; height: 100%;">
-        <h2>Objetivos</h2>
-        <div style="display: flex; flex-direction: column; row-gap: 5%; height: 40%; width: 100%;">
-            <div style="display: flex; flex-direction: row; column-gap: 20%;">
+        <div class="col-md-6 form-section">
+            <h2>Ingresar Medidas</h2>
+            <div class="form-group">
+                <label>Bicep Derecho</label>
+                <input (input)="onInput($event)" (keyup)="validateForm()" name="bicep_derecho" [(ngModel)]="registerMetric.bicep_derecho" class="form-control form-control-sm" type="number" placeholder="00" required />
+            </div>
+            <div class="form-group">
+                <label>Bicep Izquierdo</label>
+                <input (input)="onInput($event)" (keyup)="validateForm()" name="bicep_izquierdo" [(ngModel)]="registerMetric.bicep_izquierdo" class="form-control form-control-sm" type="number" placeholder="00" required />
+            </div>
+            <div class="form-group">
+                <label>Cadera</label>
+                <input (input)="onInput($event)" (keyup)="validateForm()" name="cadera" [(ngModel)]="registerMetric.cadera" class="form-control form-control-sm" type="number" placeholder="00" required />
+            </div>
+            <div class="form-group">
+                <label>Cintura</label>
+                <input (input)="onInput($event)" (keyup)="validateForm()" name="cintura" [(ngModel)]="registerMetric.cintura" class="form-control form-control-sm" type="number" placeholder="00" required />
+            </div>
+            <div class="form-group">
+                <label>Muslo Derecho</label>
+                <input (input)="onInput($event)" (keyup)="validateForm()" name="muslo_derecho" [(ngModel)]="registerMetric.muslo_derecho" class="form-control form-control-sm" type="number" placeholder="00" required />
+            </div>
+            <div class="form-group">
+                <label>Muslo Izquierdo</label>
+                <input (input)="onInput($event)" (keyup)="validateForm()" name="muslo_izquierdo" [(ngModel)]="registerMetric.muslo_izquierdo" class="form-control form-control-sm" type="number" placeholder="00" required />
+            </div>
+        </div>
+        <div class="col-md-6 form-section">
+            <h2>Objetivos</h2>
+            <div class="form-group">
                 <select class="form-control form-control-sm" name="meta" [(ngModel)]="registerMetric.meta" (change)="validateForm()">
                     <option value="P">Bajar Peso</option>
                     <option value="M">Aumentar Masa</option>
                     <option value="T">Tonificar</option>
                 </select>
             </div>
-            <div style=" display: flex; flex-direction: row;">
-                <h5 style="width: 70%;">Peso Ideal:</h5>
-                <input  style="width: 60%;" [(ngModel)]="registerMetric.objetivo" name="objetivo" class="form-control form-control-sm" type="text" placeholder="ej: 75" (keyup)="validateForm()" required/>
+            <div class="form-group">
+                <label>Peso Ideal:</label>
+                <input [(ngModel)]="registerMetric.objetivo" name="objetivo" class="form-control form-control-sm" type="text" placeholder="ej: 75" (keyup)="validateForm()" required />
+                <p *ngIf="badIdealWeightFormat">El peso ideal tiene que tener el formato: '00.00' dos enteros y dos decimales</p>
             </div>
-            <p *ngIf="badIdealWeightFormat">El peso ideal tiene que tener el formato: '00.00' dos enteros y dos decimales</p>
-            <div style="margin-top: 30%; display: flex; justify-content: flex-end;">
+            <div class="form-group">
                 <button class="btn btn-primary" type="submit" [disabled]="!completedForm">Registrar</button>
             </div>
         </div>
     </div>
 </form>
-
-
+<br>
+<br>
 <ng-template #confirmation>
-    <div class="modal-header">
-        <h4 class="modal-title pull-left">Registro finalizado</h4>
+    <div class="confirmation-modal">
+        <div class="modal-body">
+            <div class="check-icon">&#10004;</div>
+            <h4>MÉTRICAS REGISTRADAS</h4>
+        </div>
     </div>
-    <div class="modal-body">MÉTRICAS GUARDADAS CORRECTAMENTE</div>
 </ng-template>

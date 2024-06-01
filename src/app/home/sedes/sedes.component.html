@@ -1,35 +1,35 @@
 <div class="container">
   <div class="row">
-    <div class="col">
+    <div class="col text-center">
       <h1>MIS SEDES</h1>
     </div>
   </div>
 
-  <div class="row">
-    <div class="d-flex justify-content-start">
-      <button class="btn btn-membresias-activas" [class.active]="showActive" (click)="changeFilter()">Membresías Activas</button>
-      <button class="btn btn-membresias-inactivas" [class.active]="!showActive"  (click)="changeFilter()">Membresías Inactivas</button>
+  <div class="row mb-4">
+    <div class="col text-center">
+      <button class="btn btn-filter" [class.active]="showActive" (click)="changeFilter()">SEDES ACTIVAS</button>
+      <button class="btn btn-filter" [class.active]="!showActive" (click)="changeFilter()">SEDES INACTIVAS</button>
+    </div>
   </div>
-    <div *ngFor="let sede of sedes" class="col-md-3">
-      <div class="card sede-card">
-        <button class="sede-button">
-          <div class="sede-info">
-            <p><strong>Nombre:</strong> {{sede.nombreSede}}</p>
-            <p><strong>Abreviación:</strong> {{sede.abreviacion}}</p>
-            <p><strong>Dirección:</strong> {{sede.direccion}}</p>
-            <select [(ngModel)]="sede.estado" (change)="updateStatus(sede.idSede + '')" class="form-select form-select-green">
-              <option value="A">Activo</option>
-              <option value="I">Inactivo</option>
+
+  <div class="row">
+    <div *ngFor="let sede of sedes" class="col-md-6 mb-4">
+      <div class="card sede-card text-center">
+        <div class="card-body">
+          <p><strong>Nombre:</strong> {{sede.nombreSede}}</p>
+          <p><strong>Abreviación:</strong> {{sede.abreviacion}}</p>
+          <p><strong>Dirección:</strong> {{sede.direccion}}</p>
+          <select [(ngModel)]="sede.estado" (change)="updateStatus(sede.idSede + '')" class="form-select form-select-green">
+            <option value="A">Activo</option>
+            <option value="I">Inactivo</option>
           </select>
-          </div>
-        </button>
+        </div>
       </div>
     </div>
 
-    <div class="col-md-3">
-      <div class="card sede-card">
-        <button type="button" class="btn btn-primary btn-no-border btn-registrar-sede"
-          (click)="openModal(template)">Registrar Sede</button>
+    <div class="col-md-6 mb-4">
+      <div class="card sede-card text-center">
+        <button type="button" class="btn btn-primary btn-no-border btn-registrar-sede" (click)="openModal(template)">Registrar Sede</button>
       </div>
     </div>
   </div>
@@ -68,3 +68,4 @@
       </div>
     </form>
   </ng-template>
+</div>
