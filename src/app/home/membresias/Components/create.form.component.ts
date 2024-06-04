@@ -1,5 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { Component, EventEmitter, OnInit, Output, TemplateRef } from '@angular/core';
+import { BsModalRef,  BsModalService , ModalDirective } from 'ngx-bootstrap/modal';
 import { CommonModule } from '@angular/common';
 import { CreateMembership } from '../model/create-membership.interface';
 import { NgModule } from '@angular/core';
@@ -14,11 +14,12 @@ import { MembresiasService } from '../membresias.service';
   standalone: true
 })
 export class CreateFormComponent implements OnInit {
+  modalRef?: BsModalRef;
   title?: string;
   closeBtnName?: string;
   list: string[] = [];
   @Output() formSubmitted = new EventEmitter<any>();
-  constructor(public bsModalRef: BsModalRef, private authService: AuthService, private membresiaService: MembresiasService) {  }
+  constructor(public bsModalRef: BsModalRef, private modalService: BsModalService, private authService: AuthService, private membresiaService: MembresiasService) {  }
   public emptyField = false;
   public invalidCost = false;
   public createMembership: CreateMembership = {
@@ -29,7 +30,7 @@ export class CreateFormComponent implements OnInit {
   };
   ngOnInit() {
   }
-  onSubmit() {
+  onSubmit(modal : TemplateRef<void>) {
     if(this.createMembership.name.trim() && this.createMembership.cost.trim() && this.createMembership.detail.trim()){
         if(isNaN(Number(this.createMembership.cost.trim()))){
           this.invalidCost = true;
@@ -43,6 +44,10 @@ export class CreateFormComponent implements OnInit {
           if(this.createMembership.user.trim()){
             this.membresiaService.registerMembership(this.createMembership)
             .pipe().subscribe();
+            this.openModal(modal);
+            setTimeout(() => {
+              this.modalRef?.hide();
+            }, 2000);
             this.bsModalRef.hide();
             this.formSubmitted.emit()
           }
@@ -52,5 +57,9 @@ export class CreateFormComponent implements OnInit {
     else{
       this.emptyField = true;
     }
+  }
+
+  openModal(template: TemplateRef<void>) {
+    this.modalRef = this.modalService.show(template);
   }
 }

@@ -7,7 +7,7 @@
     </button>
   </div>
 
-  <form #membershipForm="ngForm" (ngSubmit)="onSubmit()" class="custom-form">
+  <form #membershipForm="ngForm" (ngSubmit)="onSubmit(confirmation)" class="custom-form">
     <div class="form-group custom-form-group">
       <label for="nombreInput" class="custom-label">Nombre:</label>
       <input [(ngModel)]="createMembership.name" name="nombre" type="text" class="form-control custom-input" id="nombreInput" />
@@ -38,3 +38,10 @@
   </form>
 
 </div>
+
+<ng-template #confirmation>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Registro finalizado</h4>
+  </div>
+  <div class="modal-body">Membresía registrada exitosamente</div>
+</ng-template>

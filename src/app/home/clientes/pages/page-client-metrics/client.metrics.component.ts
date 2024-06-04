@@ -239,13 +239,14 @@ export class ClientMetrics {
       if(this.registerMetric.peso != undefined && this.registerMetric.peso != null &&
         this.registerMetric.altura != undefined && this.registerMetric.altura != null &&
         this.registerMetric.objetivo != '' && this.registerMetric.objetivo != null && 
-        this.registerMetric.bicep_derecho != undefined && this.registerMetric.bicep_derecho != null &&
-        this.registerMetric.bicep_izquierdo != undefined && this.registerMetric.bicep_izquierdo != null &&
-        this.registerMetric.cadera != undefined && this.registerMetric.cadera != null && 
-        this.registerMetric.cintura != undefined && this.registerMetric.cintura != null &&
-        this.registerMetric.muslo_izquierdo != undefined && this.registerMetric.muslo_izquierdo != null &&
-        this.registerMetric.muslo_derecho != undefined && this.registerMetric.muslo_derecho != null &&
+        this.registerMetric.bicep_derecho != undefined && this.registerMetric.bicep_derecho != null && this.registerMetric.bicep_derecho > 0 &&
+        this.registerMetric.bicep_izquierdo != undefined && this.registerMetric.bicep_izquierdo != null && this.registerMetric.bicep_izquierdo > 0 &&
+        this.registerMetric.cadera != undefined && this.registerMetric.cadera != null &&  this.registerMetric.bicep_izquierdo > 0 &&
+        this.registerMetric.cintura != undefined && this.registerMetric.cintura != null && this.registerMetric.cintura > 0 &&
+        this.registerMetric.muslo_izquierdo != undefined && this.registerMetric.muslo_izquierdo != null && this.registerMetric.muslo_izquierdo > 0 &&
+        this.registerMetric.muslo_derecho != undefined && this.registerMetric.muslo_derecho != null && this.registerMetric.muslo_derecho > 0 &&
         !this.badHeightFormat && !this.badWeightFormat && !this.badIdealWeightFormat
+        
       ){
         this.completedForm = true;
       }
@@ -272,6 +273,7 @@ export class ClientMetrics {
     if (input.value.length > 2) {
       input.value = input.value.slice(0, 2);
     }
+  
   }
 
   openModal(template: TemplateRef<void>) {
