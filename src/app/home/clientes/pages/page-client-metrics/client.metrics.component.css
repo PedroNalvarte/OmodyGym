@@ -92,7 +92,7 @@ input {
 button {
     width: 100%;
     padding: 10px;
-    background-color: #28a745;
+    background-color: #72ce16;
     color: #fff;
     border: none;
     border-radius: 0.25rem;
@@ -100,7 +100,7 @@ button {
 }
 
 button:disabled {
-    background-color: #00A82D;
+    background-color: #28a745;
 }
 
 .confirmation-modal {
@@ -124,4 +124,8 @@ button:disabled {
     font-weight: bold;
     color: #28a745;
     margin: 0;
+}
+
+.btn-primary:hover{
+    background-color: #5bb414;
 }

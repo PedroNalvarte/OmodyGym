@@ -75,7 +75,7 @@
     <button class="btn btn-primary" (click)="asignTrainer(confirmation)"
       *ngIf="!selectedClient.entrenador">Añadir Alumno</button>
     <button class="btn btn-primary" (click)="toRegisterPlan()"
-      *ngIf="selectedClient.entrenador && !selectedClient.modificacion_plan">Registrar
+      *ngIf="selectedClient.entrenador && !selectedClient.modificacion_plan">Ver
       Plan</button>
     <button class="btn btn-primary" (click)="verPlanEntrenamiento()"
       *ngIf="selectedClient.entrenador && selectedClient.modificacion_plan">Ver
