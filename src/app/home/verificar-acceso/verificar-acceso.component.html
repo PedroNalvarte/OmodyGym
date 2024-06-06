@@ -1,1 +1,86 @@
-<p>Verificar acceso funciona</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Verifica Acceso</h1>
+    </div>
+
+    <div class="row">
+
+      <div class="col col-md-6">
+        <div class="row"><h4>DNI de Omody Cliente</h4></div>
+        <div class="row"><input [(ngModel)]="dniBuscar" type="text"
+            placeholder="Ingrese DNI"></div>
+        <div *ngIf="!processingRequest; else loading" class="row"><button
+            (click)="verificaAcceso()">BUSCAR</button></div>
+
+        <div class="row"><p>{{mensajeError}}</p></div>
+
+        <ng-template #loading
+          class="row"><shared-loading-spinner></shared-loading-spinner></ng-template>
+      </div>
+
+      <div class="col col-md-6">
+
+        <div class="row ">
+
+          <div class="col p-4 card" *ngFor="let acceso of accesos">
+
+            <div class="row mt-4" *ngIf="!pagado">
+
+              <div class="col col-md-5"><button>PAGO CADUCADO</button></div>
+
+              <div class="col col-md-7"><button>MEMBRESÍA
+                  INACTIVA</button></div>
+
+            </div>
+
+            <div class="row mt-4" *ngIf="pagado">
+
+              <div class="col col-md-5">PAGO REALIZADO</div>
+
+              <div class="col col-md-7">MEMBRESÍA ACTIVA</div>
+
+            </div>
+
+            <div class="row mt-2"><div class="col col-md-5">DNI:</div><div
+                class="col col-md-7"><input
+                  type="text"
+                  value="{{acceso.numero_documento_identidad}}"></div></div>
+
+            <div class="row mt-2"><div class="col col-md-5">NOMBRES:</div><div
+                class="col col-md-7"><input type="text"
+                  value="{{acceso.nombre_cliente}}"></div></div>
+
+            <div class="row mt-2"><div class="col col-md-5">TIPO DE
+                MEMBRESIA:</div><div
+                class="col col-md-7"><input type="text"
+                  value="{{acceso.nombre_membresia}}"></div></div>
+
+            <div class="row mt-2"><div class="col col-md-5">SEDE
+                INSCRITA:</div><div
+                class="col col-md-7"><input type="text"
+                  value="{{acceso.nombre_sede}}"></div></div>
+
+            <div class="row mt-2"><div class="col col-md-5">FECHA
+                CADUCIDAD:</div><div
+                class="col col-md-7"><input type="text"
+                  value="{{acceso.fin_periodo | date:'d/M/yy'}}"></div></div>
+
+            <div class="row mt-4" *ngIf="!pagado">
+
+              <div class="col col-md-5"><button>Actualizar pago</button></div>
+
+              <div class="col col-md-7"><button>Actualizar
+                  membresia</button></div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

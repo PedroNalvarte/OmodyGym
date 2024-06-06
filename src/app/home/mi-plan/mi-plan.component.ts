@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MiPlanService } from './miPlan.service';
 import { MiPlan } from './model/miPlan.interface';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'mi-plan',
@@ -16,7 +18,8 @@ export class MiPlanComponent implements OnInit {
 
   dias: any[] = [];
 
-  constructor(private route: ActivatedRoute, private miPlanService: MiPlanService) { }
+  constructor(private route: ActivatedRoute, private miPlanService: MiPlanService) {
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -29,7 +32,6 @@ export class MiPlanComponent implements OnInit {
         this.processingRequest = false;
       });
     }
-
   }
 
   get miPlan(): MiPlan[] {
