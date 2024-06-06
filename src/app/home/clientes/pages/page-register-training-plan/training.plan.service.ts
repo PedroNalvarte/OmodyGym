@@ -47,4 +47,11 @@ export class TrainingPlanService {
          map(() => void 0)
       );
    }
+
+   deleteLastPlan(id : any){
+      const url = `${this.apiUrl}/deleteLastPlan/${id}`;
+
+      var response = this.HttpClient.post<string>(url, {id}).pipe()
+      return response;
+   }
 }

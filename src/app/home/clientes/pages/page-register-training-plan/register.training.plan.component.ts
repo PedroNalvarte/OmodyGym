@@ -15,6 +15,7 @@ import { Ejercicios } from '../../../ejercicios/model/ejercicios.interface';
 import { GrupoMuscular } from '../../../ejercicios/model/grupoMuscular.interface';
 import { TrainingPlanService } from './training.plan.service';
 import { registerTraining } from '../models/register-training.interface';
+import { concatMap } from 'rxjs';
 @Component({
   selector: 'register-training-plan',
   templateUrl: './register.training.plan.component.html',
@@ -180,22 +181,20 @@ export class RegisterTrainingPlan {
   }
 
   registrarPlan(modal : TemplateRef<void>){
-     this.trainingPlanService.registerEjercicio(this.ejerciciosGuardados).pipe().subscribe(
-      () => {
-        this.openModal(modal);
-        setTimeout(() => {
-          this.modalRef?.hide();
-        }, 2000);
+    this.trainingPlanService.deleteLastPlan(this.receivedClient.Id).pipe(
+      concatMap(() => this.trainingPlanService.registerEjercicio(this.ejerciciosGuardados))
+    ).subscribe( () => {
+      this.openModal(modal);
+      setTimeout(() => {
+        this.modalRef?.hide();
+      }, 2000);
 
-        this.goBack();
-      },
-
-      (error) => {
-        console.log(error);
-      }
-    )
-    
-    console.log(this.currentPlan);
+      this.goBack();
+    },
+    (error) => {
+      console.log(error);
+    }
+    );
   }
   GetLastPlan(){
     this.trainingPlanService.getLastPlan().subscribe(
