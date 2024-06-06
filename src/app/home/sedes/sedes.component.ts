@@ -1,28 +1,37 @@
-import { Component, TemplateRef } from '@angular/core';
+import { Component, TemplateRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { SedesService } from './sedes.service';
 import { Sede } from './model/sedes.interface';
 import { EMPTY, catchError, finalize, tap } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-import { bootstrap } from 'ngx-bootstrap-icons';
-import { Modal } from 'bootstrap';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'sedes',
   templateUrl: './sedes.component.html',
-  styleUrls: ['./sedes.component.css'],
+  styleUrls: ['./sedes.component.css']
 })
-export class SedesComponent {
-
+export class SedesComponent implements OnInit {
   modalRef: BsModalRef | null = null;
   public showActive: boolean = true;
   public processingRequest: boolean = false;
   public activeSedes: Sede[] = [];
   public inactiveSedes: Sede[] = [];
-  constructor(private sedesService: SedesService, private modalService: BsModalService) {
-  }
+  public errorRegistro: boolean = false; // Propiedad para manejar errores
+  public sedeRegistro: Sede = {
+    nombreSede: '',
+    abreviacion: '',
+    direccion: ''
+  };
+
+  @ViewChild('confirmationTemplate') confirmationTemplate!: TemplateRef<any>;
+
+  constructor(private sedesService: SedesService, private modalService: BsModalService, private ngZone: NgZone) {}
 
   ngOnInit(): void {
+    this.loadSedes();
+  }
+
+  loadSedes(): void {
     this.sedesService.listSede().pipe(
       tap((sedes: Sede[]) => {
         this.activeSedes = sedes.filter(sede => sede.estado === 'A');
@@ -36,95 +45,76 @@ export class SedesComponent {
   }
 
   get sedes(): Sede[] {
-    if(this.showActive){
-      return this.activeSedes;
-    }
-    else{
-      return this.inactiveSedes;
-    }
-  }
-
-  public sedeRegistro: Sede = {
-    nombreSede: '',
-    abreviacion: '',
-    direccion: ''
+    return this.showActive ? this.activeSedes : this.inactiveSedes;
   }
 
   resetInput(): void {
-
-    this.sedeRegistro.nombreSede = '';
-    this.sedeRegistro.abreviacion = '';
-    this.sedeRegistro.direccion = '';
-
+    this.sedeRegistro = {
+      nombreSede: '',
+      abreviacion: '',
+      direccion: ''
+    };
   }
 
   registerSede(): void {
-
     this.processingRequest = true;
+    this.errorRegistro = false; // Resetear el estado de error al iniciar el registro
 
     this.sedesService
       .registerSede(this.sedeRegistro)
       .pipe(
-        tap((result) => console.log('Resultado antes de catchError:', result)),
         finalize(() => {
           this.processingRequest = false;
-          this.closeModal();
-          this.sedesService.listSede().pipe(
-            tap((sedes: Sede[]) => {
-              this.activeSedes = sedes.filter(sede => sede.estado === 'A');
-              this.inactiveSedes = sedes.filter(sede => sede.estado !== 'A');
-            }),
-            catchError((error: HttpErrorResponse) => {
-              console.error('Error al listar sedes:', error);
-              return EMPTY;
-            })
-          ).subscribe();
-        }
-        ),
-        catchError((error: HttpErrorResponse) => {
-          if (error.status === 401) {
-            return EMPTY;
+          if (!this.errorRegistro) {
+            this.loadSedes();
+            this.closeModalAndOpenConfirmation();
           }
-
-          throw error;
+        }),
+        catchError((error: HttpErrorResponse) => {
+          console.error('Error al registrar la sede:', error);
+          this.errorRegistro = true; // Establecer la bandera de error
+          return EMPTY;
         })
       )
       .subscribe();
+  }
 
+  closeModalAndOpenConfirmation(): void {
+    if (this.modalRef) {
+      this.modalRef.hide();
+    }
+    this.modalRef = this.modalService.show(this.confirmationTemplate, { class: 'modal-sm' });
+    setTimeout(() => {
+      this.modalRef?.hide();
+    }, 2000); // Tiempo de demora del pop-up de confirmación
   }
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
 
-  closeModal() {
-
-    if (this.modalRef) {  // Comprueba si modalRef es no nulo antes de llamar a hide
+  closeModal(): void {
+    if (this.modalRef) {
       this.modalRef.hide();
     }
   }
 
-  changeFilter(){
+  changeFilter(): void {
     this.showActive = !this.showActive;
   }
 
-  updateStatus(id : string){
+  updateStatus(id: string): void {
     this.processingRequest = true;
     this.sedesService.updateStatus(id).pipe(
       finalize(() => {
-        this.sedesService.listSede().pipe(
-          tap((sedes: Sede[]) => {
-            this.activeSedes = sedes.filter(sede => sede.estado === 'A');
-            this.inactiveSedes = sedes.filter(sede => sede.estado !== 'A');
-            this.processingRequest = false;
-          }),
-          catchError((error: HttpErrorResponse) => {
-            console.error('Error al listar sedes:', error);
-            return EMPTY;
-          })
-        ).subscribe();
+        this.loadSedes();
+        this.processingRequest = false;
+      }),
+      catchError((error: HttpErrorResponse) => {
+        console.error('Error al actualizar el estado de la sede:', error);
+        this.processingRequest = false;
+        return EMPTY;
       })
     ).subscribe();
   }
-
 }

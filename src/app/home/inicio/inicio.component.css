@@ -1,0 +1,97 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Passion+One:wght@400;700;900&display=swap');
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+h1{
+    text-transform: uppercase;
+    color: #ffe402;
+    font-style: italic;
+    font-family: 'Passion One', cursive;
+    font-size: 90px;
+}
+h3 {
+    font-size: 21px;
+    line-height: 29px;
+    font-family: "Oswald", sans-serif, cursive;
+    letter-spacing: 3px; /* Ajusta este valor según sea necesario */
+}
+H4{
+    text-transform: uppercase;
+    color: #74b934;
+    font-style: italic;
+    font-family: 'Passion One', cursive;
+    font-size: 40px;
+}
+
+.parte1 {
+    background-image: url("https://media.discordapp.net/attachments/1228834360367775860/1248227617564393515/Portada.jpg?ex=6662e60e&is=6661948e&hm=e2db936e5cc546cbb79584a22f391d73e6ddfc84ce3e061aea8e836af73fd69e&=&format=webp&width=1090&height=1080");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    color: #fff;
+}
+
+.banner {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(10, 10, 10, 0.5); /* Slight dark overlay for better text readability */
+}
+
+.banner h1, .banner h3 {
+    margin: 0;
+}
+
+.scrollDown {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.boxes {
+    padding: 5em 0;
+    background-color: #ffffffc0;
+}
+
+.box {
+    margin-bottom: 30px;
+    text-align: center;
+    padding: 15px;
+    transition: transform 0.3s;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f0fdc1;
+}
+
+.box:hover {
+    transform: translateY(-10px);
+}
+
+.box img {
+    width: 100%;
+    height: 20em;
+    display: block;
+    border-radius: 5px;
+}
+
+.box h3 {
+    margin-top: 15px;
+    font-size: 1.25rem;
+}
+
+.boxInfo {
+    padding: 10px;
+}
+

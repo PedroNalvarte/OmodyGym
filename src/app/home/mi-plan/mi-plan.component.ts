@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { MiPlanService } from './miPlan.service';
 import { MiPlan } from './model/miPlan.interface';
 import { Subscription } from 'rxjs';
-import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'mi-plan',
@@ -47,10 +46,4 @@ export class MiPlanComponent implements OnInit {
       };
     });
   }
-
-
-
-
-
-
 }

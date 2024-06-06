@@ -15,7 +15,7 @@
   </div>
 
   <div class="row">
-    <div *ngFor="let sede of sedes" class="col-md-6 mb-4">
+    <div *ngFor="let sede of sedes" class="col-md-4 mb-4 dimenciones">
       <div class="card sede-card text-center">
         <div class="card-body">
           <p><strong>Nombre:</strong> {{sede.nombreSede}}</p>
@@ -24,15 +24,15 @@
           <select [(ngModel)]="sede.estado" (change)="updateStatus(sede.idSede + '')" 
              [ngClass]="{'form-select-green': sede.estado === 'A', 'form-select-red': sede.estado !== 'A'}"
               class="form-select">
-              <option style="background-color:#72ce16;" value="A">Activo</option>
-              <option style="background-color:#E62C2C;" value="I">Inactivo</option>
+              <option class="opcion1"  value="A">Activo</option>
+              <option class="opcion2" value="I">Inactivo</option>
           </select>
         </div>
       </div>
     </div>
 
-    <div class="col-md-6 mb-4">
-      <div class="card fixed-square">
+    <div class="col-md-4 mb-4 dimenciones ">
+      <div class="card fixed-square card-body">
         <button type="button" class="btn btn-registrar-sede" (click)="openModal(template)">
           <i class="bi bi-plus-lg custom-size"></i>
         </button>
@@ -43,17 +43,8 @@
   <!-- Modal -->
   <ng-template #template>
     <form (ngSubmit)="registerSede()" #sedeForm="ngForm">
-      <div class="modal-header">
-        <h4 class="modal-title">Registrar Nueva Sede</h4>
-        <button type="button" class="btn-close" aria-label="Close" (click)="modalRef?.hide()"></button>
-      </div>
-      <div *ngIf="processingRequest" class="modal-body d-flex flex-column align-items-center justify-content-center">
-        <shared-loading-spinner></shared-loading-spinner>
-        <p>Espere mientras se registra la sede</p>
-      </div>
       <div *ngIf="!processingRequest">
         <div class="modal-body">
-          <p>Ingrese los datos de la nueva sede a registrar</p>
           <div class="input-group mb-3">
             <span class="input-group-text">Nombre</span>
             <input [(ngModel)]="sedeRegistro.nombreSede" name="nombreSede" class="form-control" type="text" placeholder="Nombre" required>
@@ -74,5 +65,14 @@
       </div>
     </form>
   </ng-template>
+
+  <!-- Confirmation Modal -->
+  <ng-template #confirmationTemplate>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Registro finalizado</h4>
+    </div>
+    <div class="modal-body">Sede registrada exitosamente</div>
+  </ng-template>
+  
   <br><br><br><br><br>
 </div>
