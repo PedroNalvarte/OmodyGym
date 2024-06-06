@@ -27,9 +27,11 @@
                         <div class="card-body">
                             <h5 class="card-title text-center">{{ membership.nombre }}</h5>
                             <p class="card-text text-center">{{ membership.detalle }}</p>
-                            <select [(ngModel)]="membership.estado" (change)="updateStatus(membership.Id)" class="form-select form-select-green">
-                                <option value="A">Activo</option>
-                                <option value="I">Inactivo</option>
+                            <select [(ngModel)]="membership.estado" (change)="updateStatus(membership.Id)" 
+                            [ngClass]="{'form-select-green': membership.estado === 'A', 'form-select-red': membership.estado !== 'A'}"
+                                class="form-select">
+                                    <option style="background-color:#4CAF50;" value="A">Activo</option>
+                                    <option style="background-color:#E62C2C;" value="I">Inactivo</option>
                             </select>
                         </div>
                     </div>

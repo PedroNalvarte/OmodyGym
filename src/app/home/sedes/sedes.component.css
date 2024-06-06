@@ -1,5 +1,6 @@
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/math-plus.css');
 .btn-filter {
-  background-color: #4CAF50; /* Verde */
+  background-color: #000000; /* Verde */
   color: white;
   border: none;
   padding: 10px 20px;
@@ -8,8 +9,9 @@
 }
 
 .btn-filter.active {
-  background-color: #45a049; /* Verde oscuro para el activo */
+  background-color: #72ce16; /* Verde oscuro para el activo */
 }
+
 
 .sede-card {
   border: 1px solid #ddd;
@@ -18,24 +20,38 @@
 }
 
 .form-select-green {
-  background-color: #4CAF50; /* Verde */
+  background-color: #72ce16;
   color: white;
-  border: none;
-  padding: 5px;
-  margin-top: 10px;
+}
+
+.form-select-red {
+  background-color: #E62C2C;
+  color: white;
 }
 .btn-primary {
-  background-color:#4CAF50 ;
-}
-.btn-no-border {
-  border: none;
-  margin: 10px;
+  background-color:#72ce16 ;
 }
 
 .btn-no-border1 {
   border: none;
 }
 
-.btn-no-border2 {
-  border: none;
+
+
+
+.fixed-square {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px; /* Ajusta la altura según tus necesidades */
 }
+
+.btn-registrar-sede {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 5rem;
+}
+

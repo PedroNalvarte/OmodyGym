@@ -1,3 +1,5 @@
+<link href='https://unpkg.com/css.gg@2.0.0/icons/css/math-plus.css' rel='stylesheet'>
+
 <div class="container">
   <div class="row">
     <div class="col text-center">
@@ -19,17 +21,21 @@
           <p><strong>Nombre:</strong> {{sede.nombreSede}}</p>
           <p><strong>Abreviación:</strong> {{sede.abreviacion}}</p>
           <p><strong>Dirección:</strong> {{sede.direccion}}</p>
-          <select [(ngModel)]="sede.estado" (change)="updateStatus(sede.idSede + '')" class="form-select form-select-green">
-            <option value="A">Activo</option>
-            <option value="I">Inactivo</option>
+          <select [(ngModel)]="sede.estado" (change)="updateStatus(sede.idSede + '')" 
+             [ngClass]="{'form-select-green': sede.estado === 'A', 'form-select-red': sede.estado !== 'A'}"
+              class="form-select">
+              <option style="background-color:#72ce16;" value="A">Activo</option>
+              <option style="background-color:#E62C2C;" value="I">Inactivo</option>
           </select>
         </div>
       </div>
     </div>
 
     <div class="col-md-6 mb-4">
-      <div class="card sede-card text-center">
-        <button type="button" class="btn btn-primary btn-no-border btn-registrar-sede" (click)="openModal(template)">Registrar Sede</button>
+      <div class="card fixed-square">
+        <button type="button" class="btn btn-registrar-sede" (click)="openModal(template)">
+          <i class="bi bi-plus-lg custom-size"></i>
+        </button>
       </div>
     </div>
   </div>
@@ -68,4 +74,5 @@
       </div>
     </form>
   </ng-template>
+  <br><br><br><br><br>
 </div>
