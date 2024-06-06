@@ -108,6 +108,7 @@ export class ClientesListTrainerComponent {
         setTimeout(() => {
           this.modalRef?.hide();
           this.clientSelected = false;
+          this.GetClients();
         }, 2000);
       })
   }

@@ -34,7 +34,6 @@ export class ClientsService {
   }
 
   registerCliente(client: DetailClient): Observable<string> {
-
     const url = `${this.apiUrl}/createClient/${client.nombre}/${client.apellido1}/${client.apellido2}/${client.sede}/${client.membresia}/${client.dni}/${client.fechaNacimiento}/${client.telefono}/${client.usuario}`;
 
     var response = this.HttpClient.post<string>(url, client).pipe(
