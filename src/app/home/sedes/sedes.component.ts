@@ -16,7 +16,10 @@ export class SedesComponent {
 
   modalRef: BsModalRef | null = null;
   public showActive: boolean = true;
+
   public processingRequest: boolean = false;
+  public succesRequest: boolean = false;
+
   public activeSedes: Sede[] = [];
   public inactiveSedes: Sede[] = [];
   constructor(private sedesService: SedesService, private modalService: BsModalService) {
@@ -61,14 +64,23 @@ export class SedesComponent {
   registerSede(): void {
 
     this.processingRequest = true;
+    this.succesRequest = false;
 
     this.sedesService
       .registerSede(this.sedeRegistro)
       .pipe(
         tap((result) => console.log('Resultado antes de catchError:', result)),
         finalize(() => {
-          this.processingRequest = false;
-          this.closeModal();
+
+          
+          this.succesRequest = true;
+
+          setTimeout(() => {
+            this.succesRequest = false;
+            this.processingRequest = false;
+            this.closeModal();
+        }, 3000);
+
           this.sedesService.listSede().pipe(
             tap((sedes: Sede[]) => {
               this.activeSedes = sedes.filter(sede => sede.estado === 'A');

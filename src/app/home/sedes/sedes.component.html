@@ -1,4 +1,7 @@
-<link href='https://unpkg.com/css.gg@2.0.0/icons/css/math-plus.css' rel='stylesheet'>
+<link
+  href="https://unpkg.com/css.gg@2.0.0/icons/css/math-plus.css"
+  rel="stylesheet"
+/>
 
 <div class="container">
   <div class="row">
@@ -9,8 +12,20 @@
 
   <div class="row mb-4">
     <div class="col text-center">
-      <button class="btn btn-filter" [class.active]="showActive" (click)="changeFilter()">SEDES ACTIVAS</button>
-      <button class="btn btn-filter" [class.active]="!showActive" (click)="changeFilter()">SEDES INACTIVAS</button>
+      <button
+        class="btn btn-filter"
+        [class.active]="showActive"
+        (click)="changeFilter()"
+      >
+        SEDES ACTIVAS
+      </button>
+      <button
+        class="btn btn-filter"
+        [class.active]="!showActive"
+        (click)="changeFilter()"
+      >
+        SEDES INACTIVAS
+      </button>
     </div>
   </div>
 
@@ -18,14 +33,22 @@
     <div *ngFor="let sede of sedes" class="col-md-6 mb-4">
       <div class="card sede-card text-center">
         <div class="card-body">
-          <p><strong>Nombre:</strong> {{sede.nombreSede}}</p>
-          <p><strong>Abreviación:</strong> {{sede.abreviacion}}</p>
-          <p><strong>Dirección:</strong> {{sede.direccion}}</p>
-          <select [(ngModel)]="sede.estado" (change)="updateStatus(sede.idSede + '')" 
-             [ngClass]="{'form-select-green': sede.estado === 'A', 'form-select-red': sede.estado !== 'A'}"
-              class="form-select">
-              <option style="background-color:#72ce16;" value="A">Activo</option>
-              <option style="background-color:#E62C2C;" value="I">Inactivo</option>
+          <p><strong>Nombre:</strong> {{ sede.nombreSede }}</p>
+          <p><strong>Abreviación:</strong> {{ sede.abreviacion }}</p>
+          <p><strong>Dirección:</strong> {{ sede.direccion }}</p>
+          <select
+            [(ngModel)]="sede.estado"
+            (change)="updateStatus(sede.idSede + '')"
+            [ngClass]="{
+              'form-select-green': sede.estado === 'A',
+              'form-select-red': sede.estado !== 'A'
+            }"
+            class="form-select"
+          >
+            <option style="background-color: #72ce16" value="A">Activo</option>
+            <option style="background-color: #e62c2c" value="I">
+              Inactivo
+            </option>
           </select>
         </div>
       </div>
@@ -33,7 +56,11 @@
 
     <div class="col-md-6 mb-4">
       <div class="card fixed-square">
-        <button type="button" class="btn btn-registrar-sede" (click)="openModal(template)">
+        <button
+          type="button"
+          class="btn btn-registrar-sede"
+          (click)="openModal(template)"
+        >
           <i class="bi bi-plus-lg custom-size"></i>
         </button>
       </div>
@@ -45,34 +72,86 @@
     <form (ngSubmit)="registerSede()" #sedeForm="ngForm">
       <div class="modal-header">
         <h4 class="modal-title">Registrar Nueva Sede</h4>
-        <button type="button" class="btn-close" aria-label="Close" (click)="modalRef?.hide()"></button>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="modalRef?.hide()"
+        ></button>
       </div>
-      <div *ngIf="processingRequest" class="modal-body d-flex flex-column align-items-center justify-content-center">
-        <shared-loading-spinner></shared-loading-spinner>
-        <p>Espere mientras se registra la sede</p>
+
+      <div
+        *ngIf="succesRequest; else form"
+        class="modal-body d-flex flex-column align-items-center justify-content-center"
+      >
+        <h3>Sede registrada correctamente</h3>
       </div>
-      <div *ngIf="!processingRequest">
-        <div class="modal-body">
-          <p>Ingrese los datos de la nueva sede a registrar</p>
-          <div class="input-group mb-3">
-            <span class="input-group-text">Nombre</span>
-            <input [(ngModel)]="sedeRegistro.nombreSede" name="nombreSede" class="form-control" type="text" placeholder="Nombre" required>
+
+      <ng-template #form>
+        <div
+          *ngIf="processingRequest"
+          class="modal-body d-flex flex-column align-items-center justify-content-center"
+        >
+          <shared-loading-spinner></shared-loading-spinner>
+          <p>Espere mientras se registra la sede</p>
+        </div>
+        <div *ngIf="!processingRequest">
+          <div class="modal-body">
+            <p>Ingrese los datos de la nueva sede a registrar</p>
+            <div class="input-group mb-3">
+              <span class="input-group-text">Nombre</span>
+              <input
+                [(ngModel)]="sedeRegistro.nombreSede"
+                name="nombreSede"
+                class="form-control"
+                type="text"
+                placeholder="Nombre"
+                required
+              />
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text">Abreviación</span>
+              <input
+                [(ngModel)]="sedeRegistro.abreviacion"
+                name="abreviacion"
+                class="form-control"
+                type="text"
+                placeholder="Abreviación"
+                required
+              />
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text">Dirección</span>
+              <input
+                [(ngModel)]="sedeRegistro.direccion"
+                name="direccion"
+                class="form-control"
+                type="text"
+                placeholder="Dirección"
+                required
+              />
+            </div>
           </div>
-          <div class="input-group mb-3">
-            <span class="input-group-text">Abreviación</span>
-            <input [(ngModel)]="sedeRegistro.abreviacion" name="abreviacion" class="form-control" type="text" placeholder="Abreviación" required>
-          </div>
-          <div class="input-group mb-3">
-            <span class="input-group-text">Dirección</span>
-            <input [(ngModel)]="sedeRegistro.direccion" name="direccion" class="form-control" type="text" placeholder="Dirección" required>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary btn-no-border2"
+              data-bs-dismiss="modal"
+              (click)="modalRef?.hide()"
+            >
+              Cerrar
+            </button>
+            <button
+              class="btn btn-primary btn-no-border1"
+              type="submit"
+              [disabled]="!sedeForm.valid"
+            >
+              Registrar sede
+            </button>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary btn-no-border2" data-bs-dismiss="modal" (click)="modalRef?.hide()">Cerrar</button>
-          <button class="btn btn-primary btn-no-border1" type="submit" [disabled]="!sedeForm.valid">Registrar sede</button>
-        </div>
-      </div>
+      </ng-template>
     </form>
   </ng-template>
-  <br><br><br><br><br>
+  <br /><br /><br /><br /><br />
 </div>

@@ -17,6 +17,7 @@ export class ColaboradoresComponent {
   modalRef: BsModalRef | null = null;
 
   public processingRequest: boolean = false;
+  public succesRegister: boolean = false;
 
   //------------Filtros---------------
   public searchByName: string = '';
@@ -74,8 +75,16 @@ export class ColaboradoresComponent {
       .pipe(
         tap((result) => console.log('Resultado antes de catchError:', result)),
         finalize(() => {
-          this.processingRequest = false;
-          this.closeModal();
+          
+          this.succesRegister = true;
+
+          setTimeout(() => {
+            this.closeModal();
+            this.succesRegister = false;
+            this.processingRequest = true;
+        }, 3000);
+
+          //
           this.colaboradoresService.listColaboradores().subscribe();
         }
         ),

@@ -80,12 +80,22 @@
           <span aria-hidden="true" class="visually-hidden">&times;</span>
         </button>
       </div>
-      <div *ngIf="processingRequest; else FormBody">
+
+      <div *ngIf="succesRegister; else formo">
+        <div class="modal-body">
+          <h3>Colaborador registrado correctamente.</h3>
+        </div>
+      </div>
+
+      <ng-template #formo>
+        <div *ngIf="processingRequest; else FormBody">
         <div class="modal-body">
           <shared-loading-spinner></shared-loading-spinner>
           <p>Espere mientras se registra el colaborador</p>
         </div>
       </div>
+      
+
       <ng-template #FormBody>
         <div class="modal-body">
 
@@ -240,6 +250,9 @@
           </button>
         </div>
       </ng-template>
+      </ng-template>
+
+      
     </form>
   </ng-template>
 
