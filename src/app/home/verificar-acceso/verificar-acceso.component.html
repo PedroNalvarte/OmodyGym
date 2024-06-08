@@ -25,20 +25,22 @@
 
           <div class="col p-4 card" *ngFor="let acceso of accesos">
 
-            <div class="row mt-4" *ngIf="!pagado">
+            <div class="row mt-4" >
 
-              <div class="col col-md-5"><button>PAGO CADUCADO</button></div>
+              <div class="col col-md-5" *ngIf="!pagado"><button>PAGO CADUCADO</button></div>
 
-              <div class="col col-md-7"><button>MEMBRESÍA
+              <div class="col col-md-7" *ngIf="!membresia"><button>MEMBRESÍA
                   INACTIVA</button></div>
+
+              <div class="col col-md-5 card" *ngIf="pagado">PAGO REALIZADO</div>
+
+              <div class="col col-md-7 card" *ngIf="membresia">MEMBRESÍA ACTIVA</div>
 
             </div>
 
-            <div class="row mt-4" *ngIf="pagado">
+            <div class="row mt-4" >
 
-              <div class="col col-md-5">PAGO REALIZADO</div>
-
-              <div class="col col-md-7">MEMBRESÍA ACTIVA</div>
+              
 
             </div>
 
@@ -66,11 +68,11 @@
                 class="col col-md-7"><input type="text"
                   value="{{acceso.fin_periodo | date:'d/M/yy'}}"></div></div>
 
-            <div class="row mt-4" *ngIf="!pagado">
+            <div class="row mt-4">
 
-              <div class="col col-md-5"><button>Actualizar pago</button></div>
+              <div class="col col-md-5"  *ngIf="!pagado"><button>Actualizar pago</button></div>
 
-              <div class="col col-md-7"><button>Actualizar
+              <div class="col col-md-7"  *ngIf="!membresia"><button (click)="openModalWithComponent()">Actualizar
                   membresia</button></div>
 
             </div>

@@ -3,6 +3,7 @@ export interface Acceso {
   numero_documento_identidad: string;
   nombre_cliente: string;
   nombre_membresia: string;
+  estado_membresia: string;
   nombre_sede: string;
   inicio_periodo: Date;
   fin_periodo: Date;

@@ -1,0 +1,38 @@
+<div class="modal-content custom-modal-content" >
+
+  <div class="modal-header custom-modal-header">
+    <h5 class="modal-title pull-left">ACTUALIZAR MEMBRESÍA</h5>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+ 
+  <form #updateMembershipForm="ngForm" (ngSubmit)="onSubmit(confirmation)" class="custom-form">
+    <div class="card" style="text-align: center;">{{dni}}</div>
+    <div class="card" style="text-align: center;">{{nombreCliente}}</div>
+    <select class="form-control form-control-sm" [(ngModel)]="payload.idMembresia" name="membresia" >
+      <option value="0">Seleccionar nuevo plan</option>
+      <option   [value]="membresia.Id" *ngFor="let membresia of membresias">{{membresia.nombre}}</option>
+    </select>
+    <p *ngIf="invalidMembership">Debe seleccionar una membresia</p>
+
+    <select class="form-control form-control-sm"  [(ngModel)]="payload.idSede" name="sede" >
+      <option value="0">Seleccionar sede</option>
+      <option *ngFor="let sede of sedes" [value]="sede.idSede">{{ sede.nombreSede }}</option>
+    </select>
+    <p *ngIf="invalidSede">Debe seleccionar una sede</p>
+    <label>Seleccionar nueva fecha:</label>
+    <input [(ngModel)]="payload.fecha" name="fecha"  class="form-control form-control-sm" type="date" [min]="oldDate"/>
+    <p *ngIf="invalidDate">Debe seleccionar una fecha</p>
+
+    <button type="input" class="btn btn-primary btn-sm" [disabled]="processingRequest" >ACTUALIZAR</button>
+  </form>
+
+</div>
+
+<ng-template #confirmation>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Actualización exitosa</h4>
+  </div>
+  <div class="modal-body"></div>
+</ng-template>

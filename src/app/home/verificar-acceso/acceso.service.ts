@@ -4,15 +4,17 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../auth/auth.service';
 import { User } from '../../auth/model/user.interface';
 import { Acceso } from './model/acceso.interface';
+import { UpdateMembershipModel } from './components/updateMembership.model';
+import { UpdateMembership } from './components/updateMembership.component';
 
 @Injectable({ providedIn: 'root' })
 export class AccesoService {
 
   //Prod
-  //public apiUrl: string = 'https://omodygym-backend.onrender.com';
+  public apiUrl: string = 'https://omodygym-backend.onrender.com';
 
   //Pruebas
-  public apiUrl: string = 'http://localhost:3001';
+  //public apiUrl: string = 'http://localhost:3001';
 
   constructor(private HttpClient: HttpClient) { }
 
@@ -32,6 +34,13 @@ export class AccesoService {
 
   }
 
+  updateAcceso(payload : UpdateMembershipModel){
+    const url = `${this.apiUrl}/updateAccess/${payload.idMembresia}/${payload.idSede}/${payload.fecha}/${payload.idUsuario}`;
+
+    return this.HttpClient.post<String>(url, {}).pipe(
+      ignoreElements()
+    );
+  }
 
 
 

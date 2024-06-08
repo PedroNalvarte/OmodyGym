@@ -1,0 +1,38 @@
+.custom-modal-content {
+    padding: 10px;
+  }
+  
+  .custom-modal-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .custom-form {
+    padding: 10px;
+  }
+  
+  .custom-form-group {
+    margin-bottom: 15px;
+  }
+  
+  .custom-label {
+    font-weight: bold;
+  }
+  
+  .custom-input {
+    border-radius: 5px;
+  }
+  
+  .custom-error-message {
+    color: red;
+  }
+  
+  .custom-button {
+    background-color: #72ce16;
+    border-color: #72ce16;
+  }
+  
+  .custom-button:hover {
+    background-color: #5bb414;
+  }
+  
