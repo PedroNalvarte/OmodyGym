@@ -153,7 +153,7 @@ export class RegisterTrainingPlan {
     this.countExcercises++
   }
 
-  registrarDia(){
+  registrarDia(modal: TemplateRef<void>){
     if(this.selectedDay == 1){
       this.day1Completed = true;
     }
@@ -175,9 +175,8 @@ export class RegisterTrainingPlan {
     else{
       this.day7Completed = true;
     }
-    console.log(this.ejerciciosGuardados);
+    this.openModal(modal);
     this.goToDays();
-
   }
 
   registrarPlan(modal : TemplateRef<void>){

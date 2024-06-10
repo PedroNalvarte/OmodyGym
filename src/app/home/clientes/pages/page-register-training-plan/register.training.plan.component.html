@@ -11,7 +11,7 @@
     </div>
     <h3 class="text-center">Seleccionar</h3>
     <div class="row justify-content-center">
-        <div class="col-6 col-md-4 mb-3 membresias" (click)="dayClicked(1)">
+        <div id="DIA 1"class="col-6 col-md-4 mb-3 membresias" (click)="dayClicked(1)">
             <div class="card">
                 <div class="d-flex justify-content-center">
                     <h5 class="card-title text-center">Día 1</h5>
@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-6 col-md-4 mb-3 membresias" (click)="dayClicked(2)">
+        <div id="DIA 2" class="col-6 col-md-4 mb-3 membresias" (click)="dayClicked(2)">
             <div class="card">
                 <div class="d-flex justify-content-center">
                     <h5 class="card-title text-center">Día 2</h5>
@@ -82,7 +82,7 @@
         <h1 class="text-center">Registro de entrenamiento</h1>
         <div class="d-flex justify-content-center align-items-center w-100">
             <h2 class="mb-0 me-2">{{receivedClient.nombre}} {{receivedClient.apellido1}} {{receivedClient.apellido2}}</h2>
-            <button class="btn btn-success ms-5" [disabled]="countExcercises === 0" (click)="registrarDia()">Guardar</button>
+            <button class="btn btn-success ms-5" [disabled]="countExcercises === 0" (click)="registrarDia(modalTemplate)">Guardar</button>
         </div>
         <h4 class="text-center">Día {{selectedDay}}</h4>
         <div class="col col-md-3 mx-auto">
@@ -137,9 +137,20 @@
     </div>
 </div>
 
+
+
+
 <ng-template #confirmation>
     <div class="modal-header">
         <h4 class="modal-title pull-left">Registro finalizado</h4>
     </div>
+    <div class="modal-body">SE REGISTRO EL PLAN CORRECTAMENTE</div>
+</ng-template>
+
+<ng-template #modalTemplate>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Registro finalizado</h4>
+    </div>
     <div class="modal-body">SE GUARDÓ LOS EJERCICIOS CORRECTAMENTE</div>
+    <div class="modal-body">DÍA {{selectedDay}}</div>
 </ng-template>
