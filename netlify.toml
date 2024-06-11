@@ -1,3 +1,7 @@
+[build]
+  publish = "dist/omodygym-app/browser"
+  command = "npm run build:github"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
