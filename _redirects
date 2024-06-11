@@ -1,0 +1,6 @@
+- your-project/
+  - src/
+  - dist/
+  - _redirects
+  - angular.json
+  - ...
