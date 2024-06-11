@@ -11,8 +11,7 @@
     "build:href": "ng build --base-href ./",
     "copy:dist": "copyfiles dist/omodygym-app/browser/* ./docs -f",
     "copy:404": "cp dist/omodygym-app/browser/index.html dist/omodygym-app/browser/404.html",
-    "copy:redirects": "cp _redirects dist/omodygym-app/browser/_redirects",
-    "build:github": "npm run build:href && npm run copy:404 && npm run copy:redirects"
+    "build:github": "npm run build:href && npm run copy:404"
   },
   "private": true,
   "dependencies": {
