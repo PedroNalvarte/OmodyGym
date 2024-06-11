@@ -149,11 +149,11 @@ const routes: Routes = [
       },
       {
         path: 'miPlan/:dni',
-        canActivate: [hasRoleGuard],
-        canLoad: [hasRoleGuard],
-        data: {
-          allowedRoles: ['Administrador', 'Recepcionista', 'Entrenador', 'Cliente']
-        },
+        // canActivate: [hasRoleGuard],
+        // canLoad: [hasRoleGuard],
+        // data: {
+        //   allowedRoles: ['Administrador', 'Recepcionista', 'Entrenador', 'Cliente']
+        // },
         component: MiPlanComponent
       }
     ],

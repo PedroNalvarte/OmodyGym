@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MiPlanService } from './miPlan.service';
 import { MiPlan } from './model/miPlan.interface';
-import { Subscription } from 'rxjs';
-import { AuthService } from '../../auth/auth.service';
+import { Location } from '@angular/common';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'mi-plan',
@@ -12,13 +13,23 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class MiPlanComponent implements OnInit {
 
+  modalRef: BsModalRef | null = null;
+
   public processingRequest = true;
 
   dni: string | null = null;
 
   dias: any[] = [];
 
-  constructor(private route: ActivatedRoute, private miPlanService: MiPlanService) {
+  //Atributos QR
+  public currentUrl: string = '';
+  public processingUrlRequest: boolean = false;
+  public qrUrl: string = '';
+
+  constructor(private route: ActivatedRoute, private miPlanService: MiPlanService, private location: Location, private modalService: BsModalService, private httpClient: HttpClient) {
+
+    this.currentUrl = this.location.path();
+
   }
 
   ngOnInit(): void {
@@ -46,6 +57,32 @@ export class MiPlanComponent implements OnInit {
         ejercicios: this.miPlan.filter(item => item.dia === dia)
       };
     });
+  }
+
+  openModal(ModalQR: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(ModalQR, {});
+    this.obtenerQR();
+  }
+
+  closeModal() {
+    if (this.modalRef) {  // Comprueba si modalRef es no nulo antes de llamar a hide
+      this.modalRef.hide();
+    }
+  }
+
+  obtenerQR() {
+
+
+    const apiUrl: string = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=';
+
+    const pageurl: string = 'https://omodygym.netlify.app';
+    //const pageurl: string = 'http://localhost:4200';
+
+    const url = `${apiUrl}${pageurl}${this.currentUrl}`;
+
+    this.qrUrl = url;
+
+
   }
 
 
