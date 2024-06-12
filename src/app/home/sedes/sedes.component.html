@@ -3,7 +3,7 @@
   rel="stylesheet"
 />
 
-<div class="container">
+<div class="container" *ngIf="!onSelectSede">
   <div class="row">
     <div class="col text-center">
       <h1>MIS SEDES</h1>
@@ -32,7 +32,7 @@
   <div class="row">
     <div *ngFor="let sede of sedes" class="col-md-6 mb-4">
       <div class="card sede-card text-center">
-        <div class="card-body">
+        <div class="card-body" (click)="selectSede(sede)">
           <p><strong>Nombre:</strong> {{ sede.nombreSede }}</p>
           <p><strong>Abreviación:</strong> {{ sede.abreviacion }}</p>
           <p><strong>Dirección:</strong> {{ sede.direccion }}</p>
@@ -154,4 +154,88 @@
     </form>
   </ng-template>
   <br /><br /><br /><br /><br />
+</div>
+<div class="container" *ngIf="onSelectSede"> 
+  <div class="row">
+    <div class="col text-center">
+      <h1>Sede {{selectedSede.nombreSede}} <strong *ngIf="selectedColaboradores">/Colaboradores</strong> <strong *ngIf="selectedClients">/Clientes</strong></h1>
+    </div>
+  </div>
+  <div class="row" *ngIf="!this.selectedColaboradores && !this.selectedClients">
+    <div  class="col card" (click)="onColaboradores()">
+          <h2>Mis Colaboradores</h2>
+    </div>
+    <div class="col card" (click)="onClientes()">
+          <h2>Mis Clientes</h2>
+    </div>
+  </div>
+
+  <div class="card row" *ngIf="selectedColaboradores">
+    <h2>Entrenadores</h2>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellidos</th>
+          <th>Usuario</th>
+          <th>Fecha de Inscripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let entrenador of siteTrainers">
+          <td>{{entrenador.nombre_1 + " " + entrenador.nombre_2}}</td>
+          <td>{{entrenador.apellido_1 +" "+ entrenador.apellido_2}}</td>
+          <td>{{entrenador.numero_documento_identidad}}</td>
+          <td>{{entrenador.fecha_creacion?.toString()?.slice(0,10)}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card row" *ngIf="selectedColaboradores">
+    <h2>Recepcionistas</h2>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellidos</th>
+          <th>Usuario</th>
+          <th>Fecha de Inscripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let recepcionista of siteRecepcionistas">
+          <td>{{recepcionista.nombre_1 + " " + recepcionista.nombre_2}}</td>
+          <td>{{recepcionista.apellido_1 +" "+ recepcionista.apellido_2}}</td>
+          <td>{{recepcionista.numero_documento_identidad}}</td>
+          <td>{{recepcionista.fecha_creacion?.toString()?.slice(0,10)}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card row" *ngIf="selectedClients">
+    <h2>Clientes</h2>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellidos</th>
+          <th>Usuario</th>
+          <th>Fecha de Inscripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let cliente of siteClients">
+          <td>{{cliente.nombre}}</td>
+          <td>{{cliente.apellido1 +" "+ cliente.apellido2}}</td>
+          <td>{{cliente.dni}}</td>
+          <td>{{cliente.fechaCreacion?.toString()?.slice(0,10)}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
