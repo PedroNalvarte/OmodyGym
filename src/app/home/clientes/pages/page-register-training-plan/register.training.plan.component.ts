@@ -16,6 +16,7 @@ import { GrupoMuscular } from '../../../ejercicios/model/grupoMuscular.interface
 import { TrainingPlanService } from './training.plan.service';
 import { registerTraining } from '../models/register-training.interface';
 import { concatMap } from 'rxjs';
+import { Modal } from 'bootstrap';
 @Component({
   selector: 'register-training-plan',
   templateUrl: './register.training.plan.component.html',
@@ -79,6 +80,7 @@ export class RegisterTrainingPlan {
     this.onChoosingDay = true;
     if(this.day1Completed && this.day2Completed && this.day3Completed && this.day4Completed && this.day5Completed && this.day6Completed && this.day7Completed){
       this.planCompleted = true;
+      
     }
     this.countExcercises = 0
   }
@@ -179,22 +181,27 @@ export class RegisterTrainingPlan {
     this.goToDays();
   }
 
-  registrarPlan(modal : TemplateRef<void>){
-    this.trainingPlanService.deleteLastPlan(this.receivedClient.Id).pipe(
-      concatMap(() => this.trainingPlanService.registerEjercicio(this.ejerciciosGuardados))
-    ).subscribe( () => {
-      this.openModal(modal);
-      setTimeout(() => {
-        this.modalRef?.hide();
-      }, 2000);
-
-      this.goBack();
-    },
-    (error) => {
-      console.log(error);
+  registrarPlan(successModal: TemplateRef<void>, alertModal: TemplateRef<void>) {
+    if (this.day1Completed && this.day2Completed && this.day3Completed && this.day4Completed && this.day5Completed && this.day6Completed && this.day7Completed) {
+        // Todos los días están completados
+        this.trainingPlanService.deleteLastPlan(this.receivedClient.Id).pipe(
+            concatMap(() => this.trainingPlanService.registerEjercicio(this.ejerciciosGuardados))
+        ).subscribe(() => {
+            this.openModal(successModal);
+            setTimeout(() => {
+                this.modalRef?.hide();
+            }, 2000);
+            this.goBack();
+        },
+        (error) => {
+            console.log(error);
+        });
+    } else {
+        // No todos los días están completados
+        this.openModal(alertModal);
     }
-    );
-  }
+}
+  
   GetLastPlan(){
     this.trainingPlanService.getLastPlan().subscribe(
       (data) => {

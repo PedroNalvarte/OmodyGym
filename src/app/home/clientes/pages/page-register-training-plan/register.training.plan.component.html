@@ -6,7 +6,8 @@
         <div class="d-flex justify-content-center align-items-center w-100">
             <h2 class="mb-0 me-2">{{receivedClient.nombre}} {{receivedClient.apellido1}} {{receivedClient.apellido2}}</h2>
             <i class="fas fa-chevron-circle-left fa-lg ms-5" *ngIf="!planCompleted" (click)="goBack()"></i>
-            <button class="btn btn-success ms-5" *ngIf="planCompleted" (click)="registrarPlan(confirmation)">Registrar Plan</button>
+            <button class="btn btn-success ms-5" (click)="registrarPlan(confirmation, alertTemplate)">Registrar Plan</button>
+
         </div>
     </div>
     <h3 class="text-center">Seleccionar</h3>
@@ -144,7 +145,7 @@
     <div class="modal-header">
         <h4 class="modal-title pull-left">Registro finalizado</h4>
     </div>
-    <div class="modal-body">SE REGISTRO EL PLAN CORRECTAMENTE</div>
+    <div class="modal-body">PLAN DE ENTRENAMIENTO REGISTRADO CORRECTAMENTE</div>
 </ng-template>
 
 <ng-template #modalTemplate>
@@ -154,3 +155,11 @@
     <div class="modal-body">SE GUARDÓ LOS EJERCICIOS CORRECTAMENTE</div>
     <div class="modal-body">DÍA {{selectedDay}}</div>
 </ng-template>
+
+<ng-template #alertTemplate>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Registro incompleto</h4>
+    </div>
+    <div class="modal-body">Por favor, complete todos los días antes de registrar el plan.</div>
+</ng-template>
+

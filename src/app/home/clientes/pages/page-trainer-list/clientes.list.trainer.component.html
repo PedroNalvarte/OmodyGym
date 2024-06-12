@@ -75,8 +75,7 @@
     <button class="btn btn-primary" (click)="asignTrainer(confirmation)"
       *ngIf="!selectedClient.entrenador">Añadir Alumno</button>
     <button class="btn btn-primary" (click)="toRegisterPlan()"
-      *ngIf="selectedClient.entrenador">Registar
-      Plan</button>
+      *ngIf="selectedClient.entrenador">Generar Plan de Entrenamiento</button>
     <button class="btn btn-primary" (click)="verPlanEntrenamiento()"
       *ngIf="selectedClient.entrenador && selectedClient.modificacion_plan">Ver
       Plan de Entrenamiento</button>
@@ -90,5 +89,5 @@
   <div class="modal-header">
     <h4 class="modal-title pull-left">Registro finalizado</h4>
   </div>
-  <div class="modal-body">Cliente registrado exitosamente</div>
+  <div class="modal-body">  Alumno añadido exitosamente</div>
 </ng-template>

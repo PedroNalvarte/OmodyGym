@@ -15,6 +15,7 @@
             <input class="form-control"
             placeholder="Ingrese el nombre/DNI del cliente a buscar"
             (keyup)="realizarBusqueda($event.target)"/>
+            
             <br>
             <div *ngFor="let client of clients" class="card row-md-3">
                 <div class="card-body">

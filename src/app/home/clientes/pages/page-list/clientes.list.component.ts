@@ -75,6 +75,7 @@ export class ClientesListComponent {
     }
     else{
           this.clients = this.clientPipe.transform(this.allClients, input.value);
+          
     }
   }
 

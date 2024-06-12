@@ -46,64 +46,66 @@
   </div>
 
   <ng-template #ModalRegistrarEjercicio>
-    <form (ngSubmit)="registerEjercicio()" #colaboradorForm="ngForm">
+    <form (ngSubmit)="registerEjercicio(confirmation)" #colaboradorForm="ngForm">
       <div class="modal-header">
         <h4 class="modal-title">Registrar Ejercicio</h4>
-        <button type="button" class="btn-close" aria-label="Close"
-          (click)="modalRef?.hide()"></button>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modalRef?.hide()"></button>
       </div>
-
+  
       <div *ngIf="processingRequest; else FormBody">
         <div class="modal-body">
           <shared-loading-spinner></shared-loading-spinner>
           <p>Espere mientras se registra el ejercicio</p>
         </div>
       </div>
-
+  
       <ng-template #FormBody>
         <div class="modal-body">
           <p>Ingrese los datos del ejercicio a registrar</p>
-
+  
+          <div *ngIf="showAlert" class="alert alert-danger" role="alert">
+            Por favor complete todos los campos antes de registrar el ejercicio.
+          </div>
+  
           <div class="row">
             <div class="col-md-6">
               <div class="mb-3">
-                <label for="grupoMuscular" class="form-label">Grupo
-                  Muscular</label>
-                <select [(ngModel)]="ejercicioRegistro.id_grupo_muscular"
-                  name="idSede" id="grupoMuscular" class="form-select" required>
-                  <option aria-label="Default select example"
-                    value="0">Seleccione grupo muscular</option>
-                  <option *ngFor="let grupoMuscular of gruposMusculares"
-                    [value]="grupoMuscular.id_grupo_muscular">{{grupoMuscular.nombre_grupo_muscular}}</option>
+                <label for="grupoMuscular" class="form-label">Grupo Muscular</label>
+                <select [(ngModel)]="ejercicioRegistro.id_grupo_muscular" name="idSede" id="grupoMuscular" class="form-select" required>
+                  <option aria-label="Default select example" value="0">Seleccione grupo muscular</option>
+                  <option *ngFor="let grupoMuscular of gruposMusculares" [value]="grupoMuscular.id_grupo_muscular">{{grupoMuscular.nombre_grupo_muscular}}</option>
                 </select>
               </div>
             </div>
             <div class="col-md-6">
               <div class="mb-3">
-                <label for="nombreEjercicio" class="form-label">Nombre
-                  Ejercicio</label>
-                <input [(ngModel)]="ejercicioRegistro.nombre" name="nombre"
-                  id="nombreEjercicio" type="text" class="form-control"
-                  required>
+                <label for="nombreEjercicio" class="form-label">Nombre Ejercicio</label>
+                <input [(ngModel)]="ejercicioRegistro.nombre" name="nombre" id="nombreEjercicio" type="text" class="form-control" required>
               </div>
             </div>
           </div>
-
+  
           <div class="mb-3">
             <label for="enlaceImagen" class="form-label">Enlace Imagen</label>
-            <input [(ngModel)]="ejercicioRegistro.imagen" name="enlace"
-              id="enlaceImagen" type="text" class="form-control" required>
+            <input [(ngModel)]="ejercicioRegistro.imagen" name="enlace" id="enlaceImagen" type="text" class="form-control" required>
           </div>
         </div>
-
+  
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary"
-            data-bs-dismiss="modal" (click)="modalRef?.hide()">Cerrar</button>
-          <button type="submit" class="btn btn-primary"
-            [disabled]="!colaboradorForm.valid">Registrar ejercicio</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="modalRef?.hide()">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Registrar ejercicio</button>
         </div>
-
       </ng-template>
     </form>
   </ng-template>
 </div>
+
+
+
+<ng-template #confirmation>
+  <div class="modal-header">
+      <h4 class="modal-title pull-left" style="color: rgb(46, 165, 42);"><strong>Ejercicio Registrado Correctamente</strong></h4>
+  </div>
+  
+</ng-template>
+

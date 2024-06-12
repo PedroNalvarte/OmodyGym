@@ -48,8 +48,11 @@ export class EjerciciosComponent {
     this.searchEjercicioName = '';
     this.filterByGrupoMuscular = 0;
   }
+  showAlert: boolean = false;
 
-  registerEjercicio(): void {
+  registerEjercicio(modal : TemplateRef<void>) {
+    if (this.ejercicioRegistro.id_grupo_muscular && this.ejercicioRegistro.nombre && this.ejercicioRegistro.imagen) {
+
     this.processingRequest = true;
 
     this.ejerciciosService
@@ -59,6 +62,7 @@ export class EjerciciosComponent {
         finalize(() => {
           this.processingRequest = false;
           this.closeModal();
+          this.openModal(modal);
           this.ejerciciosService.listEjercicios().subscribe();
         }
         ),
@@ -71,7 +75,12 @@ export class EjerciciosComponent {
         })
       )
       .subscribe();
+  } else {
+    this.showAlert = true;
+    
+    
   }
+}
 
   openModal(ModalRegistrarEjercicio: TemplateRef<any>) {
     this.modalRef = this.modalService.show(ModalRegistrarEjercicio, {});
