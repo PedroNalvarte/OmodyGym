@@ -6,6 +6,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { bootstrap } from 'ngx-bootstrap-icons';
 import { Modal } from 'bootstrap';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { PersonaColaborador } from '../colaboradores/model/personaColaborador.interface';
+import { DetailClient } from '../clientes/model/detail-client.interface';
+import { ColaboradoresService } from '../colaboradores/colaboradores.service';
+import { ClientsService } from '../clientes/clientes.service';
 
 @Component({
   selector: 'sedes',
@@ -16,13 +20,24 @@ export class SedesComponent {
 
   modalRef: BsModalRef | null = null;
   public showActive: boolean = true;
-
+  public onSelectSede: boolean = false;
   public processingRequest: boolean = false;
   public succesRequest: boolean = false;
-
+  public selectedColaboradores : boolean = false;
+  public selectedClients : boolean = false;
   public activeSedes: Sede[] = [];
   public inactiveSedes: Sede[] = [];
-  constructor(private sedesService: SedesService, private modalService: BsModalService) {
+  public allColaborators : PersonaColaborador[] = [];
+  public siteTrainers : PersonaColaborador[] = [];
+  public siteRecepcionistas : PersonaColaborador[] = [];
+  public allClients : DetailClient[] = [];
+  public siteClients : DetailClient[] = [];
+  public selectedSede : Sede = {
+    nombreSede: "",
+    abreviacion: "",
+    direccion: ""
+  }
+  constructor(private sedesService: SedesService, private modalService: BsModalService,  private colaboradoresService: ColaboradoresService, private clientService : ClientsService) {
   }
 
   ngOnInit(): void {
@@ -36,6 +51,22 @@ export class SedesComponent {
         return EMPTY;
       })
     ).subscribe();
+
+    this.colaboradoresService.listColaboradores().pipe(
+      tap((colaboradores: PersonaColaborador[]) => {
+        this.allColaborators = colaboradores;
+      }
+    )).subscribe();
+
+    this.clientService.getClients(undefined).subscribe(
+      (data) => {
+        this.allClients = data;
+      },
+      (error) => {
+        console.log('Error al cargar los clientes:', error);
+      }
+    );
+
   }
 
   get sedes(): Sede[] {
@@ -139,4 +170,21 @@ export class SedesComponent {
     ).subscribe();
   }
 
+  selectSede(sede : Sede){
+    this.selectedSede = sede;
+    this.onSelectSede = true;
+  }
+  onColaboradores(){
+      this.siteTrainers = this.allColaborators.filter(x => x.idSede == this.selectedSede.idSede && x.id_tipo_persona == 1);
+      this.siteRecepcionistas = this.allColaborators.filter(x => x.idSede == this.selectedSede.idSede && x.id_tipo_persona == 2);
+      this.selectedColaboradores = true;
+      this.selectedClients = false;
+  }
+
+  onClientes(){
+    this.siteClients = this.allClients.filter(x => x.idSede == this.selectedSede.idSede);
+    this.selectedColaboradores = false;
+    this.selectedClients = true;
+    console.log(this.siteClients);
+  }
 }

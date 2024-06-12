@@ -15,5 +15,8 @@ export interface DetailClient {
     entrenador: string,
     idEntrenador?: number,
     modificacion_metricas?: string,
-    modificacion_plan?: string
+    modificacion_plan?: string,
+    idSede?: number,
+    fecha_creacion?: Date,
+    fechaCreacion?: Date
   }
