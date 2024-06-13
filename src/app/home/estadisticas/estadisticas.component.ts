@@ -18,6 +18,7 @@ export class EstadisticasComponent {
   SelectedMonth?: number;
   MonthList: Month[] = [];
   public processingRequest = true;
+  public noMetrics = false;
   dni: string = '';
   public id = 0;
   private subscription: Subscription;
@@ -36,23 +37,36 @@ export class EstadisticasComponent {
 
   ngOnInit(): void {
     this.miProgresoService.listMiPerfil(this.dni).subscribe(data => {
-        this.id = parseInt(data[0].id_persona); 
 
-        this.metricsService.getClientMetrics(this.id).subscribe(
-          (data) => {
-            
-            this.clientMetrics = data;
-            this.actualMetric = this.clientMetrics.find(metric => metric.estado === "A");
-            this.populateMonthList(this.clientMetrics);
-            this.popularInfoExtra();
-            this.SelectedMonth = this.actualMetric?.mes_numero;
-            this.processingRequest = false;
+        if(data.length != 0){
+          this.id = parseInt(data[0].id_persona); 
+
+          this.metricsService.getClientMetrics(this.id).subscribe(
+            (data) => {
+              
+              this.clientMetrics = data;
+              if(this.clientMetrics.length == 0){
+                this.processingRequest = false;
+                this.noMetrics = true;
+              }
+              this.actualMetric = this.clientMetrics.find(metric => metric.estado === "A");
+              this.populateMonthList(this.clientMetrics);
+              this.popularInfoExtra();
+              this.SelectedMonth = this.actualMetric?.mes_numero;
+              this.processingRequest = false;
+              
           },
-          (error) => {
-            console.log('Error al cargar las metricas:', error);
-    
-          }
-        );
+            (error) => {
+              console.log('Error al cargar las metricas:', error);
+      
+            }
+          );
+        }
+        else{
+          this.processingRequest = false;
+          this.noMetrics = true;
+        }
+        
       });
     
     

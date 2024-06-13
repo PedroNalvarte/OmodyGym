@@ -13,6 +13,7 @@ import { BsModalRef, BsModalService , ModalDirective } from 'ngx-bootstrap/modal
 export class RegistrarClienteComponent {
   @Output() registerButtonClick = new EventEmitter<void>();
   selectedMembershipId: string | null = null;
+  maxDate? : string;
   public registerClient : DetailClient = {
     Id: '',
     nombre: '',
@@ -41,6 +42,9 @@ export class RegistrarClienteComponent {
   ngOnInit() {
     this.GetMemberships();
     this.GetSedes(); 
+    var currentDate = new Date();
+    currentDate.setFullYear(new Date().getFullYear() - 18).toString();
+    this.maxDate = currentDate.toISOString().slice(0, 10);
    }
    GetMemberships(){
     this.membresiaService.getMemberships().subscribe(
@@ -58,7 +62,7 @@ export class RegistrarClienteComponent {
   GetSedes(){
     this.sedesService.listSede().subscribe(
       (data) => {
-        this.sedes = data;
+        this.sedes = data.filter(x => x.estado == 'A');
       },
       (error) => {
         console.log('Error al cargar las sedes:', error);
@@ -100,10 +104,7 @@ export class RegistrarClienteComponent {
               setTimeout(() => {
                 this.modalRef?.hide();
                 this.registerButtonClick.emit();
-              }, 2000);
-
-              
-            
+              }, 2000);            
             }
           )
         }

@@ -31,6 +31,8 @@ export class CreateFormComponent implements OnInit {
   ngOnInit() {
   }
   onSubmit(modal : TemplateRef<void>) {
+    this.invalidCost = false;
+    this.emptyField = false;
     if(this.createMembership.name.trim() && this.createMembership.cost.trim() && this.createMembership.detail.trim()){
         if(isNaN(Number(this.createMembership.cost.trim()))){
           this.invalidCost = true;

@@ -67,6 +67,17 @@ export class ClientMetrics {
       this.metricsService.getClientMetrics(this.receivedClient.Id).subscribe(
         (data) => {
           this.clientMetrics = data;
+          this.clientMetrics.forEach(metric => {
+            if(metric.meta == 'P'){
+              metric.meta = "Bajar de peso";
+            }
+            else if(metric.meta == 'T'){
+              metric.meta = 'Tonificar';
+            }
+            else {
+              metric.meta = 'Aumentar Masa';
+            }
+          });
           this.actualMetric = this.clientMetrics.find(metric => metric.estado === "A");
           this.populateMonthList(this.clientMetrics);
           this.SelectedMonth = this.actualMetric?.mes_numero;

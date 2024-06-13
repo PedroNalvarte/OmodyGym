@@ -27,12 +27,8 @@
 
             <div class="row mt-4" >
 
-              <div class="col col-md-5" *ngIf="!pagado"><button>PAGO CADUCADO</button></div>
-
               <div class="col col-md-7" *ngIf="!membresia"><button>MEMBRESÍA
                   INACTIVA</button></div>
-
-              <div class="col col-md-5 card" *ngIf="pagado">PAGO REALIZADO</div>
 
               <div class="col col-md-7 card" *ngIf="membresia">MEMBRESÍA ACTIVA</div>
 
@@ -70,7 +66,6 @@
 
             <div class="row mt-4">
 
-              <div class="col col-md-5"  *ngIf="!pagado"><button>Actualizar pago</button></div>
 
               <div class="col col-md-7"  *ngIf="!membresia"><button (click)="openModalWithComponent()">Actualizar
                   membresia</button></div>

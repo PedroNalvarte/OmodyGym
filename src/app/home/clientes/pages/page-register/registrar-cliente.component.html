@@ -23,7 +23,7 @@
             </div>
             <div class="mb-1">
               <label for="fechaNacimiento" class="form-label">FECHA NACIMIENTO</label>
-              <input [(ngModel)]="registerClient.fechaNacimiento" name="fechaNacimiento" type="date" class="form-control form-control-sm" id="fechaNacimiento" required />
+              <input [(ngModel)]="registerClient.fechaNacimiento" [max]="maxDate" name="fechaNacimiento" type="date" class="form-control form-control-sm" id="fechaNacimiento" required />
             </div>
             <div class="mb-1">
               <label for="telefono" class="form-label">CELULAR</label>

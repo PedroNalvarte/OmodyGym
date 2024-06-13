@@ -120,7 +120,7 @@ export class LoginPageComponent implements OnInit {
     } else if (this.credentials.password == this.resetPassword) {
 
       this.invalidResetPassword = true;
-      this.resetErrorMensaje = 'Las contraseña no puede ser igual a la actual.';
+      this.resetErrorMensaje = 'La contraseña tiene que ser diferente a la actual.';
 
     } else {
 

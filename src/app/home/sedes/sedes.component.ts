@@ -25,6 +25,7 @@ export class SedesComponent {
   public succesRequest: boolean = false;
   public selectedColaboradores : boolean = false;
   public selectedClients : boolean = false;
+  public mensajeEmpty : string = "";
   public activeSedes: Sede[] = [];
   public inactiveSedes: Sede[] = [];
   public allColaborators : PersonaColaborador[] = [];
@@ -174,17 +175,37 @@ export class SedesComponent {
     this.selectedSede = sede;
     this.onSelectSede = true;
   }
-  onColaboradores(){
+  onColaboradores(modal : TemplateRef<void>){
       this.siteTrainers = this.allColaborators.filter(x => x.idSede == this.selectedSede.idSede && x.id_tipo_persona == 1);
       this.siteRecepcionistas = this.allColaborators.filter(x => x.idSede == this.selectedSede.idSede && x.id_tipo_persona == 2);
-      this.selectedColaboradores = true;
-      this.selectedClients = false;
+      
+      if(this.siteTrainers.length == 0 && this.siteRecepcionistas.length == 0){
+        this.mensajeEmpty = "No hay colaboradores registrados en esta sede";
+        this.openModal(modal);
+              setTimeout(() => {
+                this.modalRef?.hide();
+              }, 2000);
+      }
+      else{
+        this.selectedColaboradores = true;
+        this.selectedClients = false;
+      }
+
+
   }
 
-  onClientes(){
+  onClientes(modal : TemplateRef<void>){
     this.siteClients = this.allClients.filter(x => x.idSede == this.selectedSede.idSede);
-    this.selectedColaboradores = false;
-    this.selectedClients = true;
-    console.log(this.siteClients);
+    if(this.siteClients.length == 0){
+      this.mensajeEmpty = "No hay clientes registrados en esta sede";
+      this.openModal(modal);
+      setTimeout(() => {
+        this.modalRef?.hide();
+      }, 2000);
+    }
+    else{
+      this.selectedColaboradores = false;
+      this.selectedClients = true;
+    }
   }
 }

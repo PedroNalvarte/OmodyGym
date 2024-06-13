@@ -36,21 +36,22 @@
           <p><strong>Nombre:</strong> {{ sede.nombreSede }}</p>
           <p><strong>Abreviación:</strong> {{ sede.abreviacion }}</p>
           <p><strong>Dirección:</strong> {{ sede.direccion }}</p>
-          <select
-            [(ngModel)]="sede.estado"
-            (change)="updateStatus(sede.idSede + '')"
-            [ngClass]="{
-              'form-select-green': sede.estado === 'A',
-              'form-select-red': sede.estado !== 'A'
-            }"
-            class="form-select"
-          >
-            <option style="background-color: #72ce16" value="A">Activo</option>
-            <option style="background-color: #e62c2c" value="I">
-              Inactivo
-            </option>
-          </select>
+         
         </div>
+        <select
+        [(ngModel)]="sede.estado"
+        (change)="updateStatus(sede.idSede + '')"
+        [ngClass]="{
+          'form-select-green': sede.estado === 'A',
+          'form-select-red': sede.estado !== 'A'
+        }"
+        class="form-select"
+      >
+        <option style="background-color: #72ce16" value="A">Activo</option>
+        <option style="background-color: #e62c2c" value="I">
+          Inactivo
+        </option>
+      </select>
       </div>
     </div>
 
@@ -162,10 +163,10 @@
     </div>
   </div>
   <div class="row" *ngIf="!this.selectedColaboradores && !this.selectedClients">
-    <div  class="col card" (click)="onColaboradores()">
+    <div  class="col card" (click)="onColaboradores(confirmation)">
           <h2>Mis Colaboradores</h2>
     </div>
-    <div class="col card" (click)="onClientes()">
+    <div class="col card" (click)="onClientes(confirmation)">
           <h2>Mis Clientes</h2>
     </div>
   </div>
@@ -239,3 +240,11 @@
     </table>
   </div>
 </div>
+
+
+<ng-template #confirmation>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left"></h4>
+  </div>
+  <div class="modal-body">{{mensajeEmpty}}</div>
+</ng-template>

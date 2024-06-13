@@ -50,8 +50,8 @@
                 </div>
             </div>
             <div class="objective">
-                <h6>Objetivo: {{ registerMetric.meta }}</h6>
-                <h6>Peso Ideal: {{ registerMetric.objetivo }}kg</h6>
+                <h6>Objetivo: {{ actualMetric?.meta }}</h6>
+                <h6>Peso Ideal: {{ actualMetric?.objetivo }}kg</h6>
             </div>
         </div>
         <button class="btn btn-primary" (click)="toRegisterMetrics()">Actualizar métricas</button>
